@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="16〜18世紀の世界の一体化と銀・商品の流れ" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　16〜18世紀における大西洋三角貿易と世界的な銀の環流</text>
+  <!-- 4地域ボックス -->
+  <rect x="250" y="54" width="160" height="58" rx="12" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="330" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="#1f467d">西ヨーロッパ</text>
+  <text x="330" y="98" text-anchor="middle" font-size="12" fill="#34495e">毛織物・武器・雑貨</text>
+
+  <rect x="34" y="168" width="176" height="66" rx="12" fill="#fdf4e8" stroke="#c4762b" stroke-width="2"/>
+  <text x="122" y="193" text-anchor="middle" font-size="14" font-weight="800" fill="#99581b">アメリカ大陸・カリブ海</text>
+  <text x="122" y="214" text-anchor="middle" font-size="12" fill="#34495e">ポトシ銀山・砂糖・綿花・タバコ</text>
+
+  <rect x="250" y="226" width="160" height="58" rx="12" fill="#faeee9" stroke="#b84a39" stroke-width="2"/>
+  <text x="330" y="250" text-anchor="middle" font-size="14" font-weight="800" fill="#963627">西アフリカ</text>
+  <text x="330" y="270" text-anchor="middle" font-size="12" fill="#34495e">黒人奴隷の強制連行</text>
+
+  <rect x="468" y="142" width="180" height="92" rx="12" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="558" y="168" text-anchor="middle" font-size="14" font-weight="800" fill="#216653">東アジア（明・清／日本）</text>
+  <text x="558" y="190" text-anchor="middle" font-size="12" fill="#34495e">生糸・絹織物・陶磁器・茶</text>
+  <text x="558" y="210" text-anchor="middle" font-size="12" font-weight="800" fill="#216653">一条鞭法・地丁銀（銀需要）</text>
+
+  <defs>
+    <marker id="mBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2b5b9e"/></marker>
+    <marker id="mRed" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b84a39"/></marker>
+    <marker id="mGold" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b9770e"/></marker>
+  </defs>
+  <!-- 矢印群 -->
+  <path d="M312 114 L312 220" stroke="#2b5b9e" stroke-width="2.5" marker-end="url(#mBlue)"/>
+  <text x="272" y="166" text-anchor="middle" font-size="12" font-weight="800" fill="#1f467d">【ア】武器・綿布</text>
+
+  <path d="M248 252 L176 236" stroke="#b84a39" stroke-width="2.5" marker-end="url(#mRed)"/>
+  <text x="206" y="268" text-anchor="middle" font-size="12" font-weight="800" fill="#963627">【イ】労働力</text>
+
+  <path d="M138 166 L246 92" stroke="#b9770e" stroke-width="2.5" marker-end="url(#mGold)"/>
+  <text x="164" y="114" text-anchor="middle" font-size="12" font-weight="800" fill="#99581b">【ウ】砂糖・銀</text>
+
+  <path d="M412 86 L526 138" stroke="#b9770e" stroke-width="2.5" marker-end="url(#mGold)"/>
+  <text x="494" y="98" text-anchor="middle" font-size="12" font-weight="800" fill="#99581b">銀による決済</text>
+
+  <path d="M122 236 Q330 312 538 238" fill="none" stroke="#b9770e" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#mGold)"/>
+  <text x="358" y="302" text-anchor="middle" font-size="12" font-weight="800" fill="#99581b">太平洋経由：【エ】貿易（アカプルコ〜マニラ・ガレオン船でメキシコ銀流入）</text>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="幕末開港時の内外金銀比価と貿易構造" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　1859年開港直後の内外金銀比価と小判流出のしくみ</text>
+  <!-- 左：日本の比価 -->
+  <rect x="28" y="54" width="276" height="156" rx="12" fill="#fdf6ec" stroke="#d8b989" stroke-width="1.5"/>
+  <text x="166" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="#963627">日本国内の交換比率（金1：銀5）</text>
+  <circle cx="92" cy="132" r="32" fill="#f3c64f" stroke="#b98519" stroke-width="2"/>
+  <text x="92" y="128" text-anchor="middle" font-size="13" font-weight="800" fill="#5c3d04">天保小判</text>
+  <text x="92" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#5c3d04">1枚(1両)</text>
+  <text x="150" y="138" text-anchor="middle" font-size="18" font-weight="900" fill="#2c3e50">＝</text>
+  <g fill="#dce4ec" stroke="#6c7d8e" stroke-width="1.5">
+    <rect x="176" y="96" width="48" height="30" rx="5"/><rect x="232" y="96" width="48" height="30" rx="5"/>
+    <rect x="176" y="136" width="48" height="30" rx="5"/><rect x="232" y="136" width="48" height="30" rx="5"/>
+  </g>
+  <text x="228" y="186" text-anchor="middle" font-size="12" font-weight="700" fill="#34495e">一分銀 4枚（＝洋銀約1.3枚分）</text>
+  <!-- 右：国際市場の比価 -->
+  <rect x="376" y="54" width="276" height="156" rx="12" fill="#f3f7fc" stroke="#9ab4d8" stroke-width="1.5"/>
+  <text x="514" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="#1f467d">上海・国際市場の比率（金1：銀15）</text>
+  <circle cx="436" cy="132" r="32" fill="#f3c64f" stroke="#b98519" stroke-width="2"/>
+  <text x="436" y="128" text-anchor="middle" font-size="13" font-weight="800" fill="#5c3d04">金 1単位</text>
+  <text x="436" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#5c3d04">(小判1両相当)</text>
+  <text x="492" y="138" text-anchor="middle" font-size="18" font-weight="900" fill="#2c3e50">＝</text>
+  <rect x="516" y="96" width="118" height="72" rx="8" fill="#e3ecf5" stroke="#5d7896" stroke-width="1.5"/>
+  <text x="575" y="126" text-anchor="middle" font-size="13" font-weight="800" fill="#1f467d">洋銀（メキシコ銀）</text>
+  <text x="575" y="148" text-anchor="middle" font-size="14" font-weight="900" fill="#b84a39">約 4枚（一分銀12枚相当）</text>
+  <!-- 矢印 -->
+  <path d="M308 112 L368 112" stroke="#b84a39" stroke-width="3" marker-end="url(#arrR)"/>
+  <path d="M368 154 L308 154" stroke="#2b5b9e" stroke-width="3" marker-end="url(#arrB)"/>
+  <defs>
+    <marker id="arrR" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b84a39"/></marker>
+    <marker id="arrB" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2b5b9e"/></marker>
+  </defs>
+  <text x="340" y="104" text-anchor="middle" font-size="11" font-weight="800" fill="#b84a39">小判流出</text>
+  <text x="340" y="172" text-anchor="middle" font-size="11" font-weight="800" fill="#2b5b9e">洋銀流入</text>
+  <!-- 下部まとめ帯 -->
+  <rect x="28" y="226" width="624" height="68" rx="10" fill="#fff5f2" stroke="#e4b9ae" stroke-width="1.5"/>
+  <text x="44" y="250" font-size="13" font-weight="800" fill="#963627">● 外国商人の裁定取引：洋銀→一分銀→日本で小判に両替→上海で再び洋銀へ換えると1往復で約3倍の利益！</text>
+  <text x="44" y="274" font-size="13" font-weight="700" fill="#2c3e50">● 幕府の対策（1860年）：【 万延の貨幣改鋳 】で小判の金含有量を約3分の1に引き下げ → 激しい物価騰貴を招いた。</text>
+</svg>

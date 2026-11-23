@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="1926〜1936年の日本の卸売物価指数と為替相場推移" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図2　昭和初期の日本の卸売物価指数（1926年＝100）と対米為替の推移</text>
+  <!-- 軸 -->
+  <line x1="76" y1="62" x2="76" y2="256" stroke="#5d6d7e" stroke-width="1.8"/>
+  <line x1="76" y1="256" x2="624" y2="256" stroke="#5d6d7e" stroke-width="1.8"/>
+  <!-- 横グリッド -->
+  <g stroke="#e6dfd1" stroke-dasharray="4 4" stroke-width="1">
+    <line x1="76" y1="82" x2="624" y2="82"/>
+    <line x1="76" y1="138" x2="624" y2="138"/>
+    <line x1="76" y1="194" x2="624" y2="194"/>
+  </g>
+  <g font-size="12" fill="#5d6d7e" text-anchor="end" font-weight="700">
+    <text x="68" y="86">100</text><text x="68" y="142">80</text><text x="68" y="198">60</text><text x="68" y="256">40</text>
+  </g>
+  <!-- 期間ハイライト -->
+  <rect x="276" y="62" width="104" height="194" fill="#fdecea" opacity="0.75"/>
+  <text x="328" y="78" text-anchor="middle" font-size="12" font-weight="800" fill="#b84a39">時期Ｘ(1930-31)</text>
+  <rect x="380" y="62" width="208" height="194" fill="#eef6f2" opacity="0.75"/>
+  <text x="484" y="78" text-anchor="middle" font-size="12" font-weight="800" fill="#216653">時期Ｙ(1932-35)</text>
+  <!-- 折れ線：卸売物価指数 (1926:100, 1928:95, 1929:92, 1930:76, 1931:64, 1932:71, 1933:82, 1935:86) -->
+  <polyline fill="none" stroke="#b84a39" stroke-width="3.5" points="96,82 174,96 252,104 304,149 356,183 418,163 488,132 588,121"/>
+  <g fill="#b84a39">
+    <circle cx="96" cy="82" r="5"/><circle cx="174" cy="96" r="5"/><circle cx="252" cy="104" r="5"/>
+    <circle cx="304" cy="149" r="5.5"/><circle cx="356" cy="183" r="5.5"/>
+    <circle cx="418" cy="163" r="5"/><circle cx="488" cy="132" r="5"/><circle cx="588" cy="121" r="5"/>
+  </g>
+  <!-- X軸年次 -->
+  <g font-size="12" fill="#2c3e50" text-anchor="middle" font-weight="700">
+    <text x="96" y="276">1926</text><text x="174" y="276">1928</text><text x="252" y="276">1929</text>
+    <text x="304" y="276">1930</text><text x="356" y="276">1931</text><text x="418" y="276">1932</text>
+    <text x="488" y="276">1933</text><text x="588" y="276">1935(年)</text>
+  </g>
+  <text x="356" y="204" text-anchor="middle" font-size="12" font-weight="800" fill="#963627">底：64（デフレ深刻化）</text>
+  <text x="508" y="114" text-anchor="middle" font-size="12" font-weight="800" fill="#216653">円安・積極財政で物価・輸出回復</text>
+  <text x="340" y="304" text-anchor="middle" font-size="12" fill="#5d6d7e">（日本銀行統計をもとに作成。1930年1月：旧平価金解禁 ／ 1931年12月：金輸出再禁止）</text>
+</svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="需要曲線D・供給曲線Sのシフトと均衡価格・取引量の変化" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　需要曲線Dの右シフト（Ⅰ）と供給曲線Sの左シフト（Ⅱ）の比較</text>
+  <!-- 左グラフ：出来事Ⅰ（需要増 D→D'） -->
+  <rect x="26" y="50" width="302" height="244" rx="12" fill="#f7fafe" stroke="#c8d9ef" stroke-width="1.5"/>
+  <text x="177" y="72" text-anchor="middle" font-size="13" font-weight="800" fill="#1f467d">出来事Ⅰ：需要増加（D → D' 右シフト）</text>
+  <line x1="68" y1="84" x2="68" y2="246" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="68" y1="246" x2="296" y2="246" stroke="#2c3e50" stroke-width="2"/>
+  <text x="52" y="96" font-size="11.5" font-weight="800" fill="#2c3e50">P</text>
+  <text x="292" y="264" font-size="11.5" font-weight="800" fill="#2c3e50">Q</text>
+  <line x1="88" y1="226" x2="274" y2="96" stroke="#2e856e" stroke-width="2.5"/>
+  <text x="282" y="98" font-size="12.5" font-weight="900" fill="#2e856e">S</text>
+  <line x1="86" y1="106" x2="248" y2="230" stroke="#7f8c8d" stroke-width="2"/>
+  <text x="254" y="236" font-size="12" font-weight="800" fill="#7f8c8d">D</text>
+  <line x1="126" y1="92" x2="286" y2="216" stroke="#2b5b9e" stroke-width="3" stroke-dasharray="6 3"/>
+  <text x="292" y="222" font-size="12.5" font-weight="900" fill="#2b5b9e">D'</text>
+  <circle cx="169" cy="169" r="4.5" fill="#7f8c8d"/>
+  <circle cx="196" cy="150" r="5" fill="#2b5b9e"/>
+  <text x="177" y="278" text-anchor="middle" font-size="12" font-weight="800" fill="#1f467d">均衡価格 上昇↑ ／ 取引量 増加↑</text>
+
+  <!-- 右グラフ：出来事Ⅱ（供給減 S→S'） -->
+  <rect x="352" y="50" width="302" height="244" rx="12" fill="#fdf6f4" stroke="#e6c5bd" stroke-width="1.5"/>
+  <text x="503" y="72" text-anchor="middle" font-size="13" font-weight="800" fill="#963627">出来事Ⅱ：供給減少（S → S' 左シフト）</text>
+  <line x1="394" y1="84" x2="394" y2="246" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="394" y1="246" x2="622" y2="246" stroke="#2c3e50" stroke-width="2"/>
+  <text x="378" y="96" font-size="11.5" font-weight="800" fill="#2c3e50">P</text>
+  <text x="618" y="264" font-size="11.5" font-weight="800" fill="#2c3e50">Q</text>
+  <line x1="414" y1="102" x2="600" y2="232" stroke="#2b5b9e" stroke-width="2.5"/>
+  <text x="608" y="236" font-size="12.5" font-weight="900" fill="#2b5b9e">D</text>
+  <line x1="432" y1="232" x2="606" y2="104" stroke="#7f8c8d" stroke-width="2"/>
+  <text x="614" y="108" font-size="12" font-weight="800" fill="#7f8c8d">S</text>
+  <line x1="406" y1="204" x2="572" y2="84" stroke="#b84a39" stroke-width="3" stroke-dasharray="6 3"/>
+  <text x="580" y="88" font-size="12.5" font-weight="900" fill="#b84a39">S'</text>
+  <circle cx="514" cy="172" r="4.5" fill="#7f8c8d"/>
+  <circle cx="486" cy="152" r="5" fill="#b84a39"/>
+  <text x="503" y="278" text-anchor="middle" font-size="12" font-weight="800" fill="#963627">均衡価格 上昇↑ ／ 取引量 減少↓</text>
+</svg>

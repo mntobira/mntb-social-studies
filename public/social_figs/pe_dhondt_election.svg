@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 310" role="img" aria-label="比例代表制におけるドント式の得票数と商の一覧表" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="294" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">表1　ある比例代表ブロック（定数6）における各党の得票数とドント式の商</text>
+  <!-- テーブル -->
+  <g transform="translate(36, 52)">
+    <rect x="0" y="0" width="608" height="204" rx="10" fill="#ffffff" stroke="#d5c7ae" stroke-width="1.5"/>
+    <rect x="0" y="0" width="608" height="40" rx="10" fill="#f7efe1"/>
+    <!-- 列線 -->
+    <line x1="128" y1="0" x2="128" y2="204" stroke="#e2d7c3"/>
+    <line x1="248" y1="0" x2="248" y2="204" stroke="#e2d7c3"/>
+    <line x1="368" y1="0" x2="368" y2="204" stroke="#e2d7c3"/>
+    <line x1="488" y1="0" x2="488" y2="204" stroke="#e2d7c3"/>
+    <!-- 行線 -->
+    <line x1="0" y1="40" x2="608" y2="40" stroke="#d5c7ae" stroke-width="1.5"/>
+    <line x1="0" y1="81" x2="608" y2="81" stroke="#ece3d3"/>
+    <line x1="0" y1="122" x2="608" y2="122" stroke="#ece3d3"/>
+    <line x1="0" y1="163" x2="608" y2="163" stroke="#ece3d3"/>
+    <!-- ヘッダ -->
+    <g font-size="13" font-weight="800" fill="#2c3e50" text-anchor="middle">
+      <text x="64" y="26">政党（得票数）</text>
+      <text x="188" y="26">Ａ党 (1,200票)</text>
+      <text x="308" y="26">Ｂ党 (900票)</text>
+      <text x="428" y="26">Ｃ党 (500票)</text>
+      <text x="548" y="26">Ｄ党 (350票)</text>
+    </g>
+    <!-- ÷1 -->
+    <g font-size="14" font-weight="700" fill="#2c3e50" text-anchor="middle">
+      <text x="64" y="66" font-weight="800" fill="#5d6d7e">÷ 1</text>
+      <text x="188" y="66" fill="#b84a39" font-weight="900">1,200</text>
+      <text x="308" y="66" fill="#b84a39" font-weight="900">900</text>
+      <text x="428" y="66" fill="#b84a39" font-weight="900">500</text>
+      <text x="548" y="66">350</text>
+    </g>
+    <!-- ÷2 -->
+    <g font-size="14" font-weight="700" fill="#2c3e50" text-anchor="middle">
+      <text x="64" y="107" font-weight="800" fill="#5d6d7e">÷ 2</text>
+      <text x="188" y="107" fill="#b84a39" font-weight="900">600</text>
+      <text x="308" y="107" fill="#b84a39" font-weight="900">450</text>
+      <text x="428" y="107">250</text>
+      <text x="548" y="107">175</text>
+    </g>
+    <!-- ÷3 -->
+    <g font-size="14" font-weight="700" fill="#2c3e50" text-anchor="middle">
+      <text x="64" y="148" font-weight="800" fill="#5d6d7e">÷ 3</text>
+      <text x="188" y="148" fill="#99581b" font-weight="900">400</text>
+      <text x="308" y="148">300</text>
+      <text x="428" y="148">166.6…</text>
+      <text x="548" y="148">116.6…</text>
+    </g>
+    <!-- ÷4 -->
+    <g font-size="14" font-weight="700" fill="#2c3e50" text-anchor="middle">
+      <text x="64" y="189" font-weight="800" fill="#5d6d7e">÷ 4</text>
+      <text x="188" y="189">300</text>
+      <text x="308" y="189">225</text>
+      <text x="428" y="189">125</text>
+      <text x="548" y="189">87.5</text>
+    </g>
+  </g>
+  <text x="340" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5d6d7e">※ 各党の得票数を整数 1, 2, 3, 4… で割り、商の大きい順に定数（6議席）まで配分する。</text>
+</svg>

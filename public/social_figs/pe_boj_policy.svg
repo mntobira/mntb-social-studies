@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="日本銀行の公開市場操作と信用創造のしくみ" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　日本銀行の公開市場操作（不況期 vs インフレ期）と信用創造公式</text>
+  <defs>
+    <marker id="aGrn" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#216653"/></marker>
+    <marker id="aRed2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b84a39"/></marker>
+  </defs>
+  <!-- 上段左：日本銀行 -->
+  <rect x="32" y="56" width="166" height="122" rx="12" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="115" y="82" text-anchor="middle" font-size="15" font-weight="900" fill="#1f467d">日本銀行</text>
+  <text x="115" y="104" text-anchor="middle" font-size="11.5" fill="#34495e">①発券銀行 ②銀行の銀行</text>
+  <text x="115" y="122" text-anchor="middle" font-size="11.5" fill="#34495e">③政府の銀行</text>
+  <text x="115" y="148" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1f467d">政策委員会が決定</text>
+  <text x="115" y="166" text-anchor="middle" font-size="11" fill="#5d6d7e">（独立性と透明性）</text>
+
+  <!-- 上段右：民間金融機関＆市場 -->
+  <rect x="462" y="56" width="186" height="122" rx="12" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="555" y="82" text-anchor="middle" font-size="14.5" font-weight="900" fill="#99581b">民間銀行・企業・家計</text>
+  <text x="555" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#216653">不況：資金量↑→金利↓→投資↑</text>
+  <text x="555" y="128" text-anchor="middle" font-size="12" font-weight="700" fill="#b84a39">好況過熱：資金↓→金利↑→抑制</text>
+  <text x="555" y="156" text-anchor="middle" font-size="11.5" fill="#5d6d7e">※既発国債の売買＝合法</text>
+
+  <!-- 中央矢印（買いオペ・売りオペ） -->
+  <path d="M206 90 L452 90" stroke="#216653" stroke-width="3" marker-end="url(#aGrn)"/>
+  <text x="330" y="81" text-anchor="middle" font-size="12.5" font-weight="900" fill="#216653">不況・デフレ期：【買いオペ】国債を買取り資金供給↑</text>
+  <path d="M452 146 L206 146" stroke="#b84a39" stroke-width="3" marker-end="url(#aRed2)"/>
+  <text x="330" y="137" text-anchor="middle" font-size="12.5" font-weight="900" fill="#b84a39">好況・インフレ期：【売りオペ】国債を売却し資金吸収↓</text>
+
+  <!-- 下段：信用創造ボックス -->
+  <rect x="32" y="198" width="616" height="96" rx="12" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="340" y="222" text-anchor="middle" font-size="14" font-weight="900" fill="#216653">市中銀行の「信用創造」スピード計算公式（支払準備率 r のとき）</text>
+  <text x="340" y="248" text-anchor="middle" font-size="13.5" font-weight="800" fill="#2c3e50">① 預金総額 ＝ 本源的預金 ÷ 支払準備率 r　／　② 派生的預金（新規貸出総額）＝ 預金総額 − 本源的預金</text>
+  <text x="340" y="274" text-anchor="middle" font-size="12.5" font-weight="700" fill="#963627">例：本源的預金 1,000万円・準備率 20%(0.2) ⇒ 預金総額 5,000万円 ／ 派生的預金 4,000万円！</text>
+</svg>

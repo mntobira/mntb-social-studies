@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="近代倫理思想における行為の評価軸と代表思想家の対比" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　「正しさ」の根拠をめぐる近現代倫理思想の対比マップ</text>
+  <!-- 左：帰結主義（功利主義） -->
+  <rect x="28" y="54" width="296" height="116" rx="12" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="176" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="#216653">帰結主義（結果の幸福総量を重視）</text>
+  <text x="42" y="102" font-size="12.5" font-weight="700" fill="#2c3e50">● ベンサム：【量的功利主義】快楽計算・最大多数の最大幸福</text>
+  <text x="42" y="124" font-size="12.5" font-weight="700" fill="#2c3e50">● J.S.ミル：【質的功利主義】精神的快楽重視・他者危害原則</text>
+  <text x="42" y="146" font-size="12" fill="#5d6d7e">課題：全体の幸福のために少数の権利犠牲が正当化されうる</text>
+
+  <!-- 右：義務論 -->
+  <rect x="356" y="54" width="296" height="116" rx="12" fill="#f5eefb" stroke="#734f96" stroke-width="2"/>
+  <text x="504" y="78" text-anchor="middle" font-size="14" font-weight="800" fill="#583975">義務論（行為の動機・道徳法則を重視）</text>
+  <text x="370" y="102" font-size="12.5" font-weight="700" fill="#2c3e50">● カント：善意志・仮言命法ではなく無条件の【定言命法】</text>
+  <text x="370" y="124" font-size="12.5" font-weight="700" fill="#2c3e50">● 人格の尊厳：「人格を単に手段としてのみ扱ってはならない」</text>
+  <text x="370" y="146" font-size="12" fill="#5d6d7e">特徴：結果の損得ではなく、実践理性の自律（道徳法則）に従う</text>
+
+  <!-- 下段：現代の正義論（ロールズ vs リバタリアニズム vs コミュニタリアニズム） -->
+  <rect x="28" y="188" width="624" height="106" rx="12" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="340" y="212" text-anchor="middle" font-size="14" font-weight="800" fill="#99581b">20世紀後半〜現代の「公正としての正義」論争（公共・倫理 共通頻出）</text>
+  <line x1="236" y1="222" x2="236" y2="284" stroke="#e4ceb2"/>
+  <line x1="448" y1="222" x2="448" y2="284" stroke="#e4ceb2"/>
+  <text x="132" y="238" text-anchor="middle" font-size="13" font-weight="800" fill="#99581b">ロールズ（リベラリズム）</text>
+  <text x="132" y="258" text-anchor="middle" font-size="12" fill="#2c3e50">【無知のヴェール】の下で合意</text>
+  <text x="132" y="276" text-anchor="middle" font-size="12" font-weight="800" fill="#b84a39">①基本的自由 ②格差原理</text>
+
+  <text x="342" y="238" text-anchor="middle" font-size="13" font-weight="800" fill="#1f467d">ノージック（リバタリアニズム）</text>
+  <text x="342" y="258" text-anchor="middle" font-size="12" fill="#2c3e50">個人の自己所有権・財産権絶対</text>
+  <text x="342" y="276" text-anchor="middle" font-size="12" font-weight="800" fill="#1f467d">再分配課税を批判・最小国家</text>
+
+  <text x="550" y="238" text-anchor="middle" font-size="13" font-weight="800" fill="#216653">サンデルら（共同体主義）</text>
+  <text x="550" y="258" text-anchor="middle" font-size="12" fill="#2c3e50">「負荷なき自己」を批判</text>
+  <text x="550" y="276" text-anchor="middle" font-size="12" font-weight="800" fill="#216653">歴史・共同体の共通善を重視</text>
+</svg>

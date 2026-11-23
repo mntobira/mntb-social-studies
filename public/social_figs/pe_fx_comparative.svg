@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="外国為替相場（円高・円安）と比較生産費説の要点図" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　外国為替相場の計算ルールとリカードの比較生産費説（機会費用）</text>
+  <!-- 左：円高と円安 -->
+  <rect x="28" y="54" width="300" height="240" rx="12" fill="#edf3fc" stroke="#2b5b9e" stroke-width="1.8"/>
+  <text x="178" y="78" text-anchor="middle" font-size="14" font-weight="900" fill="#1f467d">① 為替変動と購買力平価</text>
+  <text x="42" y="106" font-size="12.5" font-weight="800" fill="#216653">● 1ドル＝160円 → 125円：【円高・ドル安】</text>
+  <text x="52" y="126" font-size="12" fill="#2c3e50">・輸出ドル価格上昇（輸出不利・輸入有利）</text>
+  <text x="52" y="146" font-size="12" fill="#2c3e50">・日本人海外旅行やドル建て借金返済に有利</text>
+  <text x="42" y="176" font-size="12.5" font-weight="800" fill="#b84a39">● 1ドル＝125円 → 160円：【円安・ドル高】</text>
+  <text x="52" y="196" font-size="12" fill="#2c3e50">・輸出企業の円換算利益増・訪日観光に有利</text>
+  <text x="52" y="216" font-size="12" fill="#2c3e50">・輸入エネルギー・食料価格上昇（輸入インフレ）</text>
+  <rect x="42" y="234" width="272" height="44" rx="8" fill="#ffffff" stroke="#9ab4d8"/>
+  <text x="178" y="261" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1f467d">購買力平価 ＝ 日本円価格 ÷ 外貨価格</text>
+
+  <!-- 右：比較生産費説 -->
+  <rect x="352" y="54" width="300" height="240" rx="12" fill="#fdf6ec" stroke="#c4762b" stroke-width="1.8"/>
+  <text x="502" y="78" text-anchor="middle" font-size="14" font-weight="900" fill="#99581b">② 比較生産費説（必要労働人数表）</text>
+  <rect x="370" y="94" width="264" height="92" rx="8" fill="#ffffff" stroke="#dfd2bc"/>
+  <line x1="370" y1="124" x2="634" y2="124" stroke="#dfd2bc"/>
+  <line x1="370" y1="155" x2="634" y2="155" stroke="#ece3d3"/>
+  <line x1="454" y1="94" x2="454" y2="186" stroke="#dfd2bc"/>
+  <line x1="544" y1="94" x2="544" y2="186" stroke="#dfd2bc"/>
+  <g font-size="12.5" font-weight="800" fill="#2c3e50" text-anchor="middle">
+    <text x="412" y="114">国 ＼ 財</text><text x="499" y="114">小麦1単位</text><text x="589" y="114">布1単位</text>
+    <text x="412" y="145">甲国</text><text x="499" y="145" fill="#b84a39">60人 ★</text><text x="589" y="145">90人</text>
+    <text x="412" y="176">乙国</text><text x="499" y="176">100人</text><text x="589" y="176" fill="#216653">80人 ★</text>
+  </g>
+  <text x="368" y="212" font-size="12" font-weight="700" fill="#2c3e50">● 小麦1単位の機会費用（諦める布の量）：</text>
+  <text x="378" y="232" font-size="12" font-weight="800" fill="#b84a39">甲国 60/90(0.67) ＜ 乙国 100/80(1.25)</text>
+  <text x="368" y="256" font-size="12" font-weight="700" fill="#216653">⇒ 機会費用が小さい財（甲＝小麦、乙＝布）</text>
+  <text x="378" y="274" font-size="12" font-weight="700" fill="#216653">に比較優位があり、特化・交換で双方利益！</text>
+</svg>

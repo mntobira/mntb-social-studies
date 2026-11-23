@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 340" role="img" aria-label="世界の4都市ア〜エのハイサーグラフ" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="324" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　ユーラシア・オセアニア4都市（ア〜エ）のハイサーグラフ（1月・7月表示）</text>
+  <!-- プロット枠 -->
+  <line x1="88" y1="56" x2="88" y2="278" stroke="#5d6d7e" stroke-width="1.8"/>
+  <line x1="88" y1="278" x2="628" y2="278" stroke="#5d6d7e" stroke-width="1.8"/>
+  <g stroke="#e6dfd1" stroke-dasharray="4 4" stroke-width="1">
+    <line x1="88" y1="88" x2="628" y2="88"/>
+    <line x1="88" y1="148" x2="628" y2="148"/>
+    <line x1="88" y1="208" x2="628" y2="208"/>
+    <line x1="218" y1="56" x2="218" y2="278"/>
+    <line x1="358" y1="56" x2="358" y2="278"/>
+    <line x1="498" y1="56" x2="498" y2="278"/>
+  </g>
+  <!-- Y軸：月平均気温 (30, 20, 10, 0, -5) -->
+  <g font-size="12" fill="#5d6d7e" text-anchor="end" font-weight="700">
+    <text x="80" y="92">30℃</text><text x="80" y="152">15℃</text><text x="80" y="212">0℃</text><text x="80" y="274">-15℃</text>
+  </g>
+  <text x="30" y="172" text-anchor="middle" font-size="12" font-weight="800" fill="#34495e" transform="rotate(-90 30 172)">月平均気温（℃）</text>
+  <!-- X軸：月降水量 (0, 100, 200, 300mm) -->
+  <g font-size="12" fill="#5d6d7e" text-anchor="middle" font-weight="700">
+    <text x="88" y="298">0</text><text x="218" y="298">100</text><text x="358" y="298">200</text><text x="498" y="298">300</text><text x="612" y="298">400(mm)</text>
+  </g>
+  <text x="358" y="320" text-anchor="middle" font-size="12" font-weight="800" fill="#34495e">月降水量（mm）</text>
+
+  <!-- 都市ア：ローマ(Cs) 7月(25℃, 18mm)->(111,108), 1月(8℃, 80mm)->(192,176) 左上〜中央左の斜めループ -->
+  <polygon points="111,108 136,126 192,176 164,154" fill="#f2cec7" fill-opacity="0.45" stroke="#b84a39" stroke-width="2.5"/>
+  <circle cx="111" cy="108" r="4.5" fill="#b84a39"/><text x="114" y="98" font-size="12" font-weight="800" fill="#963627">ア(7月)</text>
+  <circle cx="192" cy="176" r="4.5" fill="#b84a39"/><text x="200" y="184" font-size="12" font-weight="700" fill="#963627">1月</text>
+
+  <!-- 都市イ：ロンドン(Cfb) 7月(17℃, 55mm)->(160,140), 1月(5℃, 60mm)->(166,188) 年較差小・降水年中安定の縦長小ループ -->
+  <polygon points="160,140 174,162 166,188 148,166" fill="#c3d6f2" fill-opacity="0.55" stroke="#2b5b9e" stroke-width="2.5"/>
+  <circle cx="160" cy="140" r="4.5" fill="#2b5b9e"/><text x="152" y="132" text-anchor="end" font-size="12" font-weight="800" fill="#1f467d">イ(7月)</text>
+  <circle cx="166" cy="188" r="4.5" fill="#2b5b9e"/><text x="150" y="200" text-anchor="end" font-size="12" font-weight="700" fill="#1f467d">1月</text>
+
+  <!-- 都市ウ：ソウル/北京系(Cw/Dwa モンスーン夏多雨・冬少雨寒冷) 7月(26℃, 320mm)->(524,104), 1月(-3℃, 18mm)->(111,222) -->
+  <polygon points="524,104 340,145 111,222 290,168" fill="#bce5d8" fill-opacity="0.5" stroke="#2e856e" stroke-width="2.5"/>
+  <circle cx="524" cy="104" r="4.5" fill="#2e856e"/><text x="532" y="102" font-size="12" font-weight="800" fill="#216653">ウ(7月)</text>
+  <circle cx="111" cy="222" r="4.5" fill="#2e856e"/><text x="118" y="240" text-anchor="start" font-size="12" font-weight="700" fill="#216653">ウ(1月)</text>
+
+  <!-- 都市エ：パース(南半球Cs！1月高温少雨・7月温和多雨) 1月(24℃, 12mm)->(104,112), 7月(13℃, 175mm)->(323,156) -->
+  <polygon points="104,112 220,128 323,156 196,142" fill="#f2d6b8" fill-opacity="0.55" stroke="#c4762b" stroke-width="2.5" stroke-dasharray="5 3"/>
+  <circle cx="104" cy="112" r="4.5" fill="#c4762b"/><text x="98" y="128" text-anchor="start" font-size="12" font-weight="800" fill="#99581b">エ(1月)</text>
+  <circle cx="323" cy="156" r="4.5" fill="#c4762b"/><text x="332" y="160" font-size="12" font-weight="800" fill="#99581b">エ(7月)</text>
+</svg>

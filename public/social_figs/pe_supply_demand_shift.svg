@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="需要曲線・供給曲線のシフトと均衡価格の変化" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　競争市場における需要曲線（D）・供給曲線（S→S'）のシフト</text>
+  <!-- 座標軸 -->
+  <line x1="110" y1="54" x2="110" y2="266" stroke="#2c3e50" stroke-width="2.2"/>
+  <line x1="110" y1="266" x2="430" y2="266" stroke="#2c3e50" stroke-width="2.2"/>
+  <text x="74" y="70" font-size="13" font-weight="800" fill="#2c3e50">価格 P</text>
+  <text x="412" y="290" font-size="13" font-weight="800" fill="#2c3e50">取引量 Q</text>
+  <!-- 需要曲線 D -->
+  <line x1="138" y1="76" x2="394" y2="246" stroke="#2b5b9e" stroke-width="3"/>
+  <text x="404" y="250" font-size="14" font-weight="900" fill="#2b5b9e">D</text>
+  <!-- 供給曲線 S (元) -->
+  <line x1="138" y1="242" x2="386" y2="78" stroke="#2e856e" stroke-width="3"/>
+  <text x="396" y="82" font-size="14" font-weight="900" fill="#2e856e">S</text>
+  <!-- 供給曲線 S' (左上/上方シフト：従量税Tまたは原材料高騰) -->
+  <line x1="138" y1="194" x2="342" y2="58" stroke="#b84a39" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="352" y="64" font-size="14" font-weight="900" fill="#b84a39">S'</text>
+  <!-- 均衡点 E(262, 159) と E'(226, 135) -->
+  <line x1="110" y1="159" x2="262" y2="159" stroke="#7f8c8d" stroke-dasharray="4 3"/>
+  <line x1="262" y1="159" x2="262" y2="266" stroke="#7f8c8d" stroke-dasharray="4 3"/>
+  <circle cx="262" cy="159" r="5.5" fill="#2e856e"/>
+  <text x="272" y="166" font-size="13" font-weight="900" fill="#2e856e">E</text>
+  <text x="92" y="164" text-anchor="end" font-size="12" font-weight="800" fill="#2e856e">P₀</text>
+  <text x="262" y="284" text-anchor="middle" font-size="12" font-weight="800" fill="#2e856e">Q₀</text>
+
+  <line x1="110" y1="135" x2="226" y2="135" stroke="#b84a39" stroke-dasharray="4 3"/>
+  <line x1="226" y1="135" x2="226" y2="266" stroke="#b84a39" stroke-dasharray="4 3"/>
+  <circle cx="226" cy="135" r="5.5" fill="#b84a39"/>
+  <text x="226" y="123" font-size="13" font-weight="900" fill="#b84a39">E'</text>
+  <text x="92" y="139" text-anchor="end" font-size="12" font-weight="800" fill="#b84a39">P₁</text>
+  <text x="226" y="284" text-anchor="middle" font-size="12" font-weight="800" fill="#b84a39">Q₁</text>
+
+  <!-- 1単位あたり税額 T の矢印 (x=226 で S上のyは 242 - (226-138)*(164/248) = 242 - 58.2 = 183.8) -->
+  <line x1="226" y1="135" x2="226" y2="184" stroke="#963627" stroke-width="2.5"/>
+  <text x="208" y="154" text-anchor="end" font-size="11.5" font-weight="800" fill="#963627">課税幅 T</text>
+
+  <!-- 右側整理カード -->
+  <rect x="448" y="64" width="204" height="202" rx="12" fill="#fcf7ee" stroke="#dfd2bc" stroke-width="1.5"/>
+  <text x="550" y="88" text-anchor="middle" font-size="13.5" font-weight="800" fill="#2c3e50">読み取りのポイント</text>
+  <text x="462" y="114" font-size="12" fill="#34495e">● S → S'（左上方シフト）：</text>
+  <text x="470" y="132" font-size="12" font-weight="700" fill="#963627">原材料高騰・従量税課税</text>
+  <text x="462" y="158" font-size="12" fill="#34495e">● 均衡の変化（E → E'）：</text>
+  <text x="470" y="176" font-size="12" font-weight="700" fill="#2c3e50">価格 P₀→P₁上昇、量 Q₀→Q₁減少</text>
+  <text x="462" y="202" font-size="12" fill="#34495e">● 価格上昇幅 (P₁−P₀) は</text>
+  <text x="470" y="220" font-size="12" font-weight="700" fill="#1f467d">課税幅 T より小さい（消費者</text>
+  <text x="470" y="238" font-size="12" font-weight="700" fill="#1f467d">と生産者の双方が税を負担）</text>
+</svg>

@@ -1,0 +1,25 @@
+{
+  // ============================================================
+  // scripts/ を型チェックするための設定
+  // ============================================================
+  // 本体の tsconfig.json は "include" が src/ だけなので、
+  // scripts/ の .mts は型チェックされない状態だった。
+  // 手書き問題の配管（verify / export / import / pack）は
+  // 壊れると気づきにくいので、こちらだけ別に見る。
+  //
+  //   npm run lint:scripts
+  //
+  // 本体の tsconfig は Node の型を入れていない（ブラウザ向けなので）。
+  // ここでだけ "node" を足す。
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node", "vite/client"],
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "include": ["scripts/**/*.mts", "src/**/*"],
+  // dump-science.mts は理科・化学・数学のデータ（2026-10-16 にアプリから外した）を
+  // 一時的に戻したときだけ動かす作業用。データが無い普段の状態では型が通らないので外す。
+  "exclude": ["scripts/gacha-prints/dump-science.mts"]
+}

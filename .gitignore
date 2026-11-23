@@ -1,33 +1,57 @@
-# prod
-dist/
-
-# dev
-.yarn/
-!.yarn/releases
-.vscode/*
-!.vscode/launch.json
-!.vscode/*.code-snippets
-.idea/workspace.xml
-.idea/usage.statistics.xml
-.idea/shelf
-
-# deps
 node_modules/
-.wrangler
-
-# env
-.env
-.env.production
-.dev.vars
-
-# logs
-logs/
+.npm-cache/
+dist/
+.wrangler/
+.pm2/
+.env*
+!.env.example
+.firebase/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+.tmpwork/
+coverage/
+/core
+.delivery/
+__pycache__/
 
-# misc
+.secret.local
+.secret.*
+.private-clan-policy*
+/audit/
+
+# ---- アプリ版（Capacitor）: 作り直されるもの ----
+ios/App/App/public
+android/app/src/main/assets/public
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+android/.gradle
+android/build
+android/app/build
+android/capacitor-cordova-android-plugins
+ios/capacitor-cordova-ios-plugins
+ios/App/build
+ios/App/Pods
+ios/App/output
+ios/DerivedData
+xcuserdata/
+android/local.properties
+
+# ---- 秘密のファイル（絶対に GitHub に上げない。カサニマロの手元にだけ置く） ----
+*.p8
+*.jks
+*.keystore
+android/key.properties
+ios/App/App/GoogleService-Info.plist
+android/app/google-services.json
 .DS_Store
+zz_uicheck/
+
+# クラッシュダンプ（ルート直下のみ。src/battle/core/ を巻き込まない）
+/core
+/core.[0-9]*
+
+# Instagram 動画の中間ファイル
+store-assets/instagram/_work/
+el_voices.json
