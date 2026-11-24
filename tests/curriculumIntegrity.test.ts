@@ -6,90 +6,114 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { jpHistoryData, getJpHistoryStats } from '../src/data/jpHistoryData';
+import { worldHistoryData, getWorldHistoryStats } from '../src/data/worldHistoryData';
 import { ethicsData, getEthicsStats } from '../src/data/ethicsData';
 import { politicsEconData, getPoliticsEconStats } from '../src/data/politicsEconData';
+import { geographyData, getGeographyStats } from '../src/data/geographyData';
 import { SUBJECT_INDEX } from '../src/data/chapterIndex.generated';
 import { SUMMARY_PRINTS, getSummaryPrintsBySubject } from '../src/data/summaryPrintsData';
-import { subjectDefinitionOf } from '../src/data/subjects';
+import { subjectDefinitionOf, type SubjectKey } from '../src/data/subjects';
+import type { Part } from '../src/types/curriculum';
 
 const PUBLIC_DIR = resolve(process.cwd(), 'public');
 
-describe('公共・倫理（ethics）と公共・政治経済（politics_econ）の完全網羅・データ整合性', () => {
-  it('倫理は全4編・17章・51小問すべてが一意なID・妥当な4択・解説をもつ', () => {
-    expect(ethicsData.parts.length).toBe(4);
-    const chapters = ethicsData.parts.flatMap((p) => p.chapters);
-    expect(chapters.length).toBe(17);
+function verifySubjectCurriculum(params: {
+  subject: SubjectKey;
+  parts: Part[];
+  expectedParts: number;
+  expectedChapters: number;
+  expectedMarks: number;
+  actualMarks: number;
+}) {
+  const { subject, parts, expectedParts, expectedChapters, expectedMarks, actualMarks } = params;
+  expect(parts.length).toBe(expectedParts);
+  const chapters = parts.flatMap((p) => p.chapters);
+  expect(chapters.length).toBe(expectedChapters);
 
-    const chapterIds = new Set<string>();
-    const subIds = new Set<string>();
-    const ethicsPattern = subjectDefinitionOf('ethics')!.chapterIdPattern;
+  const chapterIds = new Set<string>();
+  const subIds = new Set<string>();
+  const idPattern = subjectDefinitionOf(subject)!.chapterIdPattern;
 
-    for (const ch of chapters) {
-      expect(ethicsPattern.test(ch.id)).toBe(true);
-      expect(chapterIds.has(ch.id)).toBe(false);
-      chapterIds.add(ch.id);
-      expect(ch.practiceProblems.length).toBeGreaterThanOrEqual(1);
+  for (const ch of chapters) {
+    expect(idPattern.test(ch.id)).toBe(true);
+    expect(chapterIds.has(ch.id)).toBe(false);
+    chapterIds.add(ch.id);
+    expect(ch.practiceProblems.length).toBeGreaterThanOrEqual(1);
 
-      for (const prob of ch.practiceProblems) {
-        if (prob.imageUrl) {
-          const figPath = resolve(PUBLIC_DIR, prob.imageUrl.replace(/^\//, ''));
-          expect(existsSync(figPath)).toBe(true);
-        }
-        expect(prob.explanation).toContain('<!--sqall-->');
-        for (const sq of prob.subQuestions) {
-          expect(subIds.has(sq.id)).toBe(false);
-          subIds.add(sq.id);
-          expect(sq.options?.length).toBe(4);
-          expect(new Set(sq.optionTexts).size).toBe(4);
-          expect(sq.options).toContain(sq.correctAnswer);
-          expect(/^[①②③④]\s/.test(sq.correctAnswer)).toBe(true);
-          expect(prob.explanation).toContain(`<!--sq:${sq.id}-->`);
-        }
+    for (const prob of ch.practiceProblems) {
+      if (prob.imageUrl) {
+        const figPath = resolve(PUBLIC_DIR, prob.imageUrl.replace(/^\//, ''));
+        expect(existsSync(figPath)).toBe(true);
+      }
+      expect(prob.explanation).toContain('<!--sqall-->');
+      for (const sq of prob.subQuestions) {
+        expect(subIds.has(sq.id)).toBe(false);
+        subIds.add(sq.id);
+        expect(sq.options?.length).toBe(4);
+        expect(new Set(sq.optionTexts).size).toBe(4);
+        expect(sq.options).toContain(sq.correctAnswer);
+        expect(/^[①②③④]\s/.test(sq.correctAnswer)).toBe(true);
+        expect(prob.explanation).toContain(`<!--sq:${sq.id}-->`);
       }
     }
+  }
 
-    const stats = getEthicsStats();
-    expect(stats.marks).toBe(51);
+  expect(actualMarks).toBe(expectedMarks);
+}
+
+describe('社会科全5科目（日本史・世界史・地理・倫理・政経）の完全網羅・データ整合性', () => {
+  it('日本史探究（jp_history）は全4編・18章・54小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+    verifySubjectCurriculum({
+      subject: 'jp_history',
+      parts: jpHistoryData.parts,
+      expectedParts: 4,
+      expectedChapters: 18,
+      expectedMarks: 54,
+      actualMarks: getJpHistoryStats().marks,
+    });
   });
 
-  it('政治・経済は全4編・16章・48小問すべてが一意なID・妥当な4択・解説をもつ', () => {
-    expect(politicsEconData.parts.length).toBe(4);
-    const chapters = politicsEconData.parts.flatMap((p) => p.chapters);
-    expect(chapters.length).toBe(16);
-
-    const chapterIds = new Set<string>();
-    const subIds = new Set<string>();
-    const pePattern = subjectDefinitionOf('politics_econ')!.chapterIdPattern;
-
-    for (const ch of chapters) {
-      expect(pePattern.test(ch.id)).toBe(true);
-      expect(chapterIds.has(ch.id)).toBe(false);
-      chapterIds.add(ch.id);
-      expect(ch.practiceProblems.length).toBeGreaterThanOrEqual(1);
-
-      for (const prob of ch.practiceProblems) {
-        if (prob.imageUrl) {
-          const figPath = resolve(PUBLIC_DIR, prob.imageUrl.replace(/^\//, ''));
-          expect(existsSync(figPath)).toBe(true);
-        }
-        expect(prob.explanation).toContain('<!--sqall-->');
-        for (const sq of prob.subQuestions) {
-          expect(subIds.has(sq.id)).toBe(false);
-          subIds.add(sq.id);
-          expect(sq.options?.length).toBe(4);
-          expect(new Set(sq.optionTexts).size).toBe(4);
-          expect(sq.options).toContain(sq.correctAnswer);
-          expect(/^[①②③④]\s/.test(sq.correctAnswer)).toBe(true);
-          expect(prob.explanation).toContain(`<!--sq:${sq.id}-->`);
-        }
-      }
-    }
-
-    const stats = getPoliticsEconStats();
-    expect(stats.marks).toBe(48);
+  it('世界史探究（world_history）は全4編・18章・54小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+    verifySubjectCurriculum({
+      subject: 'world_history',
+      parts: worldHistoryData.parts,
+      expectedParts: 4,
+      expectedChapters: 18,
+      expectedMarks: 54,
+      actualMarks: getWorldHistoryStats().marks,
+    });
   });
 
-  it('生成済み SUBJECT_INDEX と赤シートまとめプリントの chapterId 参照がすべて有効である', () => {
+  it('倫理（ethics）は全4編・17章・51小問すべてが一意なID・妥当な4択・解説をもつ', () => {
+    verifySubjectCurriculum({
+      subject: 'ethics',
+      parts: ethicsData.parts,
+      expectedParts: 4,
+      expectedChapters: 17,
+      expectedMarks: 51,
+      actualMarks: getEthicsStats().marks,
+    });
+  });
+
+  it('政治・経済（politics_econ）は全4編・16章・48小問すべてが一意なID・妥当な4択・解説をもつ', () => {
+    verifySubjectCurriculum({
+      subject: 'politics_econ',
+      parts: politicsEconData.parts,
+      expectedParts: 4,
+      expectedChapters: 16,
+      expectedMarks: 48,
+      actualMarks: getPoliticsEconStats().marks,
+    });
+  });
+
+  it('地理探究（geography）も一意なID・妥当な4択・解説をもつ', () => {
+    const chapters = geographyData.parts.flatMap((p) => p.chapters);
+    expect(chapters.length).toBeGreaterThanOrEqual(4);
+    expect(getGeographyStats().marks).toBeGreaterThanOrEqual(10);
+  });
+
+  it('生成済み SUBJECT_INDEX と赤シートまとめプリント（全24シート）の chapterId 参照がすべて有効である', () => {
     const allIndexedIds = new Set<string>();
     for (const subj of SUBJECT_INDEX) {
       for (const ch of subj.chapters) {
@@ -97,8 +121,11 @@ describe('公共・倫理（ethics）と公共・政治経済（politics_econ）
       }
     }
 
-    expect(getSummaryPrintsBySubject('ethics').length).toBe(4);
+    expect(getSummaryPrintsBySubject('jp_history').length).toBe(6);
+    expect(getSummaryPrintsBySubject('world_history').length).toBe(6);
+    expect(getSummaryPrintsBySubject('geography').length).toBe(2);
     expect(getSummaryPrintsBySubject('politics_econ').length).toBe(6);
+    expect(getSummaryPrintsBySubject('ethics').length).toBe(4);
 
     for (const sheet of SUMMARY_PRINTS) {
       expect(allIndexedIds.has(sheet.chapterId)).toBe(true);
@@ -106,7 +133,7 @@ describe('公共・倫理（ethics）と公共・政治経済（politics_econ）
         .flatMap((s) => [...s.bullets, ...(s.table?.rows.flat() ?? [])])
         .join('\n')
         .match(/\{\{[^}]+\}\}/g);
-      expect((maskedTokens ?? []).length).toBeGreaterThanOrEqual(5);
+      expect((maskedTokens ?? []).length).toBeGreaterThanOrEqual(8);
     }
   });
 });

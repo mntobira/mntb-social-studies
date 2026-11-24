@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="世界史における交易網拡大・感染症パンデミック・医学発展の対応図" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　交易・移動ネットワークの拡大と主要パンデミック・医学の対抗史</text>
+  <!-- 左：時代×ネットワーク×感染症テーブル -->
+  <rect x="24" y="52" width="414" height="252" rx="10" fill="#ffffff" stroke="#d5c7ae" stroke-width="1.5"/>
+  <rect x="24" y="52" width="414" height="34" rx="10" fill="#f7efe1"/>
+  <line x1="24" y1="86" x2="438" y2="86" stroke="#d5c7ae" stroke-width="1.4"/>
+  <line x1="24" y1="140" x2="438" y2="140" stroke="#ece3d3"/>
+  <line x1="24" y1="194" x2="438" y2="194" stroke="#ece3d3"/>
+  <line x1="24" y1="248" x2="438" y2="248" stroke="#ece3d3"/>
+  <text x="231" y="74" text-anchor="middle" font-size="13" font-weight="900" fill="#2c3e50">時代・移動ネットワークと感染症の歴史的衝撃</text>
+
+  <text x="34" y="108" font-size="12" font-weight="800" fill="#963627">● 14世紀：パクス＝モンゴリカ（ユーラシア陸海交易）</text>
+  <text x="44" y="128" font-size="11.5" fill="#2c3e50">⇒【ペスト（黒死病）】欧州人口1/3減 → 西欧の農奴解放を促進</text>
+
+  <text x="34" y="162" font-size="12" font-weight="800" fill="#99581b">● 16世紀：大航海時代・コロンブス交換</text>
+  <text x="44" y="182" font-size="11.5" fill="#2c3e50">⇒【天然痘・麻疹】免疫なき新大陸先住民激減 → 黒人奴隷導入へ</text>
+
+  <text x="34" y="216" font-size="12" font-weight="800" fill="#1f467d">● 19世紀：英領インド支配・蒸気船と鉄道・都市過密</text>
+  <text x="44" y="236" font-size="11.5" fill="#2c3e50">⇒【コレラ】ベンガル風土病が世界流行 → 近代上下水道・衛生行政</text>
+
+  <text x="34" y="270" font-size="12" font-weight="800" fill="#583975">● 1918〜20年：第一次世界大戦の総力戦兵士輸送</text>
+  <text x="44" y="290" font-size="11.5" fill="#2c3e50">⇒【スペイン風邪】世界数千万人死亡・参戦国の戦力にも打撃</text>
+
+  <!-- 右：医学史タイムライン -->
+  <rect x="452" y="52" width="204" height="252" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.8"/>
+  <text x="554" y="75" text-anchor="middle" font-size="13" font-weight="900" fill="#216653">医学・細菌学の歩み</text>
+  <g font-size="11.3" fill="#2c3e50">
+    <text x="464" y="100" font-weight="800">・ヒポクラテス／ガレノス</text>
+    <text x="472" y="116" fill="#5d6d7e">古代ギリシア・ローマ医学</text>
+    <text x="464" y="138" font-weight="800" fill="#1f467d">・イブン＝シーナー(11C)</text>
+    <text x="472" y="154" fill="#5d6d7e">『医学典範』ラテン語訳</text>
+    <text x="464" y="176" font-weight="800">・ヴェサリウス／ハーヴェイ</text>
+    <text x="472" y="192" fill="#5d6d7e">人体解剖(16C)・血液循環(17C)</text>
+    <text x="464" y="214" font-weight="800" fill="#963627">・ジェンナー(18C末)</text>
+    <text x="472" y="230" fill="#5d6d7e">牛痘による【種痘法】開発</text>
+    <text x="464" y="252" font-weight="800" fill="#216653">・パストゥール／コッホ(19C)</text>
+    <text x="472" y="268" fill="#5d6d7e">ワクチン・結核菌/コレラ菌</text>
+    <text x="464" y="290" font-weight="800" fill="#b84a39">・フレミング(1928)：ペニシリン</text>
+  </g>
+</svg>

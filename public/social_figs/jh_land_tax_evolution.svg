@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="日本史における土地制度と課税原則の4段階変遷図" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　日本の土地支配と課税原則の通史変遷（古代律令〜近代地租改正）</text>
+  <defs>
+    <marker id="arrJh" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#963627"/></marker>
+  </defs>
+  <!-- Step 1 -->
+  <rect x="24" y="54" width="144" height="196" rx="10" fill="#fdf6ec" stroke="#d8b989" stroke-width="1.8"/>
+  <text x="96" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#963627">① 律令制(701〜)</text>
+  <text x="96" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">公地公民・班田収授</text>
+  <text x="34" y="120" font-size="11" fill="#34495e">・6歳以上男女へ口分田</text>
+  <text x="34" y="138" font-size="11" fill="#34495e">・人頭税：調・庸・雑徭</text>
+  <text x="34" y="156" font-size="11" fill="#34495e">・723 三世一身法</text>
+  <text x="34" y="174" font-size="11" font-weight="800" fill="#b84a39">・743 墾田永年私財法</text>
+  <text x="34" y="194" font-size="10.5" fill="#5d6d7e">（位階上限・輸租田原則</text>
+  <text x="34" y="208" font-size="10.5" fill="#5d6d7e">　→初期荘園の成立）</text>
+  <text x="96" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#963627">人別課税が基本</text>
+
+  <path d="M170 152 L186 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 2 -->
+  <rect x="190" y="54" width="144" height="196" rx="10" fill="#f3f7fc" stroke="#9ab4d8" stroke-width="1.8"/>
+  <text x="262" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#1f467d">② 王朝国家〜中世</text>
+  <text x="262" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">荘園公領制・職の体系</text>
+  <text x="200" y="120" font-size="11" fill="#34495e">・負名体制（田堵請負）</text>
+  <text x="200" y="138" font-size="11" font-weight="800" fill="#1f467d">・寄進地系荘園（不輸不入）</text>
+  <text x="200" y="156" font-size="11" fill="#34495e">・1069 延久荘園整理令</text>
+  <text x="200" y="174" font-size="11" fill="#34495e">・鎌倉：地頭請・下地中分</text>
+  <text x="200" y="192" font-size="11" fill="#34495e">・室町：半済令・守護請</text>
+  <text x="262" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#1f467d">重層的権利(本家・領家・地頭)</text>
+
+  <path d="M336 152 L352 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 3 -->
+  <rect x="356" y="54" width="144" height="196" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.8"/>
+  <text x="428" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#216653">③ 織豊〜江戸幕藩制</text>
+  <text x="428" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">太閤検地・石高制</text>
+  <text x="366" y="120" font-size="11" font-weight="800" fill="#216653">・一地一作人の原則</text>
+  <text x="366" y="138" font-size="11" fill="#34495e">・荘園消滅・兵農分離</text>
+  <text x="366" y="156" font-size="11" fill="#34495e">・村請制（本途物成＝米納）</text>
+  <text x="366" y="174" font-size="11" fill="#34495e">・1643 田畑永代売買禁止</text>
+  <text x="366" y="192" font-size="11" fill="#34495e">・検見法 → 享保・定免法</text>
+  <text x="428" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#216653">収穫高(石高)基準・物納</text>
+
+  <path d="M502 152 L518 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 4 -->
+  <rect x="522" y="54" width="134" height="196" rx="10" fill="#fff5f2" stroke="#b84a39" stroke-width="1.8"/>
+  <text x="589" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#b84a39">④ 明治〜戦後改革</text>
+  <text x="589" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">地租改正・農地改革</text>
+  <text x="530" y="120" font-size="11" font-weight="800" fill="#b84a39">・1873 地租改正条例</text>
+  <text x="530" y="138" font-size="11" fill="#34495e">・地券交付・地価3％金納</text>
+  <text x="530" y="156" font-size="11" fill="#34495e">・小作料は現物納のまま</text>
+  <text x="530" y="174" font-size="11" fill="#34495e">・松方デフレ→寄生地主制</text>
+  <text x="530" y="192" font-size="11" font-weight="800" fill="#963627">・1946 第2次農地改革</text>
+  <text x="589" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#b84a39">地価基準・所有者金納</text>
+
+  <rect x="24" y="264" width="632" height="44" rx="8" fill="#fcf7ee" stroke="#dfd2bc"/>
+  <text x="340" y="291" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50">★ 頻出の急所：10世紀に「人別課税→土地(名田)課税」、太閤検地で「重層職→一地一作人」、地租改正で「石高物納→地価金納」へ転換！</text>
+</svg>

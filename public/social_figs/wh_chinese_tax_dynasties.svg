@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="中国歴代王朝の官僚登用制・土地税制の変遷図" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　中国前近代における官僚登用制と税制（4大転換）の体系整理</text>
+  <!-- 上段：官僚登用制度 -->
+  <rect x="26" y="52" width="628" height="72" rx="10" fill="#edf3fc" stroke="#2b5b9e" stroke-width="1.8"/>
+  <text x="340" y="73" text-anchor="middle" font-size="13.5" font-weight="900" fill="#1f467d">【官僚登用制の3段階】 血縁・推薦から貴族制、そして試験官僚（士大夫・読書人）へ</text>
+  <g font-size="12" font-weight="800" fill="#2c3e50" text-anchor="middle">
+    <text x="122" y="104">漢：【郷挙里選】（地方推薦）</text>
+    <text x="242" y="104" fill="#2b5b9e">⇒</text>
+    <text x="352" y="104">魏晋南北朝：【九品中正】（門閥貴族）</text>
+    <text x="476" y="104" fill="#2b5b9e">⇒</text>
+    <text x="566" y="104" fill="#b84a39">隋〜1905：【科挙】（宋で殿試）</text>
+  </g>
+
+  <!-- 下段：税制4段階カード -->
+  <rect x="26" y="140" width="148" height="164" rx="10" fill="#fdf6ec" stroke="#d8b989" stroke-width="1.6"/>
+  <text x="100" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#99581b">① 租・庸・調</text>
+  <text x="100" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">北魏(485)〜唐前期</text>
+  <text x="36" y="204" font-size="11" fill="#2c3e50">・【均田制】が前提</text>
+  <text x="36" y="222" font-size="11" fill="#2c3e50">・丁男に均等課税</text>
+  <text x="36" y="240" font-size="11" fill="#2c3e50">・府兵制と三位一体</text>
+  <text x="36" y="264" font-size="11" font-weight="800" fill="#b84a39">→ 安史の乱で崩壊</text>
+
+  <rect x="186" y="140" width="148" height="164" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.6"/>
+  <text x="260" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#216653">② 両税法</text>
+  <text x="260" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">唐後期(780・楊炎)〜明初</text>
+  <text x="196" y="204" font-size="11" fill="#2c3e50">・荘園(大土地所有)公認</text>
+  <text x="196" y="222" font-size="11" font-weight="800" fill="#216653">・夏・秋の年2回徴収</text>
+  <text x="196" y="240" font-size="11" fill="#2c3e50">・現住地で資産別課税</text>
+  <text x="196" y="264" font-size="11" fill="#5d6d7e">・募兵制と連動</text>
+
+  <rect x="346" y="140" width="148" height="164" rx="10" fill="#f5eefb" stroke="#734f96" stroke-width="1.6"/>
+  <text x="420" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#583975">③ 一条鞭法</text>
+  <text x="420" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">明末(16C後半・張居正)</text>
+  <text x="356" y="204" font-size="11" fill="#2c3e50">・日本銀・新大陸銀流入</text>
+  <text x="356" y="222" font-size="11" font-weight="800" fill="#583975">・地税＋丁税を一括銀納</text>
+  <text x="356" y="240" font-size="11" fill="#2c3e50">・複雑な徭役も銀へ換算</text>
+  <text x="356" y="264" font-size="11" fill="#5d6d7e">※人頭税(丁銀)自体は残存</text>
+
+  <rect x="506" y="140" width="148" height="164" rx="10" fill="#fff5f2" stroke="#b84a39" stroke-width="1.6"/>
+  <text x="580" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#b84a39">④ 地丁銀制</text>
+  <text x="580" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">清(18C・雍正帝期に確立)</text>
+  <text x="516" y="204" font-size="11" fill="#2c3e50">・康熙帝：人頭税額固定</text>
+  <text x="516" y="222" font-size="11" font-weight="800" fill="#b84a39">・丁銀を地銀へ完全統合</text>
+  <text x="516" y="240" font-size="11" fill="#2c3e50">・実質的な人頭税廃止</text>
+  <text x="516" y="264" font-size="11" font-weight="800" fill="#963627">→ 隠田・隠蔽解消で人口急増</text>
+</svg>

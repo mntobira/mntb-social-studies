@@ -447,6 +447,160 @@ const figs: Record<string, string> = {
   <text x="368" y="256" font-size="12" font-weight="700" fill="#216653">⇒ 機会費用が小さい財（甲＝小麦、乙＝布）</text>
   <text x="378" y="274" font-size="12" font-weight="700" fill="#216653">に比較優位があり、特化・交換で双方利益！</text>
 </svg>`,
+
+  // 11. 日本史探究：土地制度・課税単位の通史変遷（公地公民→荘園公領制→太閤検地→地租改正）
+  'jh_land_tax_evolution.svg': `${SVG_HEAD(680, 330, '日本史における土地制度と課税原則の4段階変遷図')}
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　日本の土地支配と課税原則の通史変遷（古代律令〜近代地租改正）</text>
+  <defs>
+    <marker id="arrJh" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#963627"/></marker>
+  </defs>
+  <!-- Step 1 -->
+  <rect x="24" y="54" width="144" height="196" rx="10" fill="#fdf6ec" stroke="#d8b989" stroke-width="1.8"/>
+  <text x="96" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#963627">① 律令制(701〜)</text>
+  <text x="96" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">公地公民・班田収授</text>
+  <text x="34" y="120" font-size="11" fill="#34495e">・6歳以上男女へ口分田</text>
+  <text x="34" y="138" font-size="11" fill="#34495e">・人頭税：調・庸・雑徭</text>
+  <text x="34" y="156" font-size="11" fill="#34495e">・723 三世一身法</text>
+  <text x="34" y="174" font-size="11" font-weight="800" fill="#b84a39">・743 墾田永年私財法</text>
+  <text x="34" y="194" font-size="10.5" fill="#5d6d7e">（位階上限・輸租田原則</text>
+  <text x="34" y="208" font-size="10.5" fill="#5d6d7e">　→初期荘園の成立）</text>
+  <text x="96" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#963627">人別課税が基本</text>
+
+  <path d="M170 152 L186 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 2 -->
+  <rect x="190" y="54" width="144" height="196" rx="10" fill="#f3f7fc" stroke="#9ab4d8" stroke-width="1.8"/>
+  <text x="262" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#1f467d">② 王朝国家〜中世</text>
+  <text x="262" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">荘園公領制・職の体系</text>
+  <text x="200" y="120" font-size="11" fill="#34495e">・負名体制（田堵請負）</text>
+  <text x="200" y="138" font-size="11" font-weight="800" fill="#1f467d">・寄進地系荘園（不輸不入）</text>
+  <text x="200" y="156" font-size="11" fill="#34495e">・1069 延久荘園整理令</text>
+  <text x="200" y="174" font-size="11" fill="#34495e">・鎌倉：地頭請・下地中分</text>
+  <text x="200" y="192" font-size="11" fill="#34495e">・室町：半済令・守護請</text>
+  <text x="262" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#1f467d">重層的権利(本家・領家・地頭)</text>
+
+  <path d="M336 152 L352 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 3 -->
+  <rect x="356" y="54" width="144" height="196" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.8"/>
+  <text x="428" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#216653">③ 織豊〜江戸幕藩制</text>
+  <text x="428" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">太閤検地・石高制</text>
+  <text x="366" y="120" font-size="11" font-weight="800" fill="#216653">・一地一作人の原則</text>
+  <text x="366" y="138" font-size="11" fill="#34495e">・荘園消滅・兵農分離</text>
+  <text x="366" y="156" font-size="11" fill="#34495e">・村請制（本途物成＝米納）</text>
+  <text x="366" y="174" font-size="11" fill="#34495e">・1643 田畑永代売買禁止</text>
+  <text x="366" y="192" font-size="11" fill="#34495e">・検見法 → 享保・定免法</text>
+  <text x="428" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#216653">収穫高(石高)基準・物納</text>
+
+  <path d="M502 152 L518 152" stroke="#963627" stroke-width="2.4" marker-end="url(#arrJh)"/>
+
+  <!-- Step 4 -->
+  <rect x="522" y="54" width="134" height="196" rx="10" fill="#fff5f2" stroke="#b84a39" stroke-width="1.8"/>
+  <text x="589" y="76" text-anchor="middle" font-size="13" font-weight="900" fill="#b84a39">④ 明治〜戦後改革</text>
+  <text x="589" y="96" text-anchor="middle" font-size="12" font-weight="800" fill="#2c3e50">地租改正・農地改革</text>
+  <text x="530" y="120" font-size="11" font-weight="800" fill="#b84a39">・1873 地租改正条例</text>
+  <text x="530" y="138" font-size="11" fill="#34495e">・地券交付・地価3％金納</text>
+  <text x="530" y="156" font-size="11" fill="#34495e">・小作料は現物納のまま</text>
+  <text x="530" y="174" font-size="11" fill="#34495e">・松方デフレ→寄生地主制</text>
+  <text x="530" y="192" font-size="11" font-weight="800" fill="#963627">・1946 第2次農地改革</text>
+  <text x="589" y="236" text-anchor="middle" font-size="11" font-weight="800" fill="#b84a39">地価基準・所有者金納</text>
+
+  <rect x="24" y="264" width="632" height="44" rx="8" fill="#fcf7ee" stroke="#dfd2bc"/>
+  <text x="340" y="291" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50">★ 頻出の急所：10世紀に「人別課税→土地(名田)課税」、太閤検地で「重層職→一地一作人」、地租改正で「石高物納→地価金納」へ転換！</text>
+</svg>`,
+
+  // 12. 世界史探究：中国前近代の官僚登用制・土地税制の4段階構造転換（wh1_3用）
+  'wh_chinese_tax_dynasties.svg': `${SVG_HEAD(680, 330, '中国歴代王朝の官僚登用制・土地税制の変遷図')}
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　中国前近代における官僚登用制と税制（4大転換）の体系整理</text>
+  <!-- 上段：官僚登用制度 -->
+  <rect x="26" y="52" width="628" height="72" rx="10" fill="#edf3fc" stroke="#2b5b9e" stroke-width="1.8"/>
+  <text x="340" y="73" text-anchor="middle" font-size="13.5" font-weight="900" fill="#1f467d">【官僚登用制の3段階】 血縁・推薦から貴族制、そして試験官僚（士大夫・読書人）へ</text>
+  <g font-size="12" font-weight="800" fill="#2c3e50" text-anchor="middle">
+    <text x="122" y="104">漢：【郷挙里選】（地方推薦）</text>
+    <text x="242" y="104" fill="#2b5b9e">⇒</text>
+    <text x="352" y="104">魏晋南北朝：【九品中正】（門閥貴族）</text>
+    <text x="476" y="104" fill="#2b5b9e">⇒</text>
+    <text x="566" y="104" fill="#b84a39">隋〜1905：【科挙】（宋で殿試）</text>
+  </g>
+
+  <!-- 下段：税制4段階カード -->
+  <rect x="26" y="140" width="148" height="164" rx="10" fill="#fdf6ec" stroke="#d8b989" stroke-width="1.6"/>
+  <text x="100" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#99581b">① 租・庸・調</text>
+  <text x="100" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">北魏(485)〜唐前期</text>
+  <text x="36" y="204" font-size="11" fill="#2c3e50">・【均田制】が前提</text>
+  <text x="36" y="222" font-size="11" fill="#2c3e50">・丁男に均等課税</text>
+  <text x="36" y="240" font-size="11" fill="#2c3e50">・府兵制と三位一体</text>
+  <text x="36" y="264" font-size="11" font-weight="800" fill="#b84a39">→ 安史の乱で崩壊</text>
+
+  <rect x="186" y="140" width="148" height="164" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.6"/>
+  <text x="260" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#216653">② 両税法</text>
+  <text x="260" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">唐後期(780・楊炎)〜明初</text>
+  <text x="196" y="204" font-size="11" fill="#2c3e50">・荘園(大土地所有)公認</text>
+  <text x="196" y="222" font-size="11" font-weight="800" fill="#216653">・夏・秋の年2回徴収</text>
+  <text x="196" y="240" font-size="11" fill="#2c3e50">・現住地で資産別課税</text>
+  <text x="196" y="264" font-size="11" fill="#5d6d7e">・募兵制と連動</text>
+
+  <rect x="346" y="140" width="148" height="164" rx="10" fill="#f5eefb" stroke="#734f96" stroke-width="1.6"/>
+  <text x="420" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#583975">③ 一条鞭法</text>
+  <text x="420" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">明末(16C後半・張居正)</text>
+  <text x="356" y="204" font-size="11" fill="#2c3e50">・日本銀・新大陸銀流入</text>
+  <text x="356" y="222" font-size="11" font-weight="800" fill="#583975">・地税＋丁税を一括銀納</text>
+  <text x="356" y="240" font-size="11" fill="#2c3e50">・複雑な徭役も銀へ換算</text>
+  <text x="356" y="264" font-size="11" fill="#5d6d7e">※人頭税(丁銀)自体は残存</text>
+
+  <rect x="506" y="140" width="148" height="164" rx="10" fill="#fff5f2" stroke="#b84a39" stroke-width="1.6"/>
+  <text x="580" y="162" text-anchor="middle" font-size="12.5" font-weight="900" fill="#b84a39">④ 地丁銀制</text>
+  <text x="580" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5d6d7e">清(18C・雍正帝期に確立)</text>
+  <text x="516" y="204" font-size="11" fill="#2c3e50">・康熙帝：人頭税額固定</text>
+  <text x="516" y="222" font-size="11" font-weight="800" fill="#b84a39">・丁銀を地銀へ完全統合</text>
+  <text x="516" y="240" font-size="11" fill="#2c3e50">・実質的な人頭税廃止</text>
+  <text x="516" y="264" font-size="11" font-weight="800" fill="#963627">→ 隠田・隠蔽解消で人口急増</text>
+</svg>`,
+
+  // 13. 世界史テーマ史：交易ネットワーク拡大とパンデミック・近代医学の歩み（wh4_2用）
+  'wh_theme_epidemics_trade.svg': `${SVG_HEAD(680, 330, '世界史における交易網拡大・感染症パンデミック・医学発展の対応図')}
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　交易・移動ネットワークの拡大と主要パンデミック・医学の対抗史</text>
+  <!-- 左：時代×ネットワーク×感染症テーブル -->
+  <rect x="24" y="52" width="414" height="252" rx="10" fill="#ffffff" stroke="#d5c7ae" stroke-width="1.5"/>
+  <rect x="24" y="52" width="414" height="34" rx="10" fill="#f7efe1"/>
+  <line x1="24" y1="86" x2="438" y2="86" stroke="#d5c7ae" stroke-width="1.4"/>
+  <line x1="24" y1="140" x2="438" y2="140" stroke="#ece3d3"/>
+  <line x1="24" y1="194" x2="438" y2="194" stroke="#ece3d3"/>
+  <line x1="24" y1="248" x2="438" y2="248" stroke="#ece3d3"/>
+  <text x="231" y="74" text-anchor="middle" font-size="13" font-weight="900" fill="#2c3e50">時代・移動ネットワークと感染症の歴史的衝撃</text>
+
+  <text x="34" y="108" font-size="12" font-weight="800" fill="#963627">● 14世紀：パクス＝モンゴリカ（ユーラシア陸海交易）</text>
+  <text x="44" y="128" font-size="11.5" fill="#2c3e50">⇒【ペスト（黒死病）】欧州人口1/3減 → 西欧の農奴解放を促進</text>
+
+  <text x="34" y="162" font-size="12" font-weight="800" fill="#99581b">● 16世紀：大航海時代・コロンブス交換</text>
+  <text x="44" y="182" font-size="11.5" fill="#2c3e50">⇒【天然痘・麻疹】免疫なき新大陸先住民激減 → 黒人奴隷導入へ</text>
+
+  <text x="34" y="216" font-size="12" font-weight="800" fill="#1f467d">● 19世紀：英領インド支配・蒸気船と鉄道・都市過密</text>
+  <text x="44" y="236" font-size="11.5" fill="#2c3e50">⇒【コレラ】ベンガル風土病が世界流行 → 近代上下水道・衛生行政</text>
+
+  <text x="34" y="270" font-size="12" font-weight="800" fill="#583975">● 1918〜20年：第一次世界大戦の総力戦兵士輸送</text>
+  <text x="44" y="290" font-size="11.5" fill="#2c3e50">⇒【スペイン風邪】世界数千万人死亡・参戦国の戦力にも打撃</text>
+
+  <!-- 右：医学史タイムライン -->
+  <rect x="452" y="52" width="204" height="252" rx="10" fill="#eef8f5" stroke="#2e856e" stroke-width="1.8"/>
+  <text x="554" y="75" text-anchor="middle" font-size="13" font-weight="900" fill="#216653">医学・細菌学の歩み</text>
+  <g font-size="11.3" fill="#2c3e50">
+    <text x="464" y="100" font-weight="800">・ヒポクラテス／ガレノス</text>
+    <text x="472" y="116" fill="#5d6d7e">古代ギリシア・ローマ医学</text>
+    <text x="464" y="138" font-weight="800" fill="#1f467d">・イブン＝シーナー(11C)</text>
+    <text x="472" y="154" fill="#5d6d7e">『医学典範』ラテン語訳</text>
+    <text x="464" y="176" font-weight="800">・ヴェサリウス／ハーヴェイ</text>
+    <text x="472" y="192" fill="#5d6d7e">人体解剖(16C)・血液循環(17C)</text>
+    <text x="464" y="214" font-weight="800" fill="#963627">・ジェンナー(18C末)</text>
+    <text x="472" y="230" fill="#5d6d7e">牛痘による【種痘法】開発</text>
+    <text x="464" y="252" font-weight="800" fill="#216653">・パストゥール／コッホ(19C)</text>
+    <text x="472" y="268" fill="#5d6d7e">ワクチン・結核菌/コレラ菌</text>
+    <text x="464" y="290" font-weight="800" fill="#b84a39">・フレミング(1928)：ペニシリン</text>
+  </g>
+</svg>`,
 };
 
 for (const [name, svg] of Object.entries(figs)) {
