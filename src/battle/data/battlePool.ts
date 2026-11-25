@@ -30,7 +30,7 @@ import type { BattleAnswerFormat, BattleQuestion } from '../core/types';
 export const POOL_COUNTS: Readonly<Record<string, number>> = {
   jp_history: 54,
   world_history: 54,
-  geography: 12,
+  geography: 48,
   politics_econ: 48,
   ethics: 51,
 };
@@ -59,7 +59,7 @@ export const POOL_FORMAT_COUNTS: Readonly<
 > = {
   jp_history: { choice4: 54 },
   world_history: { choice4: 54 },
-  geography: { choice4: 12 },
+  geography: { choice4: 48 },
   politics_econ: { choice4: 48 },
   ethics: { choice4: 51 },
 };
@@ -208,7 +208,7 @@ export function loadedPool(subject: string): readonly BattleQuestion[] {
 export const ANSWER_COUNTS: Readonly<Record<string, number>> = {
   jp_history: 54,
   world_history: 54,
-  geography: 12,
+  geography: 48,
   politics_econ: 48,
   ethics: 51,
 };

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="世界の農業地域における土地生産性と労働生産性の散布モデル" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　世界の主要国グループ（ア〜エ）における農業の土地生産性と労働生産性</text>
+  <line x1="96" y1="56" x2="96" y2="274" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="96" y1="274" x2="626" y2="274" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="360" y1="56" x2="360" y2="274" stroke="#d5c7ae" stroke-dasharray="5 4"/>
+  <line x1="96" y1="165" x2="626" y2="165" stroke="#d5c7ae" stroke-dasharray="5 4"/>
+  <text x="36" y="168" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50" transform="rotate(-90 36 168)">土地生産性（1haあたり収量：高↑）</text>
+  <text x="360" y="302" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50">労働生産性（農業就業者1人あたり生産額：高→）</text>
+  <ellipse cx="212" cy="108" rx="84" ry="38" fill="#fdecea" stroke="#b84a39" stroke-width="2"/>
+  <text x="212" y="102" text-anchor="middle" font-size="14" font-weight="900" fill="#963627">グループ ア</text>
+  <text x="212" y="122" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">小経営・労働集約・施肥多</text>
+  <ellipse cx="496" cy="106" rx="92" ry="38" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="496" y="100" text-anchor="middle" font-size="14" font-weight="900" fill="#216653">グループ イ</text>
+  <text x="496" y="120" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">施設園芸・高度機械化・高付加価値</text>
+  <ellipse cx="514" cy="222" rx="92" ry="38" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="514" y="216" text-anchor="middle" font-size="14" font-weight="900" fill="#1f467d">グループ ウ</text>
+  <text x="514" y="236" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">大経営・大型機械化・粗放的経営</text>
+  <ellipse cx="212" cy="224" rx="84" ry="36" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="212" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#99581b">グループ エ</text>
+  <text x="212" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">伝統的自給農業・資本投入小</text>
+</svg>

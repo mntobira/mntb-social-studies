@@ -107,13 +107,18 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
     });
   });
 
-  it('地理探究（geography）も一意なID・妥当な4択・解説をもつ', () => {
-    const chapters = geographyData.parts.flatMap((p) => p.chapters);
-    expect(chapters.length).toBeGreaterThanOrEqual(4);
-    expect(getGeographyStats().marks).toBeGreaterThanOrEqual(10);
+  it('地理探究（geography）は全4編・16章・48小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+    verifySubjectCurriculum({
+      subject: 'geography',
+      parts: geographyData.parts,
+      expectedParts: 4,
+      expectedChapters: 16,
+      expectedMarks: 48,
+      actualMarks: getGeographyStats().marks,
+    });
   });
 
-  it('生成済み SUBJECT_INDEX と赤シートまとめプリント（全24シート）の chapterId 参照がすべて有効である', () => {
+  it('生成済み SUBJECT_INDEX（全85章）と赤シートまとめプリント（全26シート）の chapterId 参照がすべて有効である', () => {
     const allIndexedIds = new Set<string>();
     for (const subj of SUBJECT_INDEX) {
       for (const ch of subj.chapters) {
@@ -121,9 +126,11 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
       }
     }
 
+    expect(allIndexedIds.size).toBe(85);
+    expect(SUMMARY_PRINTS.length).toBe(26);
     expect(getSummaryPrintsBySubject('jp_history').length).toBe(6);
     expect(getSummaryPrintsBySubject('world_history').length).toBe(6);
-    expect(getSummaryPrintsBySubject('geography').length).toBe(2);
+    expect(getSummaryPrintsBySubject('geography').length).toBe(4);
     expect(getSummaryPrintsBySubject('politics_econ').length).toBe(6);
     expect(getSummaryPrintsBySubject('ethics').length).toBe(4);
 

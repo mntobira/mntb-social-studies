@@ -601,6 +601,87 @@ const figs: Record<string, string> = {
     <text x="464" y="290" font-weight="800" fill="#b84a39">・フレミング(1928)：ペニシリン</text>
   </g>
 </svg>`,
+
+  // 14. 地理探究：世界の農業における土地生産性×労働生産性4象限モデル（ge2_1用）
+  'ge_agri_productivity.svg': `${SVG_HEAD(680, 330, '世界の農業地域における土地生産性と労働生産性の散布モデル')}
+  <rect x="8" y="8" width="664" height="314" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　世界の主要国グループ（ア〜エ）における農業の土地生産性と労働生産性</text>
+  <line x1="96" y1="56" x2="96" y2="274" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="96" y1="274" x2="626" y2="274" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="360" y1="56" x2="360" y2="274" stroke="#d5c7ae" stroke-dasharray="5 4"/>
+  <line x1="96" y1="165" x2="626" y2="165" stroke="#d5c7ae" stroke-dasharray="5 4"/>
+  <text x="36" y="168" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50" transform="rotate(-90 36 168)">土地生産性（1haあたり収量：高↑）</text>
+  <text x="360" y="302" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c3e50">労働生産性（農業就業者1人あたり生産額：高→）</text>
+  <ellipse cx="212" cy="108" rx="84" ry="38" fill="#fdecea" stroke="#b84a39" stroke-width="2"/>
+  <text x="212" y="102" text-anchor="middle" font-size="14" font-weight="900" fill="#963627">グループ ア</text>
+  <text x="212" y="122" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">小経営・労働集約・施肥多</text>
+  <ellipse cx="496" cy="106" rx="92" ry="38" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="496" y="100" text-anchor="middle" font-size="14" font-weight="900" fill="#216653">グループ イ</text>
+  <text x="496" y="120" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">施設園芸・高度機械化・高付加価値</text>
+  <ellipse cx="514" cy="222" rx="92" ry="38" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="514" y="216" text-anchor="middle" font-size="14" font-weight="900" fill="#1f467d">グループ ウ</text>
+  <text x="514" y="236" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">大経営・大型機械化・粗放的経営</text>
+  <ellipse cx="212" cy="224" rx="84" ry="36" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="212" y="218" text-anchor="middle" font-size="14" font-weight="900" fill="#99581b">グループ エ</text>
+  <text x="212" y="238" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">伝統的自給農業・資本投入小</text>
+</svg>`,
+
+  // 15. 地理探究：人口転換モデルと年齢3区分人口ピラミッド推移（ge2_4用）
+  'ge_demographic_transition.svg': `${SVG_HEAD(680, 320, '人口転換モデルにおける出生率・死亡率の推移と自然増加')}
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　人口転換モデル（第Ⅰ期〜第Ⅴ期）における出生率・死亡率の推移</text>
+  <line x1="78" y1="56" x2="78" y2="252" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="78" y1="252" x2="628" y2="252" stroke="#2c3e50" stroke-width="2"/>
+  <g stroke="#d5c7ae" stroke-dasharray="4 4">
+    <line x1="188" y1="56" x2="188" y2="252"/>
+    <line x1="312" y1="56" x2="312" y2="252"/>
+    <line x1="436" y1="56" x2="436" y2="252"/>
+    <line x1="542" y1="56" x2="542" y2="252"/>
+  </g>
+  <g font-size="12" font-weight="800" fill="#5d6d7e" text-anchor="middle">
+    <text x="133" y="74">第Ⅰ期(多産多死)</text>
+    <text x="250" y="74" fill="#b84a39">第Ⅱ期(多産少死)</text>
+    <text x="374" y="74" fill="#99581b">第Ⅲ期(少産少死へ)</text>
+    <text x="489" y="74" fill="#1f467d">第Ⅳ期(少産少死)</text>
+    <text x="585" y="74" fill="#583975">第Ⅴ期(少子高齢)</text>
+  </g>
+  <polygon points="188,96 250,98 312,104 374,148 436,204 374,206 312,202 250,164 188,98" fill="#fde2dc" opacity="0.7"/>
+  <polyline fill="none" stroke="#b84a39" stroke-width="3.5" points="92,96 188,96 250,98 312,104 374,148 436,204 510,208 612,226"/>
+  <polyline fill="none" stroke="#2b5b9e" stroke-width="3.5" points="92,99 188,98 250,164 312,202 374,206 436,204 510,206 612,196"/>
+  <text x="296" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#963627">人口爆発（自然増極大）</text>
+  <text x="536" y="102" font-size="12" font-weight="800" fill="#b84a39">― 粗出生率</text>
+  <text x="536" y="122" font-size="12" font-weight="800" fill="#2b5b9e">― 粗死亡率</text>
+  <text x="586" y="184" text-anchor="middle" font-size="11" font-weight="800" fill="#583975">高齢化で死亡率↑</text>
+  <text x="340" y="282" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">ピラミッド型：富士山型(Ⅱ期) → 釣り鐘型(Ⅳ期) → つぼ型(Ⅴ期：日本・独・伊・韓など自然減)</text>
+</svg>`,
+
+  // 16. 地理探究：日本列島周辺の4プレートと大地形・中央構造線・フォッサマグナ（ge4_1用）
+  'ge_japan_tectonics.svg': `${SVG_HEAD(680, 320, '日本列島周辺の4つのプレート境界とフォッサマグナ・中央構造線')}
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　日本列島を取り巻く4プレートと主要構造線・海溝模式図</text>
+  <rect x="28" y="56" width="270" height="232" rx="12" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="163" y="82" text-anchor="middle" font-size="14" font-weight="900" fill="#99581b">ユーラシアプレート（大陸）</text>
+  <text x="163" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">西南日本：内帯（花崗岩・中国山地）</text>
+  <line x1="52" y1="126" x2="276" y2="126" stroke="#b84a39" stroke-width="3"/>
+  <text x="163" y="146" text-anchor="middle" font-size="12" font-weight="900" fill="#b84a39">▲ 中央構造線（内帯と外帯の境界）</text>
+  <text x="163" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">外帯（四国・九州山地：険しい褶曲山地）</text>
+  <rect x="304" y="56" width="66" height="162" rx="8" fill="#fdecea" stroke="#b84a39" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="337" y="122" text-anchor="middle" font-size="11.5" font-weight="900" fill="#963627">フォッサ</text>
+  <text x="337" y="140" text-anchor="middle" font-size="11.5" font-weight="900" fill="#963627">マグナ</text>
+  <text x="337" y="164" text-anchor="middle" font-size="10.5" font-weight="700" fill="#34495e">西縁：糸魚川</text>
+  <text x="337" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="#34495e">静岡構造線</text>
+  <rect x="376" y="56" width="276" height="106" rx="12" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="514" y="82" text-anchor="middle" font-size="14" font-weight="900" fill="#216653">北アメリカプレート（大陸）</text>
+  <text x="514" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">東北日本・北海道（奥羽山脈に火山フロント）</text>
+  <text x="514" y="138" text-anchor="middle" font-size="12" font-weight="800" fill="#1f467d">東沖：【日本海溝・千島海溝】←太平洋プレート沈み込み</text>
+  <rect x="304" y="226" width="168" height="62" rx="10" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="388" y="250" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1f467d">フィリピン海プレート</text>
+  <text x="388" y="270" text-anchor="middle" font-size="11" font-weight="700" fill="#34495e">南海トラフ・相模トラフへ沈み込み</text>
+  <rect x="484" y="176" width="168" height="112" rx="10" fill="#dce9fa" stroke="#1f467d" stroke-width="2"/>
+  <text x="568" y="206" text-anchor="middle" font-size="13" font-weight="900" fill="#1f467d">太平洋プレート（海洋）</text>
+  <text x="568" y="230" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">日本海溝・伊豆小笠原海溝</text>
+  <text x="568" y="250" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">へ沈み込み（深発地震面）</text>
+</svg>`,
 };
 
 for (const [name, svg] of Object.entries(figs)) {

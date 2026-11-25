@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="人口転換モデルにおける出生率・死亡率の推移と自然増加" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　人口転換モデル（第Ⅰ期〜第Ⅴ期）における出生率・死亡率の推移</text>
+  <line x1="78" y1="56" x2="78" y2="252" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="78" y1="252" x2="628" y2="252" stroke="#2c3e50" stroke-width="2"/>
+  <g stroke="#d5c7ae" stroke-dasharray="4 4">
+    <line x1="188" y1="56" x2="188" y2="252"/>
+    <line x1="312" y1="56" x2="312" y2="252"/>
+    <line x1="436" y1="56" x2="436" y2="252"/>
+    <line x1="542" y1="56" x2="542" y2="252"/>
+  </g>
+  <g font-size="12" font-weight="800" fill="#5d6d7e" text-anchor="middle">
+    <text x="133" y="74">第Ⅰ期(多産多死)</text>
+    <text x="250" y="74" fill="#b84a39">第Ⅱ期(多産少死)</text>
+    <text x="374" y="74" fill="#99581b">第Ⅲ期(少産少死へ)</text>
+    <text x="489" y="74" fill="#1f467d">第Ⅳ期(少産少死)</text>
+    <text x="585" y="74" fill="#583975">第Ⅴ期(少子高齢)</text>
+  </g>
+  <polygon points="188,96 250,98 312,104 374,148 436,204 374,206 312,202 250,164 188,98" fill="#fde2dc" opacity="0.7"/>
+  <polyline fill="none" stroke="#b84a39" stroke-width="3.5" points="92,96 188,96 250,98 312,104 374,148 436,204 510,208 612,226"/>
+  <polyline fill="none" stroke="#2b5b9e" stroke-width="3.5" points="92,99 188,98 250,164 312,202 374,206 436,204 510,206 612,196"/>
+  <text x="296" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#963627">人口爆発（自然増極大）</text>
+  <text x="536" y="102" font-size="12" font-weight="800" fill="#b84a39">― 粗出生率</text>
+  <text x="536" y="122" font-size="12" font-weight="800" fill="#2b5b9e">― 粗死亡率</text>
+  <text x="586" y="184" text-anchor="middle" font-size="11" font-weight="800" fill="#583975">高齢化で死亡率↑</text>
+  <text x="340" y="282" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">ピラミッド型：富士山型(Ⅱ期) → 釣り鐘型(Ⅳ期) → つぼ型(Ⅴ期：日本・独・伊・韓など自然減)</text>
+</svg>
