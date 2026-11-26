@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" role="img" aria-label="日本列島周辺の4つのプレート境界とフォッサマグナ・中央構造線" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fffdf8">
+  <rect x="8" y="8" width="664" height="304" rx="14" fill="#fffdf8" stroke="#dfcfb5" stroke-width="2"/>
+  <text x="340" y="34" text-anchor="middle" font-size="16" font-weight="800" fill="#2c3e50">図1　日本列島を取り巻く4プレートと主要構造線・海溝模式図</text>
+  <rect x="28" y="56" width="270" height="232" rx="12" fill="#fdf6ec" stroke="#c4762b" stroke-width="2"/>
+  <text x="163" y="82" text-anchor="middle" font-size="14" font-weight="900" fill="#99581b">ユーラシアプレート（大陸）</text>
+  <text x="163" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">西南日本：内帯（花崗岩・中国山地）</text>
+  <line x1="52" y1="126" x2="276" y2="126" stroke="#b84a39" stroke-width="3"/>
+  <text x="163" y="146" text-anchor="middle" font-size="12" font-weight="900" fill="#b84a39">▲ 中央構造線（内帯と外帯の境界）</text>
+  <text x="163" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">外帯（四国・九州山地：険しい褶曲山地）</text>
+  <rect x="304" y="56" width="66" height="162" rx="8" fill="#fdecea" stroke="#b84a39" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="337" y="122" text-anchor="middle" font-size="11.5" font-weight="900" fill="#963627">フォッサ</text>
+  <text x="337" y="140" text-anchor="middle" font-size="11.5" font-weight="900" fill="#963627">マグナ</text>
+  <text x="337" y="164" text-anchor="middle" font-size="10.5" font-weight="700" fill="#34495e">西縁：糸魚川</text>
+  <text x="337" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="#34495e">静岡構造線</text>
+  <rect x="376" y="56" width="276" height="106" rx="12" fill="#eef8f5" stroke="#2e856e" stroke-width="2"/>
+  <text x="514" y="82" text-anchor="middle" font-size="14" font-weight="900" fill="#216653">北アメリカプレート（大陸）</text>
+  <text x="514" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">東北日本・北海道（奥羽山脈に火山フロント）</text>
+  <text x="514" y="138" text-anchor="middle" font-size="12" font-weight="800" fill="#1f467d">東沖：【日本海溝・千島海溝】←太平洋プレート沈み込み</text>
+  <rect x="304" y="226" width="168" height="62" rx="10" fill="#edf3fc" stroke="#2b5b9e" stroke-width="2"/>
+  <text x="388" y="250" text-anchor="middle" font-size="12.5" font-weight="900" fill="#1f467d">フィリピン海プレート</text>
+  <text x="388" y="270" text-anchor="middle" font-size="11" font-weight="700" fill="#34495e">南海トラフ・相模トラフへ沈み込み</text>
+  <rect x="484" y="176" width="168" height="112" rx="10" fill="#dce9fa" stroke="#1f467d" stroke-width="2"/>
+  <text x="568" y="206" text-anchor="middle" font-size="13" font-weight="900" fill="#1f467d">太平洋プレート（海洋）</text>
+  <text x="568" y="230" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">日本海溝・伊豆小笠原海溝</text>
+  <text x="568" y="250" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2c3e50">へ沈み込み（深発地震面）</text>
+</svg>

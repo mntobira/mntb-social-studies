@@ -44,6 +44,11 @@ const SUBJECT_ICON: Record<string, StudyIcon> = {
 export const STUDY_CATALOG: readonly StudySubject[] = SUBJECT_REGISTRY.map((s) => {
   const stats = getSubjectStats(s.id);
   const prints = getSummaryPrintsBySubject(s.id);
+  const totalPages = prints.reduce((acc, p) => acc + p.pages.length, 0);
+  const totalFigs = prints.reduce(
+    (acc, p) => acc + p.pages.reduce((sum, pg) => sum + (pg.figures?.length ?? 0), 0),
+    0,
+  );
   return {
     id: s.id,
     label: s.label,
@@ -62,12 +67,14 @@ export const STUDY_CATALOG: readonly StudySubject[] = SUBJECT_REGISTRY.map((s) =
       },
       {
         id: `${s.id}_summary`,
-        title: `${s.shortLabel} 赤シートまとめプリント`,
+        title: `${s.shortLabel} 1画面まとめプリント（赤シート＆図表資料）`,
         icon: 'book',
         section: 'memorize',
-        badge: '赤シート対応',
-        description: s.learningDescription ?? '重要語句をタップで隠して暗記できる要点整理シート',
-        meta: `全${prints.length}シート・頻出比較表つき`,
+        badge: '3段階赤シート・○×メモ対応',
+        description:
+          s.learningDescription ??
+          '因果の流れ・比較表・共通テスト図表資料を1画面ずつめくって仕上げる要点プリント',
+        meta: `全${prints.length}単元・${totalPages}ページ・図表資料${totalFigs}点`,
         action: { kind: 'learning', subject: s.id },
       },
     ],

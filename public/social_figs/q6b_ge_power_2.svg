@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="② イ国の発電電力量の構成" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">② イ国の発電電力量の構成</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">（国策として原子力発電を推進し周辺国へ電力を輸出する国）</text>
+  <path d="M 245 290 L 245.00 138.00 A 152 152 0 1 1 122.03 379.34 Z" fill="#334155" stroke="#18181b" stroke-width="1.7"/>
+  <text x="330.3" y="339.5" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">65%</text>
+  <path d="M 245 290 L 122.03 379.34 A 152 152 0 0 1 100.44 243.03 Z" fill="#94a3b8" stroke="#18181b" stroke-width="1.7"/>
+  <text x="150.4" y="311.0" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">15%</text>
+  <path d="M 245 290 L 100.44 243.03 A 152 152 0 0 1 171.77 156.80 Z" fill="#cbd5e1" stroke="#18181b" stroke-width="1.7"/>
+  <text x="171.2" y="235.0" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">12%</text>
+  <path d="M 245 290 L 171.77 156.80 A 152 152 0 0 1 245.00 138.00 Z" fill="#f1f5f9" stroke="#18181b" stroke-width="1.7"/>
+  <text x="221.2" y="203.2" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">8%</text>
+  <rect x="440" y="178" width="26" height="22" fill="#334155" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="195" font-size="16" font-weight="700" fill="#0f172a">原子力  65%</text>
+  <rect x="440" y="224" width="26" height="22" fill="#94a3b8" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="241" font-size="16" font-weight="700" fill="#0f172a">風力・太陽・他  15%</text>
+  <rect x="440" y="270" width="26" height="22" fill="#cbd5e1" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="287" font-size="16" font-weight="700" fill="#0f172a">水力  12%</text>
+  <rect x="440" y="316" width="26" height="22" fill="#f1f5f9" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="333" font-size="16" font-weight="700" fill="#0f172a">火力  8%</text>
+</svg>

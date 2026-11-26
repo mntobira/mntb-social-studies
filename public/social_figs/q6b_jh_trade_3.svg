@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="③ 高度経済成長期「エネルギー革命」による一次エネルギー変化" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">③ 高度経済成長期「エネルギー革命」による一次エネルギー変化</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">1960年代初頭に主役が「国内石炭」から「中東輸入原油（石油）」へ劇的転換</text>
+  <line x1="99" y1="442.0" x2="105" y2="442.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="447.0" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">0%</text>
+  <line x1="105" y1="384.3" x2="650" y2="384.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="384.3" x2="105" y2="384.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="389.3" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">15%</text>
+  <line x1="105" y1="326.7" x2="650" y2="326.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="326.7" x2="105" y2="326.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="331.7" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">30%</text>
+  <line x1="105" y1="269.0" x2="650" y2="269.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="269.0" x2="105" y2="269.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="274.0" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">45%</text>
+  <line x1="105" y1="211.3" x2="650" y2="211.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="211.3" x2="105" y2="211.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="216.3" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">60%</text>
+  <line x1="105" y1="153.7" x2="650" y2="153.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="153.7" x2="105" y2="153.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="158.7" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">75%</text>
+  <line x1="105" y1="96.0" x2="650" y2="96.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="96.0" x2="105" y2="96.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="101.0" text-anchor="end" font-size="15" font-weight="700" fill="#1e293b">90%</text>
+  <line x1="105" y1="86" x2="105" y2="442" stroke="#18181b" stroke-width="1.8"/>
+  <line x1="105" y1="442" x2="650" y2="442" stroke="#18181b" stroke-width="1.8"/>
+  <text x="36" y="269.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b" transform="rotate(-90 36 269.0)">一次エネルギー供給割合（％）</text>
+  <rect x="135.0" y="253.6" width="76.3" height="188.4" fill="#334155" stroke="#18181b" stroke-width="1.6"/>
+  <text x="173.1" y="244.6" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">49%</text>
+  <text x="173.1" y="468.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1955年</text>
+  <text x="173.1" y="487.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">石炭</text>
+  <rect x="271.2" y="365.1" width="76.3" height="76.9" fill="#cbd5e1" stroke="#18181b" stroke-width="1.6"/>
+  <text x="309.4" y="356.1" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">20%</text>
+  <text x="309.4" y="468.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1955年</text>
+  <text x="309.4" y="487.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">石油</text>
+  <rect x="407.5" y="384.3" width="76.3" height="57.7" fill="#94a3b8" stroke="#18181b" stroke-width="1.6"/>
+  <text x="445.6" y="375.3" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">15%</text>
+  <text x="445.6" y="468.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1973年</text>
+  <text x="445.6" y="487.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">石炭</text>
+  <rect x="543.7" y="146.0" width="76.3" height="296.0" fill="#1e293b" stroke="#18181b" stroke-width="1.6"/>
+  <text x="581.9" y="137.0" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">77%</text>
+  <text x="581.9" y="468.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">1973年</text>
+  <text x="581.9" y="487.0" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">石油</text>
+</svg>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="③ 日本の基幹3税（所得・法人・消費税）の税収推移モデル" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">③ 日本の基幹3税（所得・法人・消費税）の税収推移モデル</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">バブル崩壊後の法人・所得税減と、税率引上げ（3→5→8→10%）による消費税首位化</text>
+  <line x1="99" y1="438.0" x2="105" y2="438.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="443.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">0</text>
+  <line x1="105" y1="383.7" x2="650" y2="383.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="383.7" x2="105" y2="383.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="388.7" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">5</text>
+  <line x1="105" y1="329.3" x2="650" y2="329.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="329.3" x2="105" y2="329.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="334.3" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">10</text>
+  <line x1="105" y1="275.0" x2="650" y2="275.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="275.0" x2="105" y2="275.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="280.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">15</text>
+  <line x1="105" y1="220.7" x2="650" y2="220.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="220.7" x2="105" y2="220.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="225.7" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">20</text>
+  <line x1="105" y1="166.3" x2="650" y2="166.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="166.3" x2="105" y2="166.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="171.3" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">25</text>
+  <line x1="105" y1="112.0" x2="650" y2="112.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="112.0" x2="105" y2="112.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="117.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">30</text>
+  <line x1="105" y1="104" x2="105" y2="438" stroke="#18181b" stroke-width="1.8"/>
+  <line x1="105" y1="438" x2="650" y2="438" stroke="#18181b" stroke-width="1.8"/>
+  <text x="34" y="275.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b" transform="rotate(-90 34 275.0)">税収（兆円・概数）</text>
+  <line x1="105.0" y1="438" x2="105.0" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="105.0" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1990年</text>
+  <line x1="241.2" y1="438" x2="241.2" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="241.2" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">2000年</text>
+  <line x1="377.5" y1="438" x2="377.5" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="377.5" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">2010年</text>
+  <line x1="513.8" y1="438" x2="513.8" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="513.8" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">2015年</text>
+  <line x1="650.0" y1="438" x2="650.0" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="650.0" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">2023年</text>
+  <line x1="120" y1="92" x2="152" y2="92" stroke="#0f172a" stroke-width="3"/>
+  <circle cx="136" cy="92" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <text x="160" y="97" font-size="14" font-weight="800" fill="#0f172a">消費税</text>
+  <line x1="295" y1="92" x2="327" y2="92" stroke="#b91c1c" stroke-width="3" stroke-dasharray="6 4"/>
+  <circle cx="311" cy="92" r="4.5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <text x="335" y="97" font-size="14" font-weight="800" fill="#0f172a">所得税</text>
+  <line x1="470" y1="92" x2="502" y2="92" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="3 3"/>
+  <circle cx="486" cy="92" r="4.5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="510" y="97" font-size="14" font-weight="800" fill="#0f172a">法人税</text>
+  <polyline fill="none" stroke="#0f172a" stroke-width="3" points="105.0,388.0 241.2,331.5 377.5,329.3 513.8,248.9 650.0,187.0"/>
+  <circle cx="105.0" cy="388.0" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="241.2" cy="331.5" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="377.5" cy="329.3" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="513.8" cy="248.9" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="650.0" cy="187.0" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <polyline fill="none" stroke="#b91c1c" stroke-width="3" stroke-dasharray="6 4" points="105.0,155.5 241.2,233.7 377.5,297.8 513.8,244.6 650.0,204.4"/>
+  <circle cx="105.0" cy="155.5" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="241.2" cy="233.7" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="377.5" cy="297.8" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="513.8" cy="244.6" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="650.0" cy="204.4" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <polyline fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="3 3" points="105.0,238.1 241.2,310.9 377.5,340.2 513.8,320.6 650.0,265.2"/>
+  <circle cx="105.0" cy="238.1" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="241.2" cy="310.9" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="377.5" cy="340.2" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="513.8" cy="320.6" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="650.0" cy="265.2" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+</svg>
