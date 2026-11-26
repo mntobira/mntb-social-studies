@@ -28,8 +28,8 @@ import type { BattleAnswerFormat, BattleQuestion } from '../core/types';
 
 /** 教科ごとの収録数（UIで「この教科は◯問あります」と出すために使う） */
 export const POOL_COUNTS: Readonly<Record<string, number>> = {
-  jp_history: 54,
-  world_history: 54,
+  jp_history: 162,
+  world_history: 162,
   geography: 12,
   politics_econ: 48,
   ethics: 51,
@@ -57,8 +57,8 @@ export const POOL_COUNTS: Readonly<Record<string, number>> = {
 export const POOL_FORMAT_COUNTS: Readonly<
   Record<string, Readonly<Partial<Record<BattleAnswerFormat, number>>>>
 > = {
-  jp_history: { choice4: 54 },
-  world_history: { choice4: 54 },
+  jp_history: { choice4: 162 },
+  world_history: { choice4: 162 },
   geography: { choice4: 12 },
   politics_econ: { choice4: 48 },
   ethics: { choice4: 51 },
@@ -206,8 +206,8 @@ export function loadedPool(subject: string): readonly BattleQuestion[] {
  * データ本体を読まずに判断するために置いてある。
  */
 export const ANSWER_COUNTS: Readonly<Record<string, number>> = {
-  jp_history: 54,
-  world_history: 54,
+  jp_history: 162,
+  world_history: 162,
   geography: 12,
   politics_econ: 48,
   ethics: 51,

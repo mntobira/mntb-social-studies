@@ -40,6 +40,9 @@ function verifySubjectCurriculum(params: {
     expect(chapterIds.has(ch.id)).toBe(false);
     chapterIds.add(ch.id);
     expect(ch.practiceProblems.length).toBeGreaterThanOrEqual(1);
+    if (subject === 'jp_history' || subject === 'world_history') {
+      expect(ch.practiceProblems.length).toBe(3);
+    }
 
     for (const prob of ch.practiceProblems) {
       if (prob.imageUrl) {
@@ -50,6 +53,7 @@ function verifySubjectCurriculum(params: {
       for (const sq of prob.subQuestions) {
         expect(subIds.has(sq.id)).toBe(false);
         subIds.add(sq.id);
+        expect(sq.type).toBe('multiple_choice');
         expect(sq.options?.length).toBe(4);
         expect(new Set(sq.optionTexts).size).toBe(4);
         expect(sq.options).toContain(sq.correctAnswer);
@@ -63,24 +67,24 @@ function verifySubjectCurriculum(params: {
 }
 
 describe('社会科全5科目（日本史・世界史・地理・倫理・政経）の完全網羅・データ整合性', () => {
-  it('日本史探究（jp_history）は全4編・18章・54小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+  it('日本史探究（jp_history）は全4編・18章・54大問・162小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'jp_history',
       parts: jpHistoryData.parts,
       expectedParts: 4,
       expectedChapters: 18,
-      expectedMarks: 54,
+      expectedMarks: 162,
       actualMarks: getJpHistoryStats().marks,
     });
   });
 
-  it('世界史探究（world_history）は全4編・18章・54小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+  it('世界史探究（world_history）は全4編・18章・54大問・162小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'world_history',
       parts: worldHistoryData.parts,
       expectedParts: 4,
       expectedChapters: 18,
-      expectedMarks: 54,
+      expectedMarks: 162,
       actualMarks: getWorldHistoryStats().marks,
     });
   });
