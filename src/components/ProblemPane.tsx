@@ -26,6 +26,7 @@ import { getFigureNumber } from '../utils/figureNumbering';
 import { stepLabelOf, type ListeningStep } from '../utils/listeningSteps';
 import type { AudioTrack, Problem, SubQuestion } from '../types/curriculum';
 import { QuestionFigure } from './QuestionFigure';
+import { SocialMaterialDeck } from './SocialMaterialDeck';
 import { ListeningAudioPlayer } from './ListeningAudioPlayer';
 import { ExplanationBody } from './ExplanationBody';
 import { renderListeningMaterialPane } from './quiz/ListeningMaterialPane';
@@ -662,15 +663,33 @@ export function ProblemPane({
               />
             )
           )}
-          {/* 問題に付随する図・イラスト（PDF由来の図版など） */}
+          {/* 問題に付随する図・イラスト（社会科の共通テスト図表SVGは第6問B準拠のタップ○×メモ＆拡大対応デッキで表示） */}
           {currentQuestion.imageUrl && (
-            <QuestionFigure
-              src={currentQuestion.imageUrl}
-              caption={currentQuestion.imageCaption}
-              figureNumber={getFigureNumber(figureNumberMap, currentQuestion.id)}
-              tone="light"
-              className="mt-5"
-            />
+            currentQuestion.imageUrl.startsWith('/social_figs/') ? (
+              <div className="mt-4">
+                <SocialMaterialDeck
+                  figures={[
+                    {
+                      src: currentQuestion.imageUrl,
+                      caption: currentQuestion.imageCaption || '資料図',
+                      badge:
+                        typeof getFigureNumber(figureNumberMap, currentQuestion.id) === 'number'
+                          ? `図${getFigureNumber(figureNumberMap, currentQuestion.id)}`
+                          : '資料図',
+                    },
+                  ]}
+                  compactHeight
+                />
+              </div>
+            ) : (
+              <QuestionFigure
+                src={currentQuestion.imageUrl}
+                caption={currentQuestion.imageCaption}
+                figureNumber={getFigureNumber(figureNumberMap, currentQuestion.id)}
+                tone="light"
+                className="mt-5"
+              />
+            )
           )}
           {/* 表示ルール1・2：左側の「問題文」欄には共通リード文に加えて、
               続く全小問の設問文（問1、問2、…）を順番に表示する。

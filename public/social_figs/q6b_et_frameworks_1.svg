@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="① 西洋近代倫理の3大潮流（動機・結果・公正としての正義）" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">① 西洋近代倫理の3大潮流（動機・結果・公正としての正義）</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">共通テスト会話文・思考実験で最頻出の3立場比較チャート</text>
+
+  <!-- 3 Columns -->
+  <g transform="translate(36, 98)">
+    <rect x="0" y="0" width="198" height="368" rx="8" fill="#ffffff" stroke="#18181b" stroke-width="1.8"/>
+    <rect x="0" y="0" width="198" height="48" rx="8" fill="#1e293b"/>
+    <text x="99" y="31" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">義務論（カント）</text>
+    <text x="99" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">「動機（善き意志）」重視</text>
+    <line x1="18" y1="96" x2="180" y2="96" stroke="#cbd5e1"/>
+    <text x="16" y="126" font-size="13.5" font-weight="700" fill="#0f172a">・傾向性（感情・欲望）を排す</text>
+    <text x="16" y="156" font-size="13.5" font-weight="700" fill="#0f172a">・無条件の「定言命法」に従う</text>
+    <text x="16" y="186" font-size="13.5" font-weight="700" fill="#0f172a">・実践理性の自律＝真の自由</text>
+    <text x="16" y="216" font-size="13.5" font-weight="700" fill="#0f172a">・人格を手段でなく目的として扱う</text>
+    <rect x="16" y="256" width="166" height="92" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="99" y="282" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">判定基準</text>
+    <text x="99" y="308" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">結果がどうあれ</text>
+    <text x="99" y="330" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">道徳法則への義務か？</text>
+  </g>
+
+  <g transform="translate(251, 98)">
+    <rect x="0" y="0" width="198" height="368" rx="8" fill="#ffffff" stroke="#18181b" stroke-width="1.8"/>
+    <rect x="0" y="0" width="198" height="48" rx="8" fill="#334155"/>
+    <text x="99" y="31" text-anchor="middle" font-size="15.5" font-weight="800" fill="#ffffff">功利主義（ベンサム/ミル）</text>
+    <text x="99" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="#1d4ed8">「結果（最大幸福）」重視</text>
+    <line x1="18" y1="96" x2="180" y2="96" stroke="#cbd5e1"/>
+    <text x="16" y="126" font-size="13.5" font-weight="700" fill="#0f172a">・最大多数の最大幸福</text>
+    <text x="16" y="156" font-size="13.5" font-weight="700" fill="#0f172a">・ベンサム：快楽の「量」計算</text>
+    <text x="16" y="186" font-size="13.5" font-weight="700" fill="#0f172a">・ミル：精神的快楽の「質」重視</text>
+    <text x="16" y="216" font-size="13.5" font-weight="700" fill="#0f172a">・他者危害の原則（自由論）</text>
+    <rect x="16" y="256" width="166" height="92" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="99" y="282" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">弱点（ロールズの批判点）</text>
+    <text x="99" y="308" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f172a">社会全体の幸福合計のため</text>
+    <text x="99" y="330" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b91c1c">少数者の犠牲を正当化しうる</text>
+  </g>
+
+  <g transform="translate(466, 98)">
+    <rect x="0" y="0" width="198" height="368" rx="8" fill="#ffffff" stroke="#18181b" stroke-width="1.8"/>
+    <rect x="0" y="0" width="198" height="48" rx="8" fill="#475569"/>
+    <text x="99" y="31" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">正義論（ロールズ）</text>
+    <text x="99" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="#047857">「無知のヴェール」契約</text>
+    <line x1="18" y1="96" x2="180" y2="96" stroke="#cbd5e1"/>
+    <text x="16" y="126" font-size="13.5" font-weight="700" fill="#0f172a">・原初状態で自己の属性を隠す</text>
+    <text x="16" y="156" font-size="13.5" font-weight="700" fill="#0f172a">・第1原理：基本的自由の平等</text>
+    <text x="16" y="186" font-size="13.5" font-weight="700" fill="#0f172a">・第2原理a：公正な機会均等</text>
+    <text x="16" y="216" font-size="13.5" font-weight="700" fill="#0f172a">・第2原理b：格差原理</text>
+    <rect x="16" y="256" width="166" height="92" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="99" y="282" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">格差原理の急所</text>
+    <text x="99" y="308" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f172a">「最も不遇な人々の利益」を</text>
+    <text x="99" y="330" text-anchor="middle" font-size="13.5" font-weight="800" fill="#047857">最大化するときのみ格差容認</text>
+  </g>
+
+</svg>

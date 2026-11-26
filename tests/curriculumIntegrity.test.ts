@@ -118,7 +118,7 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
     });
   });
 
-  it('生成済み SUBJECT_INDEX（全85章）と赤シートまとめプリント（全26シート）の chapterId 参照がすべて有効である', () => {
+  it('生成済み SUBJECT_INDEX（全85章）と1画面ページ送りまとめプリント（全85単元・1対1対応）および図表SVG参照がすべて有効である', () => {
     const allIndexedIds = new Set<string>();
     for (const subj of SUBJECT_INDEX) {
       for (const ch of subj.chapters) {
@@ -127,20 +127,44 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
     }
 
     expect(allIndexedIds.size).toBe(85);
-    expect(SUMMARY_PRINTS.length).toBe(26);
-    expect(getSummaryPrintsBySubject('jp_history').length).toBe(6);
-    expect(getSummaryPrintsBySubject('world_history').length).toBe(6);
-    expect(getSummaryPrintsBySubject('geography').length).toBe(4);
-    expect(getSummaryPrintsBySubject('politics_econ').length).toBe(6);
-    expect(getSummaryPrintsBySubject('ethics').length).toBe(4);
+    expect(SUMMARY_PRINTS.length).toBe(85);
+    expect(getSummaryPrintsBySubject('jp_history').length).toBe(18);
+    expect(getSummaryPrintsBySubject('world_history').length).toBe(18);
+    expect(getSummaryPrintsBySubject('geography').length).toBe(16);
+    expect(getSummaryPrintsBySubject('politics_econ').length).toBe(16);
+    expect(getSummaryPrintsBySubject('ethics').length).toBe(17);
+
+    const sheetIds = new Set<string>();
+    const coveredChapters = new Set<string>();
 
     for (const sheet of SUMMARY_PRINTS) {
+      expect(sheetIds.has(sheet.id)).toBe(false);
+      sheetIds.add(sheet.id);
       expect(allIndexedIds.has(sheet.chapterId)).toBe(true);
-      const maskedTokens = sheet.sections
-        .flatMap((s) => [...s.bullets, ...(s.table?.rows.flat() ?? [])])
-        .join('\n')
-        .match(/\{\{[^}]+\}\}/g);
-      expect((maskedTokens ?? []).length).toBeGreaterThanOrEqual(8);
+      expect(coveredChapters.has(sheet.chapterId)).toBe(false);
+      coveredChapters.add(sheet.chapterId);
+      expect(sheet.pages.length).toBeGreaterThanOrEqual(2);
+
+      const allPageText = sheet.pages
+        .flatMap((pg) => [
+          pg.lead ?? '',
+          ...(pg.blocks ?? []).flatMap((b) => b.lines),
+          ...(pg.table?.rows.flat() ?? []),
+          pg.pointBox?.body ?? '',
+        ])
+        .join('\n');
+
+      const maskedTokens = allPageText.match(/\{\{[^}]+\}\}/g);
+      expect((maskedTokens ?? []).length).toBeGreaterThanOrEqual(4);
+
+      for (const pg of sheet.pages) {
+        for (const fig of pg.figures ?? []) {
+          const figPath = resolve(PUBLIC_DIR, fig.src.replace(/^\//, ''));
+          expect(existsSync(figPath)).toBe(true);
+        }
+      }
     }
+
+    expect(coveredChapters.size).toBe(85);
   });
 });

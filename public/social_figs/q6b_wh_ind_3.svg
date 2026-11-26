@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="③ 1929年世界恐慌後の主要国工業生産指数（1929年＝100）" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">③ 1929年世界恐慌後の主要国工業生産指数（1929年＝100）</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">ソ連だけが計画経済（第1次五カ年計画）で右肩上がり！米独は激減、英は日本並みに軽微</text>
+  <line x1="99" y1="438.0" x2="105" y2="438.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="443.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">40</text>
+  <line x1="105" y1="383.7" x2="650" y2="383.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="383.7" x2="105" y2="383.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="388.7" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">100</text>
+  <line x1="105" y1="329.3" x2="650" y2="329.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="329.3" x2="105" y2="329.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="334.3" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">160</text>
+  <line x1="105" y1="275.0" x2="650" y2="275.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="275.0" x2="105" y2="275.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="280.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">220</text>
+  <line x1="105" y1="220.7" x2="650" y2="220.7" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="220.7" x2="105" y2="220.7" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="225.7" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">280</text>
+  <line x1="105" y1="166.3" x2="650" y2="166.3" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="166.3" x2="105" y2="166.3" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="171.3" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">340</text>
+  <line x1="105" y1="112.0" x2="650" y2="112.0" stroke="#cbd5e1" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <line x1="99" y1="112.0" x2="105" y2="112.0" stroke="#18181b" stroke-width="1.6"/>
+  <text x="93" y="117.0" text-anchor="end" font-size="14" font-weight="700" fill="#1e293b">400</text>
+  <line x1="105" y1="104" x2="105" y2="438" stroke="#18181b" stroke-width="1.8"/>
+  <line x1="105" y1="438" x2="650" y2="438" stroke="#18181b" stroke-width="1.8"/>
+  <text x="34" y="275.0" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b" transform="rotate(-90 34 275.0)">工業生産指数（1929年＝100）</text>
+  <line x1="105.0" y1="438" x2="105.0" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="105.0" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1929年</text>
+  <line x1="241.2" y1="438" x2="241.2" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="241.2" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1931年</text>
+  <line x1="377.5" y1="438" x2="377.5" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="377.5" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1932年</text>
+  <line x1="513.8" y1="438" x2="513.8" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="513.8" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1935年</text>
+  <line x1="650.0" y1="438" x2="650.0" y2="444" stroke="#18181b" stroke-width="1.6"/>
+  <text x="650.0" y="465" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">1937年</text>
+  <line x1="120" y1="92" x2="152" y2="92" stroke="#b91c1c" stroke-width="3"/>
+  <circle cx="136" cy="92" r="4.5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <text x="160" y="97" font-size="14" font-weight="800" fill="#0f172a">ソ連（五カ年計画）</text>
+  <line x1="295" y1="92" x2="327" y2="92" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="6 4"/>
+  <circle cx="311" cy="92" r="4.5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="335" y="97" font-size="14" font-weight="800" fill="#0f172a">イギリス（ポンド圏）</text>
+  <line x1="470" y1="92" x2="502" y2="92" stroke="#0f172a" stroke-width="3"/>
+  <circle cx="486" cy="92" r="4.5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <text x="510" y="97" font-size="14" font-weight="800" fill="#0f172a">アメリカ（恐慌直撃）</text>
+  <polyline fill="none" stroke="#b91c1c" stroke-width="3" points="105.0,383.7 241.2,329.3 377.5,308.5 513.8,208.9 650.0,139.2"/>
+  <circle cx="105.0" cy="383.7" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="241.2" cy="329.3" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="377.5" cy="308.5" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="513.8" cy="208.9" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <circle cx="650.0" cy="139.2" r="5" fill="#ffffff" stroke="#b91c1c" stroke-width="2.5"/>
+  <polyline fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="6 4" points="105.0,383.7 241.2,398.2 377.5,398.2 513.8,378.2 650.0,361.9"/>
+  <circle cx="105.0" cy="383.7" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="241.2" cy="398.2" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="377.5" cy="398.2" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="513.8" cy="378.2" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <circle cx="650.0" cy="361.9" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <polyline fill="none" stroke="#0f172a" stroke-width="3" points="105.0,383.7 241.2,412.6 377.5,426.2 513.8,405.4 650.0,380.9"/>
+  <circle cx="105.0" cy="383.7" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="241.2" cy="412.6" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="377.5" cy="426.2" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="513.8" cy="405.4" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="650.0" cy="380.9" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+</svg>

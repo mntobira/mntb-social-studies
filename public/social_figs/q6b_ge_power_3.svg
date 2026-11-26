@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="③ ウ国の発電電力量の構成" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">③ ウ国の発電電力量の構成</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">（脱原発を完了し偏西風を活かした風力等と褐炭火力が併存する国）</text>
+  <path d="M 245 290 L 245.00 138.00 A 152 152 0 0 1 282.80 437.22 Z" fill="#334155" stroke="#18181b" stroke-width="1.7"/>
+  <text x="340.0" y="284.0" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">46%</text>
+  <path d="M 245 290 L 282.80 437.22 A 152 152 0 0 1 140.95 179.20 Z" fill="#94a3b8" stroke="#18181b" stroke-width="1.7"/>
+  <text x="161.1" y="342.1" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">42%</text>
+  <path d="M 245 290 L 140.95 179.20 A 152 152 0 0 1 245.00 138.00 Z" fill="#e2e8f0" stroke="#18181b" stroke-width="1.7"/>
+  <text x="209.7" y="207.0" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">12%</text>
+  <rect x="440" y="178" width="26" height="22" fill="#334155" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="195" font-size="16" font-weight="700" fill="#0f172a">風力・太陽光  46%</text>
+  <rect x="440" y="224" width="26" height="22" fill="#94a3b8" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="241" font-size="16" font-weight="700" fill="#0f172a">火力（石炭・ガス）  42%</text>
+  <rect x="440" y="270" width="26" height="22" fill="#e2e8f0" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="287" font-size="16" font-weight="700" fill="#0f172a">バイオマス・水力  12%</text>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="① 日本の一般会計歳入の構成（近年予算ベース）" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">① 日本の一般会計歳入の構成（近年予算ベース）</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">公債金（借金）が約3割を占め、基幹3税（消費税・所得税・法人税）が柱</text>
+  <path d="M 245 290 L 245.00 138.00 A 152 152 0 0 1 392.22 327.80 Z" fill="#334155" stroke="#18181b" stroke-width="1.7"/>
+  <text x="320.7" y="237.3" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">29%</text>
+  <path d="M 245 290 L 392.22 327.80 A 152 152 0 0 1 155.66 412.97 Z" fill="#64748b" stroke="#18181b" stroke-width="1.7"/>
+  <text x="277.4" y="386.1" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">31%</text>
+  <path d="M 245 290 L 155.66 412.97 A 152 152 0 0 1 97.78 252.20 Z" fill="#94a3b8" stroke="#18181b" stroke-width="1.7"/>
+  <text x="154.9" y="328.4" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">19%</text>
+  <path d="M 245 290 L 97.78 252.20 A 152 152 0 0 1 189.05 148.67 Z" fill="#cbd5e1" stroke="#18181b" stroke-width="1.7"/>
+  <text x="173.2" y="232.7" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">15%</text>
+  <path d="M 245 290 L 189.05 148.67 A 152 152 0 0 1 245.00 138.00 Z" fill="#f1f5f9" stroke="#18181b" stroke-width="1.7"/>
+  <rect x="440" y="178" width="26" height="22" fill="#334155" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="195" font-size="16" font-weight="700" fill="#0f172a">消費税・他間接税  29%</text>
+  <rect x="440" y="224" width="26" height="22" fill="#64748b" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="241" font-size="16" font-weight="700" fill="#0f172a">公債金（国債）  31%</text>
+  <rect x="440" y="270" width="26" height="22" fill="#94a3b8" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="287" font-size="16" font-weight="700" fill="#0f172a">所得税  19%</text>
+  <rect x="440" y="316" width="26" height="22" fill="#cbd5e1" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="333" font-size="16" font-weight="700" fill="#0f172a">法人税  15%</text>
+  <rect x="440" y="362" width="26" height="22" fill="#f1f5f9" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="379" font-size="16" font-weight="700" fill="#0f172a">その他歳入  6%</text>
+</svg>

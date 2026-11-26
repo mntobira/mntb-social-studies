@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="② マズローの欲求階層説（欠乏欲求から成長欲求＝自己実現へ）" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">② マズローの欲求階層説（欠乏欲求から成長欲求＝自己実現へ）</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">青年期心理学で最頻出：「承認欲求まで＝欠乏欲求」「自己実現＝成長欲求」の境界</text>
+
+  <!-- Pyramid 5 tiers -->
+  <g stroke="#18181b" stroke-width="1.8">
+    <polygon points="330,104 415,170 245,170" fill="#1e293b"/>
+    <polygon points="245,170 415,170 465,238 195,238" fill="#475569"/>
+    <polygon points="195,238 465,238 515,306 145,306" fill="#94a3b8"/>
+    <polygon points="145,306 515,306 565,374 95,374" fill="#cbd5e1"/>
+    <polygon points="95,374 565,374 615,442 45,442" fill="#f1f5f9"/>
+  </g>
+  <g text-anchor="middle" font-weight="800">
+    <text x="330" y="152" font-size="15" fill="#ffffff">⑤ 自己実現の欲求</text>
+    <text x="330" y="211" font-size="16" fill="#ffffff">④ 承認（尊厳）の欲求</text>
+    <text x="330" y="279" font-size="16" fill="#0f172a">③ 所属と愛の欲求（社会的欲求）</text>
+    <text x="330" y="347" font-size="16" fill="#0f172a">② 安全の欲求（危機回避・安定）</text>
+    <text x="330" y="415" font-size="16" fill="#0f172a">① 生理的欲求（食欲・睡眠など生命維持）</text>
+  </g>
+  <!-- Right brackets -->
+  <line x1="628" y1="106" x2="642" y2="106" stroke="#b91c1c" stroke-width="2.2"/>
+  <line x1="642" y1="106" x2="642" y2="168" stroke="#b91c1c" stroke-width="2.2"/>
+  <line x1="628" y1="168" x2="642" y2="168" stroke="#b91c1c" stroke-width="2.2"/>
+  <text x="648" y="134" font-size="13.5" font-weight="800" fill="#b91c1c">成長</text>
+  <text x="648" y="152" font-size="13.5" font-weight="800" fill="#b91c1c">欲求</text>
+
+  <line x1="628" y1="176" x2="642" y2="176" stroke="#1e3a8a" stroke-width="2.2"/>
+  <line x1="642" y1="176" x2="642" y2="440" stroke="#1e3a8a" stroke-width="2.2"/>
+  <line x1="628" y1="440" x2="642" y2="440" stroke="#1e3a8a" stroke-width="2.2"/>
+  <text x="648" y="302" font-size="13.5" font-weight="800" fill="#1e3a8a">欠乏</text>
+  <text x="648" y="320" font-size="13.5" font-weight="800" fill="#1e3a8a">欲求</text>
+  <text x="350" y="488" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">※ ①〜④は不足を埋める「欠乏欲求」、⑤のみ潜在的可能性を伸ばし続ける「成長欲求」！</text>
+
+</svg>

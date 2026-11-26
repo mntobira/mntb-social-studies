@@ -1,19 +1,45 @@
 /**
  * ===================================================================
- * 赤シート対応 まとめプリント画面（LearningPrintView）
+ * 磯和プリント方式 × マナトビリスニング第6問B準拠
+ * 1画面ページ送り式 まとめプリント画面（LearningPrintView）
  * ===================================================================
- * マナトビのクリーム色の紙・科目テーマ配色・1画面性を保ち、
- * ・赤シート ON / OFF 一括切替（＋各語句タップで個別に開く）
- * ・出題重要度 ★ バッジ表示
- * ・「この単元の演習問題を解く」直行ボタン
- * を備えたインプット画面。
+ * 特徴:
+ *  1. 全5科目・全85単元の体系的整理（編別目次モーダル＋単元クイックピルで自在ジャンプ）
+ *  2. 1画面完結のページ送りUI（前へ / 次へ・キーボード矢印・スワイプ対応で縦スクロール疲れを解消）
+ *  3. マナトビリスニング第6問B準拠の視覚資料デッキ（SocialMaterialDeck）:
+ *     - FitFigure: 枠の縦横比に合わせて1面に収め、図の上をタップして ○／× 鉛筆メモを直接書き込み可能
+ *     - FigureCarousel: 複数グラフ（①〜④）は1枚ずつ大きく表示し、‹ › ボタン・①〜④ピル・スワイプで切替
+ *     - モバイルでは「要点ノート / 図表資料（○×メモ）」1画面切替タブ、大画面では左右2ペイン並列表示
+ *  4. 比較テーブルの各行にも第6問B/4問B流のワンタップ ○／×／未記入 鉛筆チェック列を搭載
+ *  5. 磯和プリント3段階ハイライト完全再現:
+ *     - {{重要語句}}         : 下線＋太字（8割必須モード・満点モードで赤シートマスク）
+ *     - [[マイナー語句]]     : 細下線（満点モード時に紺シートマスク）
+ *     - ~~波線(**導出太字**)~~ : 波線＋太字（思想内容・因果の急所。赤シート時も文脈ヒントとして表示）
+ *  6. 「→・＝・⇔・※・Ｑ」で論理の流れが頭に入る板書レイアウト ＋ 即答○×チェック搭載
  */
-import React, { useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Eye, EyeOff, Star } from 'lucide-react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  EyeOff,
+  FileText,
+  List,
+  Sparkles,
+  Star,
+  X,
+} from 'lucide-react';
 import { DoorMascot } from './DoorMascot';
+import { SocialMaterialDeck } from './SocialMaterialDeck';
 import { subjectTheme } from '../data/subjectTheme';
 import { DEFAULT_SUBJECT, type SubjectKey } from '../data/subjects';
-import { getSummaryPrintsBySubject, type SummaryPrintSheet } from '../data/summaryPrintsData';
+import { getSummaryPrintsBySubject } from '../data/summaryPrintsData';
+import type { SummaryPrintPage, SummaryPrintSheet } from '../data/summaryPrints/types';
 import { recordVocabActivity } from '../battle/data/growthStore';
 
 interface LearningPrintViewProps {
@@ -24,48 +50,264 @@ interface LearningPrintViewProps {
   onChangeSubject?: () => void;
 }
 
-/** {{語句}} を分割し、赤シートON時はタップ開閉可能なチップとして描画する */
-function renderClozeText(
+type MaskMode = 'off' | 'core' | 'all';
+type SubPaneTab = 'notes' | 'materials';
+
+const NEXT_ROW_MARK: Record<string, string> = { '': '○', '○': '×', '×': '' };
+
+/** **太字** と {{重要語句}} と [[マイナー語句]] を処理するインライン描画 */
+function renderInlineTokens(
   text: string,
-  redSheet: boolean,
+  maskMode: MaskMode,
+  revealedKeys: ReadonlySet<string>,
+  onToggleKey: (key: string) => void,
+  keyPrefix: string,
+  insideWave = false,
+): React.ReactNode[] {
+  const parts = text.split(/(\{\{[^}]+\}\}|\[\[[^\]]+\]\]|\*\*[^*]+\*\*)/g);
+  return parts.map((part, idx) => {
+    if (!part) return null;
+    const k = `${keyPrefix}_${idx}`;
+
+    // 1. {{重要語句}}（8割必須コア語句：下線＋太字）
+    const coreMatch = /^\{\{([^}]+)\}\}$/.exec(part);
+    if (coreMatch) {
+      const term = coreMatch[1];
+      const shouldMask = maskMode !== 'off';
+      const hidden = shouldMask && !revealedKeys.has(k);
+      if (!shouldMask) {
+        return (
+          <strong
+            key={k}
+            className="mx-0.5 rounded bg-[#FDE8E4] px-1.5 py-0.5 font-extrabold text-[#B83227] underline decoration-[#D64541] decoration-2 underline-offset-3"
+          >
+            {term}
+          </strong>
+        );
+      }
+      return (
+        <button
+          key={k}
+          type="button"
+          onClick={() => onToggleKey(k)}
+          aria-label={hidden ? 'タップして重要語句を表示' : `${term}（タップして再び隠す）`}
+          className={`mx-0.5 inline-flex min-h-[26px] items-center rounded-md px-2 py-0.5 text-[13.5px] font-extrabold transition align-baseline ${
+            hidden
+              ? 'bg-[#D64541] text-transparent shadow-inner select-none hover:bg-[#C0392B]'
+              : 'border border-[#D64541]/60 bg-[#FFF3F1] text-[#B83227]'
+          }`}
+        >
+          {term}
+        </button>
+      );
+    }
+
+    // 2. [[マイナー・ハイレベル語句]]（9割〜満点狙い：細下線）
+    const minorMatch = /^\[\[([^\]]+)\]\]$/.exec(part);
+    if (minorMatch) {
+      const term = minorMatch[1];
+      const shouldMask = maskMode === 'all';
+      const hidden = shouldMask && !revealedKeys.has(k);
+      if (!shouldMask) {
+        return (
+          <span
+            key={k}
+            className="mx-0.5 font-bold text-[#1F4E79] underline decoration-[#2E75B6]/70 decoration-1 underline-offset-3"
+            title="ハイレベル・満点狙い語句（満点モードで赤シート対象）"
+          >
+            {term}
+          </span>
+        );
+      }
+      return (
+        <button
+          key={k}
+          type="button"
+          onClick={() => onToggleKey(k)}
+          aria-label={hidden ? 'タップしてハイレベル語句を表示' : `${term}（タップして再び隠す）`}
+          className={`mx-0.5 inline-flex min-h-[26px] items-center rounded-md px-2 py-0.5 text-[13px] font-extrabold transition align-baseline ${
+            hidden
+              ? 'bg-[#2C4C7E] text-transparent shadow-inner select-none hover:bg-[#1F3A64]'
+              : 'border border-[#2C4C7E]/50 bg-[#EEF4FC] text-[#1F3A64]'
+          }`}
+        >
+          {term}
+        </button>
+      );
+    }
+
+    // 3. **導出キーワード太字**
+    const boldMatch = /^\*\*([^*]+)\*\*$/.exec(part);
+    if (boldMatch) {
+      return (
+        <strong
+          key={k}
+          className={
+            insideWave
+              ? 'rounded-xs bg-[#FEF3C7]/85 px-1 font-extrabold text-[#9A4D00]'
+              : 'font-extrabold text-[#1F2D3D]'
+          }
+        >
+          {boldMatch[1]}
+        </strong>
+      );
+    }
+
+    return <React.Fragment key={k}>{part}</React.Fragment>;
+  });
+}
+
+/** ~~波線ポイント~~ を含む磯和プリント式リッチテキスト描画 */
+function renderIsowaText(
+  text: string,
+  maskMode: MaskMode,
   revealedKeys: ReadonlySet<string>,
   onToggleKey: (key: string) => void,
   keyPrefix: string,
 ) {
-  const parts = text.split(/(\{\{[^}]+\}\})/g);
-  return parts.map((part, idx) => {
-    const m = /^\{\{([^}]+)\}\}$/.exec(part);
-    if (!m) return <React.Fragment key={idx}>{part}</React.Fragment>;
-    const term = m[1];
-    const k = `${keyPrefix}_${idx}`;
-    const hidden = redSheet && !revealedKeys.has(k);
-    if (!redSheet) {
+  const segments = text.split(/(~~[^~]+~~)/g);
+  return segments.map((seg, sIdx) => {
+    if (!seg) return null;
+    const waveMatch = /^~~([^~]+)~~$/.exec(seg);
+    if (waveMatch) {
       return (
-        <strong
-          key={k}
-          className="mx-0.5 rounded bg-[#FDE8E4] px-1.5 py-0.5 font-extrabold text-[#C0392B] underline decoration-[#E74C3C]/50 decoration-2 underline-offset-2"
+        <span
+          key={`${keyPrefix}_w${sIdx}`}
+          className="rounded-xs bg-[#FFFBEB]/80 px-0.5 underline decoration-[#D97706]/80 decoration-wavy decoration-1 underline-offset-4"
         >
-          {term}
-        </strong>
+          {renderInlineTokens(
+            waveMatch[1],
+            maskMode,
+            revealedKeys,
+            onToggleKey,
+            `${keyPrefix}_w${sIdx}`,
+            true,
+          )}
+        </span>
       );
     }
     return (
-      <button
-        key={k}
-        type="button"
-        onClick={() => onToggleKey(k)}
-        aria-label={hidden ? 'タップして語句を表示' : `${term}（タップして再び隠す）`}
-        className={`mx-0.5 inline-flex min-h-[28px] items-center rounded-md px-2 py-0.5 text-[14px] font-extrabold transition ${
-          hidden
-            ? 'bg-[#D64541] text-transparent shadow-inner select-none hover:bg-[#C0392B]'
-            : 'border border-[#D64541]/50 bg-[#FFF3F1] text-[#B83227]'
-        }`}
-      >
-        {term}
-      </button>
+      <React.Fragment key={`${keyPrefix}_p${sIdx}`}>
+        {renderInlineTokens(
+          seg,
+          maskMode,
+          revealedKeys,
+          onToggleKey,
+          `${keyPrefix}_p${sIdx}`,
+          false,
+        )}
+      </React.Fragment>
     );
   });
 }
+
+/** 行頭記号（Ｑ / → / ＝ / ↔ / ※）に応じて「流れ」が見える行レイアウトを返す */
+interface FlowLineProps {
+  line: string;
+  maskMode: MaskMode;
+  revealedKeys: ReadonlySet<string>;
+  onToggleKey: (key: string) => void;
+  keyPrefix: string;
+  accentColor: string;
+}
+
+const FlowLine: React.FC<FlowLineProps> = ({
+  line,
+  maskMode,
+  revealedKeys,
+  onToggleKey,
+  keyPrefix,
+  accentColor,
+}) => {
+  const trimmed = line.trim();
+
+  // 問いかけ・背景行
+  if (/^(Ｑ|Q\d*|【問い】|【背景】|【課題】|【前提|【動機】|【転機】|【決定的転機】)/.test(trimmed)) {
+    return (
+      <div className="rounded-lg border border-[#E6DEC8] bg-[#F6F0E2] px-3 py-1.5 text-[13px] font-bold text-[#4A3B22] sm:text-[13.5px]">
+        {renderIsowaText(trimmed, maskMode, revealedKeys, onToggleKey, keyPrefix)}
+      </div>
+    );
+  }
+
+  // 結論・イコール行
+  if (/^[＝=]/.test(trimmed)) {
+    const body = trimmed.replace(/^[＝=]\s*/, '');
+    return (
+      <div className="flex items-start gap-2 pl-1.5 text-[13.5px] leading-relaxed text-[#1F2D3D] sm:text-sm">
+        <span
+          className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-xs font-black text-white shadow-2xs"
+          style={{ backgroundColor: accentColor }}
+        >
+          ＝
+        </span>
+        <div className="min-w-0 flex-1 font-semibold">
+          {renderIsowaText(body, maskMode, revealedKeys, onToggleKey, keyPrefix)}
+        </div>
+      </div>
+    );
+  }
+
+  // 因果・噛み砕き矢印行
+  if (/^(→|⇒)/.test(trimmed)) {
+    const arrow = trimmed[0];
+    const body = trimmed.slice(1).trim();
+    return (
+      <div className="flex items-start gap-2 pl-1.5 text-[13px] leading-relaxed text-[#2C3E50] sm:text-[13.5px]">
+        <span
+          className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black"
+          style={{ color: accentColor }}
+        >
+          {arrow}
+        </span>
+        <div className="min-w-0 flex-1">
+          {renderIsowaText(body, maskMode, revealedKeys, onToggleKey, keyPrefix)}
+        </div>
+      </div>
+    );
+  }
+
+  // 対比・ひっかけ注意行
+  if (/^(↔︎|↔|⇔|※)/.test(trimmed)) {
+    const mark = trimmed.startsWith('↔︎') ? '↔' : trimmed[0];
+    const body = trimmed.replace(/^(↔︎|↔|⇔|※)\s*/, '');
+    const isContrast = mark !== '※';
+    return (
+      <div
+        className={`flex items-start gap-2 rounded-lg border px-2.5 py-1.5 text-[12.5px] leading-relaxed sm:text-[13px] ${
+          isContrast
+            ? 'border-[#CBE2F6] bg-[#F2F8FD] text-[#1B4F72]'
+            : 'border-[#F7DC9F] bg-[#FFFBEB] text-[#784212]'
+        }`}
+      >
+        <span
+          className={`mt-0.5 shrink-0 rounded px-1.5 py-0.5 text-[11px] font-black ${
+            isContrast ? 'bg-[#D6EAF8] text-[#154360]' : 'bg-[#FDEBD0] text-[#7E5109]'
+          }`}
+        >
+          {isContrast ? '⇔対比' : '※急所'}
+        </span>
+        <div className="min-w-0 flex-1">
+          {renderIsowaText(body, maskMode, revealedKeys, onToggleKey, keyPrefix)}
+        </div>
+      </div>
+    );
+  }
+
+  // 通常ステップ行（先頭の「・」はスマートドットに置換）
+  const cleanBody = trimmed.replace(/^・\s*/, '');
+  return (
+    <div className="flex items-start gap-2 text-[13.5px] leading-relaxed text-[#2C3E50] sm:text-sm">
+      <span
+        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+        style={{ backgroundColor: accentColor }}
+      />
+      <div className="min-w-0 flex-1">
+        {renderIsowaText(cleanBody, maskMode, revealedKeys, onToggleKey, keyPrefix)}
+      </div>
+    </div>
+  );
+};
 
 export function LearningPrintView({
   subject = DEFAULT_SUBJECT,
@@ -75,21 +317,59 @@ export function LearningPrintView({
   onChangeSubject,
 }: LearningPrintViewProps) {
   const sheets = useMemo(() => getSummaryPrintsBySubject(subject), [subject]);
-  const [activeSheetId, setActiveSheetId] = useState<string>(() => sheets[0]?.id ?? '');
-  const [redSheet, setRedSheet] = useState(true);
+  const [activeSheetIdx, setActiveSheetIdx] = useState(0);
+  const [pageIdx, setPageIdx] = useState(0);
+  const [maskMode, setMaskMode] = useState<MaskMode>('core');
   const [revealedKeys, setRevealedKeys] = useState<Set<string>>(() => new Set());
-  const [completedSheets, setCompletedSheets] = useState<Set<string>>(() => new Set());
+  const [oxAnswers, setOxAnswers] = useState<Record<string, '○' | '×'>>({});
+  const [tableRowMarks, setTableRowMarks] = useState<Record<string, string>>({});
+  const [completedPages, setCompletedPages] = useState<Set<string>>(() => new Set());
+  const [tocOpen, setTocOpen] = useState(false);
+  const [subPaneTab, setSubPaneTab] = useState<SubPaneTab>('notes');
+
+  const cardScrollRef = useRef<HTMLDivElement | null>(null);
+  const unitPillRefs = useRef<Record<number, HTMLButtonElement | null>>({});
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const theme = subjectTheme(subject);
 
   useEffect(() => {
-    setActiveSheetId(sheets[0]?.id ?? '');
+    setActiveSheetIdx(0);
+    setPageIdx(0);
     setRevealedKeys(new Set());
-  }, [subject, sheets]);
+    setTocOpen(false);
+    setSubPaneTab('notes');
+  }, [subject]);
 
-  const activeSheet: SummaryPrintSheet | undefined =
-    sheets.find((s) => s.id === activeSheetId) ?? sheets[0];
+  const activeSheet: SummaryPrintSheet | undefined = sheets[activeSheetIdx] ?? sheets[0];
+  const pages: SummaryPrintPage[] = activeSheet?.pages ?? [];
+  const currentPage: SummaryPrintPage | undefined = pages[pageIdx] ?? pages[0];
+  const totalPages = pages.length;
+  const pageFigures = currentPage?.figures ?? [];
+  const hasFigures = pageFigures.length > 0;
 
-  const toggleKey = (k: string) => {
+  useEffect(() => {
+    cardScrollRef.current?.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    setSubPaneTab('notes');
+  }, [activeSheetIdx, pageIdx]);
+
+  // 選択中の単元ピルを横スクロールバーの中央付近へ自動スクロール
+  useEffect(() => {
+    const btn = unitPillRefs.current[activeSheetIdx];
+    btn?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, [activeSheetIdx]);
+
+  // 編ごとのグルーピング（目次モーダル用）
+  const groupedByPart = useMemo(() => {
+    const map = new Map<string, { sheet: SummaryPrintSheet; index: number }[]>();
+    sheets.forEach((sheet, index) => {
+      const list = map.get(sheet.partTitle) ?? [];
+      list.push({ sheet, index });
+      map.set(sheet.partTitle, list);
+    });
+    return Array.from(map.entries());
+  }, [sheets]);
+
+  const toggleKey = useCallback((k: string) => {
     setRevealedKeys((prev) => {
       const next = new Set(prev);
       if (next.has(k)) {
@@ -100,216 +380,732 @@ export function LearningPrintView({
       }
       return next;
     });
-  };
+  }, []);
 
-  const markSheetCompleted = (sheetId: string) => {
-    setCompletedSheets((prev) => {
-      const next = new Set(prev);
-      if (!next.has(sheetId)) {
-        next.add(sheetId);
-        void recordVocabActivity('vocab_quiz', 1, `sheet:${sheetId}`);
-      }
-      return next;
-    });
-  };
-
-  const toggleRedSheet = () => {
-    setRedSheet((v) => !v);
+  const cycleMaskMode = () => {
+    setMaskMode((prev) => (prev === 'core' ? 'all' : prev === 'all' ? 'off' : 'core'));
     setRevealedKeys(new Set());
   };
 
+  const markCurrentPageRead = useCallback(() => {
+    if (!activeSheet) return;
+    const key = `${activeSheet.id}_p${pageIdx}`;
+    setCompletedPages((prev) => {
+      if (prev.has(key)) return prev;
+      const next = new Set(prev);
+      next.add(key);
+      void recordVocabActivity('vocab_quiz', 1, `print:${key}`);
+      return next;
+    });
+  }, [activeSheet, pageIdx]);
+
+  const goPrev = useCallback(() => {
+    if (pageIdx > 0) {
+      setPageIdx((p) => p - 1);
+    } else if (activeSheetIdx > 0) {
+      const prevSheet = sheets[activeSheetIdx - 1];
+      setActiveSheetIdx((s) => s - 1);
+      setPageIdx(Math.max(0, (prevSheet?.pages.length ?? 1) - 1));
+    }
+  }, [pageIdx, activeSheetIdx, sheets]);
+
+  const goNext = useCallback(() => {
+    markCurrentPageRead();
+    if (pageIdx + 1 < totalPages) {
+      setPageIdx((p) => p + 1);
+    } else if (activeSheetIdx + 1 < sheets.length) {
+      setActiveSheetIdx((s) => s + 1);
+      setPageIdx(0);
+    }
+  }, [pageIdx, totalPages, activeSheetIdx, sheets.length, markCurrentPageRead]);
+
+  // キーボード左右矢印でページ送り（拡大ダイアログや目次モーダル表示中は除外）
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (tocOpen || document.querySelector('[data-material-zoom]')) return;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [tocOpen, goNext, goPrev]);
+
+  const selectUnit = (idx: number) => {
+    setActiveSheetIdx(idx);
+    setPageIdx(0);
+    setRevealedKeys(new Set());
+    setTocOpen(false);
+  };
+
+  const maskLabel =
+    maskMode === 'core' ? '赤シート：必須語' : maskMode === 'all' ? '赤シート：満点＋細字' : '赤シートOFF';
+
+  const canGoPrev = pageIdx > 0 || activeSheetIdx > 0;
+  const isLastPageOfUnit = pageIdx + 1 >= totalPages;
+  const hasNextUnit = activeSheetIdx + 1 < sheets.length;
+
   return (
     <div
-      className="mtb-page flex h-[calc(100dvh-env(safe-area-inset-top)-env(safe-area-inset-bottom))] min-h-0 w-full flex-col overflow-hidden notebook-paper p-3 pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:p-5 md:p-6 font-modern"
+      className="mtb-page flex h-full max-h-[100dvh] min-h-0 w-full flex-col overflow-hidden notebook-paper px-2.5 pt-2 pb-[calc(var(--app-nav-h,4.5rem)+0.5rem)] sm:px-4 sm:pt-3 md:px-6 font-modern"
       style={{ '--subject-accent': theme.accent, '--subject-soft': theme.accentSoft } as React.CSSProperties}
     >
-      {/* 上部バー */}
-      <header className="flex shrink-0 items-center justify-between gap-2 pb-2.5">
-        <button
-          type="button"
-          onClick={onBack}
-          className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[#E5DEC9] bg-white/95 px-3.5 text-sm font-bold text-[#2C3E50] shadow-xs"
-        >
-          <ArrowLeft size={17} aria-hidden="true" />
-          <span>{backLabel}</span>
-        </button>
+      {/* 1. 上部コンパクト操作バー */}
+      <header className="flex shrink-0 items-center justify-between gap-1.5 pb-1.5">
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={onBack}
+            className="inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[#DFD6C0] bg-white/95 px-3 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:text-sm"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            <span className="hidden sm:inline">{backLabel}</span>
+          </button>
 
-        <div className="min-w-0 text-center">
-          <p className="truncate text-[12px] font-bold tracking-wider text-[#6C7A89]">赤シート対応 まとめプリント</p>
-          <h1 className="truncate text-base font-extrabold sm:text-lg" style={{ color: theme.accent }}>
-            {theme.label}
+          <button
+            type="button"
+            onClick={() => setTocOpen(true)}
+            data-open-print-toc
+            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[#D4C9B0] bg-[#FFFDF7] px-3 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:text-sm"
+          >
+            <List size={15} style={{ color: theme.accent }} aria-hidden="true" />
+            <span>単元目次</span>
+            <span
+              className="rounded-full px-1.5 py-0.5 text-[11px] font-black text-white"
+              style={{ backgroundColor: theme.accent }}
+            >
+              {activeSheetIdx + 1}/{sheets.length}
+            </span>
+          </button>
+        </div>
+
+        <div className="min-w-0 flex-1 px-1 text-center">
+          <p className="truncate text-[10.5px] font-bold text-[#6C7A89] sm:text-xs">{theme.label}</p>
+          <h1 className="truncate text-xs font-extrabold text-[#1F2D3D] sm:text-[15px]">
+            {activeSheet?.unitLabel}　{activeSheet?.title}
           </h1>
         </div>
 
         <div className="flex items-center gap-1.5">
+          {onChangeSubject && (
+            <button
+              type="button"
+              onClick={onChangeSubject}
+              className="hidden min-h-[40px] rounded-full border border-[#DFD6C0] bg-white px-3 text-xs font-bold text-[#34495E] hover:bg-slate-50 md:inline-flex md:items-center"
+            >
+              科目変更
+            </button>
+          )}
           <button
             type="button"
-            onClick={toggleRedSheet}
-            aria-pressed={redSheet}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3.5 text-xs font-extrabold shadow-xs transition sm:text-sm ${
-              redSheet
-                ? 'bg-[#D64541] text-white'
-                : 'border border-[#D64541]/40 bg-white text-[#C0392B]'
+            onClick={cycleMaskMode}
+            data-mask-toggle={maskMode}
+            className={`inline-flex min-h-[40px] items-center gap-1 rounded-full px-3 text-xs font-extrabold shadow-2xs transition sm:px-3.5 ${
+              maskMode === 'core'
+                ? 'bg-[#D64541] text-white hover:bg-[#C0392B]'
+                : maskMode === 'all'
+                  ? 'bg-[#1F3A64] text-white hover:bg-[#162B4C]'
+                  : 'border border-[#D64541]/45 bg-white text-[#C0392B] hover:bg-[#FFF5F5]'
             }`}
+            title="タップで『必須語のみ隠す』→『満点細字まで隠す』→『赤シートOFF』を切替"
           >
-            {redSheet ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
-            <span>{redSheet ? '赤シートON' : '赤シートOFF'}</span>
+            {maskMode === 'off' ? (
+              <Eye size={15} aria-hidden="true" />
+            ) : maskMode === 'all' ? (
+              <Sparkles size={15} aria-hidden="true" />
+            ) : (
+              <EyeOff size={15} aria-hidden="true" />
+            )}
+            <span>{maskLabel}</span>
           </button>
-          <div className="hidden sm:block">
+          <div className="hidden xl:block">
             <DoorMascot subject={subject} showSpeech={false} size="mini" />
           </div>
         </div>
       </header>
 
-      {/* シート切替タブ */}
-      {sheets.length > 1 && (
-        <div className="mb-2.5 flex shrink-0 gap-2 overflow-x-auto pb-1" role="tablist" aria-label="まとめシート切替">
-          {sheets.map((sheet, idx) => {
-            const active = sheet.id === activeSheet?.id;
-            return (
-              <button
-                key={sheet.id}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => {
-                  setActiveSheetId(sheet.id);
-                  setRevealedKeys(new Set());
-                }}
-                className={`min-h-[44px] shrink-0 rounded-xl border px-3.5 py-2 text-left text-xs font-bold transition sm:text-sm ${
-                  active
-                    ? 'text-white shadow-sm'
-                    : 'border-[#E5DEC9] bg-white/90 text-[#34495E] hover:bg-white'
-                }`}
-                style={active ? { backgroundColor: theme.accent, borderColor: theme.accent } : undefined}
-              >
-                <span className="mr-1.5 opacity-85">シート{idx + 1}</span>
-                <span>{sheet.title}</span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      {/* 2. 単元クイック切替ピルバー */}
+      <div
+        className="mb-1.5 flex shrink-0 items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        role="tablist"
+        aria-label="単元切替"
+      >
+        {sheets.map((sheet, idx) => {
+          const active = idx === activeSheetIdx;
+          const doneCount = sheet.pages.filter((_, p) => completedPages.has(`${sheet.id}_p${p}`)).length;
+          const allDone = doneCount === sheet.pages.length && sheet.pages.length > 0;
+          const sheetHasFigs = sheet.pages.some((p) => (p.figures?.length ?? 0) > 0);
+          return (
+            <button
+              key={sheet.id}
+              ref={(el) => {
+                unitPillRefs.current[idx] = el;
+              }}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => selectUnit(idx)}
+              className={`inline-flex min-h-[34px] shrink-0 items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-bold transition ${
+                active
+                  ? 'text-white shadow-2xs'
+                  : 'border-[#E2D9C2] bg-white/92 text-[#34495E] hover:bg-white'
+              }`}
+              style={active ? { backgroundColor: theme.accent, borderColor: theme.accent } : undefined}
+            >
+              {allDone && <CheckCircle2 size={13} className={active ? 'text-white' : 'text-[#27AE60]'} />}
+              <span className="font-extrabold">{sheet.unitLabel}</span>
+              <span className="max-w-[128px] truncate">{sheet.title}</span>
+              {sheetHasFigs && (
+                <BarChart3
+                  size={12}
+                  aria-label="図表資料あり"
+                  className={active ? 'text-white/90' : 'text-slate-400'}
+                />
+              )}
+            </button>
+          );
+        })}
+      </div>
 
-      {/* 本文スクロール領域 */}
-      {activeSheet ? (
-        <div className="min-h-0 flex-1 overflow-y-auto rounded-2xl border border-[#E6DFC8] bg-[#FFFDF8]/95 p-4 shadow-sm sm:p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-[#EFE8D5] pb-3">
-            <div>
-              <h2 className="text-lg font-extrabold text-[#1F2D3D] sm:text-xl">{activeSheet.title}</h2>
-              <p className="mt-0.5 text-xs text-[#5D6D7E] sm:text-sm">{activeSheet.subtitle}</p>
+      {/* 3. メイン1画面シート本体 */}
+      {activeSheet && currentPage ? (
+        <main
+          ref={cardScrollRef}
+          onTouchStart={(e) => {
+            // 図表カルーセル上のタッチはカルーセル側に任せる
+            if ((e.target as HTMLElement | null)?.closest('[data-social-material-deck]')) {
+              touchStartRef.current = null;
+              return;
+            }
+            const t = e.touches[0];
+            touchStartRef.current = t ? { x: t.clientX, y: t.clientY } : null;
+          }}
+          onTouchEnd={(e) => {
+            const start = touchStartRef.current;
+            touchStartRef.current = null;
+            const t = e.changedTouches[0];
+            if (!start || !t) return;
+            const dx = t.clientX - start.x;
+            const dy = t.clientY - start.y;
+            if (Math.abs(dx) > 68 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+              if (dx < 0) goNext();
+              else goPrev();
+            }
+          }}
+          className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-2xl border border-[#DFD5BE] bg-[#FFFDF9] p-3 shadow-xs sm:p-4"
+        >
+          {/* ページ見出し帯 */}
+          <div className="mb-2.5 flex shrink-0 flex-wrap items-center justify-between gap-2 border-b border-[#EFE8D5] pb-2">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-extrabold">
+                <span
+                  className="rounded-md px-2 py-0.5 text-white"
+                  style={{ backgroundColor: theme.accent }}
+                >
+                  {activeSheet.unitLabel}・Step {pageIdx + 1}/{totalPages}
+                </span>
+                <span className="truncate text-[#6C7A89]">{activeSheet.partTitle}</span>
+                <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FEF5E7] px-2 py-0.5 text-[#B9770E]">
+                  {Array.from({ length: currentPage.priority }, (_, i) => (
+                    <Star key={i} size={11} fill="#F39C12" stroke="#F39C12" aria-hidden="true" />
+                  ))}
+                </span>
+              </div>
+              <h2 className="mt-1 text-[15px] font-extrabold leading-snug text-[#1F2D3D] sm:text-lg">
+                {currentPage.pageTitle}
+              </h2>
             </div>
-            <div className="flex items-center gap-2">
-              {onChangeSubject && (
+
+            {/* 図表資料があるページではモバイル〜タブレット用に1画面モード切替タブを表示（PC lg以上は左右並列で両方同時表示！） */}
+            {hasFigures ? (
+              <div
+                className="flex shrink-0 items-center rounded-full border border-slate-300 bg-slate-100 p-0.5 lg:hidden"
+                role="tablist"
+                aria-label="ノートと図表資料の切替"
+              >
                 <button
                   type="button"
-                  onClick={onChangeSubject}
-                  className="min-h-[44px] rounded-full border border-[#E5DEC9] bg-white px-3.5 text-xs font-bold text-[#34495E]"
+                  role="tab"
+                  aria-selected={subPaneTab === 'notes'}
+                  onClick={() => setSubPaneTab('notes')}
+                  className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
+                    subPaneTab === 'notes'
+                      ? 'bg-white text-[#1F2D3D] shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
                 >
-                  科目変更
+                  <FileText size={13} aria-hidden="true" />
+                  <span>要点ノート</span>
                 </button>
-              )}
-              <button
-                type="button"
-                onClick={() => markSheetCompleted(activeSheet.id)}
-                className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-full border px-3.5 text-xs font-extrabold transition ${
-                  completedSheets.has(activeSheet.id)
-                    ? 'border-[#27AE60] bg-[#EAFAF1] text-[#1E8449]'
-                    : 'border-[#E5DEC9] bg-white text-[#34495E] hover:bg-[#FAF7F0]'
-                }`}
-              >
-                <CheckCircle2 size={15} aria-hidden="true" />
-                <span>{completedSheets.has(activeSheet.id) ? '確認済み' : 'このシート完了'}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  markSheetCompleted(activeSheet.id);
-                  void recordVocabActivity('vocab_perfect', 1, `practice:${activeSheet.id}`);
-                  onPracticeChapter(activeSheet.chapterId);
-                }}
-                className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-4 text-xs font-extrabold text-white shadow-sm sm:text-sm"
-                style={{ backgroundColor: theme.accent }}
-              >
-                <BookOpen size={16} aria-hidden="true" />
-                <span>この単元を演習する</span>
-                <ArrowRight size={15} aria-hidden="true" />
-              </button>
-            </div>
+                <button
+                  type="button"
+                  role="tab"
+                  data-open-materials-tab
+                  aria-selected={subPaneTab === 'materials'}
+                  onClick={() => setSubPaneTab('materials')}
+                  className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
+                    subPaneTab === 'materials'
+                      ? 'text-white shadow-2xs'
+                      : 'text-slate-700 hover:text-slate-900'
+                  }`}
+                  style={subPaneTab === 'materials' ? { backgroundColor: theme.accent } : undefined}
+                >
+                  <BarChart3 size={13} aria-hidden="true" />
+                  <span>図表資料({pageFigures.length})</span>
+                </button>
+              </div>
+            ) : (
+              <div className="hidden items-center gap-2 text-[11px] text-[#5D6D7E] xl:flex">
+                <span className="rounded bg-[#FDE8E4] px-1.5 py-0.5 font-extrabold text-[#B83227] underline">
+                  必須8割語句
+                </span>
+                <span className="rounded bg-[#FFFBEB] px-1.5 py-0.5 font-bold text-[#9A4D00] underline decoration-[#D97706] decoration-wavy">
+                  波線＝思想・因果の急所
+                </span>
+                <span className="font-bold text-[#1F4E79] underline">細下線＝満点語句</span>
+              </div>
+            )}
           </div>
 
-          {redSheet && (
-            <p className="mb-3 rounded-xl bg-[#FFF3F1] px-3 py-2 text-xs font-semibold text-[#B83227]">
-              赤い空欄をタップすると1語ずつ確認できます。右上の「赤シートON」ボタンで一括表示・非表示を切り替えられます。
-            </p>
-          )}
-
-          <div className="space-y-5">
-            {activeSheet.sections.map((sec, sIdx) => (
-              <section key={sec.heading} className="rounded-xl border border-[#EDE6D3] bg-white p-4">
-                <div className="mb-2.5 flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-[#1F2D3D] sm:text-base">{sec.heading}</h3>
-                  <span
-                    className="inline-flex items-center gap-0.5 rounded-full bg-[#FEF5E7] px-2.5 py-0.5 text-[12px] font-bold text-[#B9770E]"
-                    aria-label={`共通テスト頻出度 星${sec.priority}`}
-                  >
-                    <span className="mr-1">頻出度</span>
-                    {Array.from({ length: sec.priority }, (_, i) => (
-                      <Star key={i} size={12} fill="#F39C12" stroke="#F39C12" aria-hidden="true" />
-                    ))}
-                  </span>
+          {/* 2ペイン対応ボディ：図表があるページは lg以上で左56%ノート・右44%第6問B式資料デッキ！ */}
+          <div
+            className={`min-h-0 flex-1 ${
+              hasFigures ? 'flex flex-col lg:grid lg:grid-cols-12 lg:gap-4' : ''
+            }`}
+          >
+            {/* 左（または単独）：要点ノート＆比較表＆即答○× */}
+            <div
+              className={`${
+                hasFigures
+                  ? `${subPaneTab === 'materials' ? 'hidden lg:block' : 'block'} lg:col-span-7 lg:overflow-y-auto lg:pr-1`
+                  : ''
+              } space-y-2.5`}
+            >
+              {/* 冒頭リード（流れの導入） */}
+              {currentPage.lead && (
+                <div
+                  className="rounded-xl border-l-4 bg-[#FAF6EC] px-3 py-2 text-xs font-semibold leading-relaxed text-[#34495E] sm:text-[13.5px]"
+                  style={{ borderLeftColor: theme.accent }}
+                >
+                  {renderIsowaText(
+                    currentPage.lead,
+                    maskMode,
+                    revealedKeys,
+                    toggleKey,
+                    `${activeSheet.id}_p${pageIdx}_lead`,
+                  )}
                 </div>
+              )}
 
-                <ul className="space-y-2.5 text-sm leading-relaxed text-[#2C3E50]">
-                  {sec.bullets.map((b, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: theme.accent }} />
-                      <span className="flex-1">
-                        {renderClozeText(b, redSheet, revealedKeys, toggleKey, `${activeSheet.id}_s${sIdx}_b${bIdx}`)}
+              {/* モバイルで図表があるとき、ノート側からもワンタップで図表資料へ飛べる案内バナー */}
+              {hasFigures && subPaneTab === 'notes' && (
+                <button
+                  type="button"
+                  onClick={() => setSubPaneTab('materials')}
+                  className="flex w-full items-center justify-between gap-2 rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-left text-xs font-extrabold text-[#2C3E50] transition hover:bg-slate-100 lg:hidden"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <BarChart3 size={15} style={{ color: theme.accent }} aria-hidden="true" />
+                    <span>
+                      共通テスト形式の図表資料（全{pageFigures.length}枚・タップで○×書き込み可）を開く
+                    </span>
+                  </span>
+                  <ChevronRight size={16} className="shrink-0 text-slate-500" />
+                </button>
+              )}
+
+              {/* 論理フローブロック群 */}
+              {(currentPage.blocks ?? []).map((block, bIdx) => (
+                <section
+                  key={bIdx}
+                  className="rounded-xl border border-[#E8E0CC] bg-white p-3 shadow-2xs sm:p-3.5"
+                >
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-1.5">
+                    <h3 className="text-[13.5px] font-extrabold text-[#1F2D3D] sm:text-[15px]">
+                      {block.heading}
+                    </h3>
+                    {block.badge && (
+                      <span
+                        className="rounded-full px-2.5 py-0.5 text-[11px] font-extrabold"
+                        style={{ backgroundColor: theme.accentSoft, color: theme.accent }}
+                      >
+                        {block.badge}
                       </span>
-                    </li>
-                  ))}
-                </ul>
+                    )}
+                  </div>
+                  <div className="space-y-1.5">
+                    {block.lines.map((line, lIdx) => (
+                      <FlowLine
+                        key={lIdx}
+                        line={line}
+                        maskMode={maskMode}
+                        revealedKeys={revealedKeys}
+                        onToggleKey={toggleKey}
+                        keyPrefix={`${activeSheet.id}_p${pageIdx}_b${bIdx}_l${lIdx}`}
+                        accentColor={theme.accent}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
 
-                {sec.table && (
-                  <div className="mt-3.5 overflow-x-auto rounded-lg border border-[#E5DEC9]">
-                    <table className="w-full min-w-[480px] border-collapse text-left text-xs sm:text-sm">
-                      <thead>
-                        <tr className="bg-[#F8F4E8] text-[#2C3E50]">
-                          {sec.table.headers.map((h) => (
-                            <th key={h} className="border-b border-[#E5DEC9] px-3 py-2 font-extrabold">
-                              {h}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {sec.table.rows.map((row, rIdx) => (
+              {/* 比較・整理テーブル（第6問B/4問B流：左端または右端にワンタップ○×仕分けメモ列つき！） */}
+              {currentPage.table && (
+                <div className="overflow-x-auto rounded-xl border border-slate-300 bg-white shadow-2xs">
+                  <table className="w-full min-w-[440px] border-collapse text-left text-xs sm:text-[13px]">
+                    <thead>
+                      <tr className="bg-[#F3EFE2] text-[#1F2D3D]">
+                        {currentPage.table.headers.map((h, hIdx) => (
+                          <th
+                            key={hIdx}
+                            scope="col"
+                            className="border-b border-r border-slate-300 px-2.5 py-2 font-extrabold last:border-r-0"
+                          >
+                            {renderIsowaText(
+                              h,
+                              'off',
+                              revealedKeys,
+                              toggleKey,
+                              `${activeSheet.id}_p${pageIdx}_th${hIdx}`,
+                            )}
+                          </th>
+                        ))}
+                        <th
+                          scope="col"
+                          className="w-12 border-b border-slate-300 px-1.5 py-2 text-center text-[11px] font-extrabold text-slate-600"
+                          title="タップして ○ → × → 空欄 で要復習チェック！"
+                        >
+                          メモ
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentPage.table.rows.map((row, rIdx) => {
+                        const rowMarkKey = `${activeSheet.id}_p${pageIdx}_tr${rIdx}`;
+                        const rowMark = tableRowMarks[rowMarkKey] || '';
+                        return (
                           <tr key={rIdx} className="even:bg-[#FCF9F2]">
                             {row.map((cell, cIdx) => (
-                              <td key={cIdx} className="border-b border-[#EFE9D8] px-3 py-2 text-[#2C3E50]">
-                                {renderClozeText(
+                              <td
+                                key={cIdx}
+                                className="border-b border-r border-slate-200 px-2.5 py-2 leading-relaxed text-[#2C3E50] whitespace-pre-line"
+                              >
+                                {renderIsowaText(
                                   cell,
-                                  redSheet,
+                                  maskMode,
                                   revealedKeys,
                                   toggleKey,
-                                  `${activeSheet.id}_s${sIdx}_r${rIdx}_c${cIdx}`,
+                                  `${activeSheet.id}_p${pageIdx}_r${rIdx}_c${cIdx}`,
                                 )}
                               </td>
                             ))}
+                            <td className="border-b border-slate-200 p-0 text-center">
+                              <button
+                                type="button"
+                                data-table-row-mark={rowMark || 'none'}
+                                onClick={() =>
+                                  setTableRowMarks((m) => ({
+                                    ...m,
+                                    [rowMarkKey]: NEXT_ROW_MARK[rowMark] ?? '',
+                                  }))
+                                }
+                                aria-label={`行${rIdx + 1}のメモ：${rowMark || '未記入'}（タップで ○・× 切替）`}
+                                className={`flex min-h-[40px] w-full items-center justify-center text-base font-black transition ${
+                                  rowMark === '○'
+                                    ? 'bg-emerald-50 text-emerald-700'
+                                    : rowMark === '×'
+                                      ? 'bg-rose-50 text-rose-700'
+                                      : 'text-slate-300 hover:bg-slate-50 hover:text-slate-500'
+                                }`}
+                              >
+                                {rowMark || '・'}
+                              </button>
+                            </td>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* 枠囲み Point ボックス */}
+              {currentPage.pointBox && (
+                <div className="rounded-xl border-2 border-[#E6B86A] bg-[#FFFDF4] p-3">
+                  <p className="mb-1 text-xs font-black text-[#A05A00]">
+                    ★ {currentPage.pointBox.title}
+                  </p>
+                  <p className="text-xs leading-relaxed text-[#2C3E50] whitespace-pre-line sm:text-[13px]">
+                    {renderIsowaText(
+                      currentPage.pointBox.body,
+                      maskMode,
+                      revealedKeys,
+                      toggleKey,
+                      `${activeSheet.id}_p${pageIdx}_pt`,
+                    )}
+                  </p>
+                </div>
+              )}
+
+              {/* 磯和式「×の理由を指摘できるか」即答○×チェック */}
+              {currentPage.oxChecks && currentPage.oxChecks.length > 0 && (
+                <section className="rounded-xl border border-[#DCE6F2] bg-[#F7FAFE] p-3">
+                  <p className="mb-2 text-xs font-extrabold text-[#1F4E79]">
+                    ✓ 1秒即答 ○×チェック（×はどこが違うか根拠まで言えれば完璧！）
+                  </p>
+                  <div className="space-y-2">
+                    {currentPage.oxChecks.map((ox, oIdx) => {
+                      const oxKey = `${activeSheet.id}_p${pageIdx}_ox${oIdx}`;
+                      const picked = oxAnswers[oxKey];
+                      const isCorrect = picked === ox.a;
+                      return (
+                        <div key={oxKey} className="rounded-lg border border-[#E3ECF6] bg-white p-2.5">
+                          <div className="flex items-start justify-between gap-2">
+                            <p className="flex-1 text-xs leading-relaxed text-[#1F2D3D] sm:text-[13px]">
+                              <span className="mr-1.5 font-extrabold text-[#2E75B6]">Q{oIdx + 1}.</span>
+                              {ox.q}
+                            </p>
+                            <div className="flex shrink-0 items-center gap-1.5">
+                              {(['○', '×'] as const).map((choice) => {
+                                const selected = picked === choice;
+                                return (
+                                  <button
+                                    key={choice}
+                                    type="button"
+                                    onClick={() => {
+                                      setOxAnswers((prev) => ({ ...prev, [oxKey]: choice }));
+                                      void recordVocabActivity('vocab_learn', 1, oxKey);
+                                    }}
+                                    className={`h-9 w-9 rounded-full border text-sm font-black transition ${
+                                      selected
+                                        ? choice === ox.a
+                                          ? 'border-[#27AE60] bg-[#27AE60] text-white'
+                                          : 'border-[#E74C3C] bg-[#E74C3C] text-white'
+                                        : 'border-[#CBD5E1] bg-[#F8FAFC] text-[#334155] hover:bg-[#EFF6FF]'
+                                    }`}
+                                  >
+                                    {choice}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          {picked && (
+                            <div
+                              className={`mt-1.5 rounded-md px-2.5 py-1.5 text-xs leading-relaxed ${
+                                isCorrect
+                                  ? 'bg-[#EAFAF1] text-[#1E8449]'
+                                  : 'bg-[#FDEDEC] text-[#B03A2E]'
+                              }`}
+                            >
+                              <span className="mr-1.5 font-black">
+                                {isCorrect ? `正解（${ox.a}）！` : `正解は「${ox.a}」！`}
+                              </span>
+                              <span>{ox.why}</span>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                )}
-              </section>
-            ))}
+                </section>
+              )}
+            </div>
+
+            {/* 右（またはモバイルの「図表資料」タブ時）：マナトビリスニング第6問B準拠 1画面図表資料デッキ */}
+            {hasFigures && (
+              <aside
+                aria-label="共通テスト図表資料"
+                className={`${
+                  subPaneTab === 'materials' ? 'flex flex-1' : 'hidden lg:flex'
+                } min-h-0 flex-col lg:col-span-5`}
+              >
+                <SocialMaterialDeck
+                  figures={pageFigures}
+                  memoItems={currentPage.figureMemoItems}
+                  accentColor={theme.accent}
+                />
+              </aside>
+            )}
           </div>
-        </div>
-      ) : (
-        <div className="flex flex-1 items-center justify-center rounded-2xl border border-[#E6DFC8] bg-white p-6 text-sm text-[#5D6D7E]">
-          この科目のまとめプリントは準備中です。
+        </main>
+      ) : null}
+
+      {/* 4. 下部固定 1画面ページ送りバー */}
+      {activeSheet && (
+        <footer className="mt-1.5 flex shrink-0 items-center justify-between gap-2 rounded-2xl border border-[#DFD5BE] bg-white/96 px-3 py-1.5 shadow-2xs">
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={!canGoPrev}
+            className="inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[#E5DEC9] bg-[#FAF7F0] px-3 text-xs font-extrabold text-[#2C3E50] transition hover:bg-white disabled:opacity-35 sm:px-3.5 sm:text-sm"
+          >
+            <ChevronLeft size={16} aria-hidden="true" />
+            <span>{pageIdx > 0 ? '前のページ' : '前の単元'}</span>
+          </button>
+
+          {/* 中央：ページドット＆この単元を演習 */}
+          <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-3">
+            <div className="flex items-center gap-1.5" role="navigation" aria-label="ページ位置">
+              {pages.map((_, idx) => {
+                const active = idx === pageIdx;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setPageIdx(idx)}
+                    aria-label={`ページ ${idx + 1}`}
+                    className={`h-2.5 rounded-full transition-all ${
+                      active ? 'w-6' : 'w-2.5 bg-[#D5CBB4] hover:bg-[#B8AC90]'
+                    }`}
+                    style={active ? { backgroundColor: theme.accent } : undefined}
+                  />
+                );
+              })}
+              <span className="ml-1 text-xs font-extrabold text-[#5D6D7E]">
+                {pageIdx + 1} / {totalPages}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                markCurrentPageRead();
+                void recordVocabActivity('vocab_perfect', 1, `practice:${activeSheet.id}`);
+                onPracticeChapter(activeSheet.chapterId);
+              }}
+              className="inline-flex min-h-[34px] items-center gap-1 rounded-full border px-3 text-xs font-extrabold transition hover:opacity-90"
+              style={{ borderColor: theme.accent, color: theme.accent, backgroundColor: theme.accentSoft }}
+            >
+              <BookOpen size={14} aria-hidden="true" />
+              <span>この単元を演習</span>
+            </button>
+          </div>
+
+          {/* 右：次のページ or 次の単元へ */}
+          {!isLastPageOfUnit ? (
+            <button
+              type="button"
+              onClick={goNext}
+              className="inline-flex min-h-[40px] items-center gap-1 rounded-full px-3.5 text-xs font-extrabold text-white shadow-2xs transition hover:opacity-95 sm:px-4 sm:text-sm"
+              style={{ backgroundColor: theme.accent }}
+            >
+              <span>次のページ</span>
+              <ChevronRight size={16} aria-hidden="true" />
+            </button>
+          ) : hasNextUnit ? (
+            <button
+              type="button"
+              onClick={goNext}
+              className="inline-flex min-h-[40px] items-center gap-1 rounded-full bg-[#1E8449] px-3.5 text-xs font-extrabold text-white shadow-2xs transition hover:bg-[#196F3D] sm:px-4 sm:text-sm"
+            >
+              <CheckCircle2 size={15} aria-hidden="true" />
+              <span>次の単元へ</span>
+              <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                markCurrentPageRead();
+                onPracticeChapter(activeSheet.chapterId);
+              }}
+              className="inline-flex min-h-[40px] items-center gap-1 rounded-full bg-[#1E8449] px-3.5 text-xs font-extrabold text-white shadow-2xs sm:px-4 sm:text-sm"
+            >
+              <CheckCircle2 size={15} aria-hidden="true" />
+              <span>全単元完走！演習へ</span>
+            </button>
+          )}
+        </footer>
+      )}
+
+      {/* 単元目次モーダル（編ごとに整理された全単元一覧） */}
+      {tocOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-3 sm:p-6"
+          onClick={() => setTocOpen(false)}
+        >
+          <div
+            className="flex max-h-[85dvh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-[#E2D9C2] bg-[#FFFDF8] shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[#EFE8D5] px-4 py-3">
+              <div>
+                <p className="text-xs font-bold text-[#6C7A89]">
+                  {theme.label}（全{sheets.length}単元・共通テスト全範囲網羅）
+                </p>
+                <h2 className="text-base font-extrabold text-[#1F2D3D]">単元別 まとめプリント目次</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setTocOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5DEC9] bg-white text-[#34495E]"
+                aria-label="目次を閉じる"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="flex-1 space-y-4 overflow-y-auto p-4">
+              {groupedByPart.map(([partTitle, entries]) => (
+                <div key={partTitle}>
+                  <h3
+                    className="mb-2 text-xs font-black tracking-wide uppercase"
+                    style={{ color: theme.accent }}
+                  >
+                    ■ {partTitle}
+                  </h3>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {entries.map(({ sheet, index }) => {
+                      const active = index === activeSheetIdx;
+                      const readPages = sheet.pages.filter((_, p) =>
+                        completedPages.has(`${sheet.id}_p${p}`),
+                      ).length;
+                      const figCount = sheet.pages.reduce(
+                        (acc, p) => acc + (p.figures?.length ?? 0),
+                        0,
+                      );
+                      return (
+                        <button
+                          key={sheet.id}
+                          type="button"
+                          onClick={() => selectUnit(index)}
+                          className={`flex flex-col items-start rounded-xl border p-3 text-left transition ${
+                            active
+                              ? 'border-2 bg-[#FAF6EC]'
+                              : 'border-[#E5DEC9] bg-white hover:bg-[#FCF9F2]'
+                          }`}
+                          style={active ? { borderColor: theme.accent } : undefined}
+                        >
+                          <div className="flex w-full items-center justify-between gap-2 text-[11px] font-extrabold">
+                            <span className="flex items-center gap-1" style={{ color: theme.accent }}>
+                              <span>{sheet.unitLabel}</span>
+                              {figCount > 0 && (
+                                <span className="rounded bg-slate-100 px-1.5 py-0.2 text-[10px] font-bold text-slate-600">
+                                  資料{figCount}
+                                </span>
+                              )}
+                            </span>
+                            <span className="text-[#6C7A89]">
+                              {readPages}/{sheet.pages.length} ページ読了
+                            </span>
+                          </div>
+                          <p className="mt-1 text-sm font-extrabold text-[#1F2D3D]">{sheet.title}</p>
+                          <p className="mt-0.5 line-clamp-1 text-[11.5px] text-[#5D6D7E]">
+                            {sheet.subtitle}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>

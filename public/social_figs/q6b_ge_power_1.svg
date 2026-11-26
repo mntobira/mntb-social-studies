@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="① ア国の発電電力量の構成" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">① ア国の発電電力量の構成</text>
+  <text x="350" y="72" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">（フィヨルド急峻地形・北海油田は主に輸出へ回す国）</text>
+  <path d="M 245 290 L 245.00 138.00 A 152 152 0 1 1 140.95 179.20 Z" fill="#334155" stroke="#18181b" stroke-width="1.7"/>
+  <text x="280.3" y="385.0" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">88%</text>
+  <path d="M 245 290 L 140.95 179.20 A 152 152 0 0 1 225.95 139.20 Z" fill="#94a3b8" stroke="#18181b" stroke-width="1.7"/>
+  <text x="204.2" y="209.4" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">10%</text>
+  <path d="M 245 290 L 225.95 139.20 A 152 152 0 0 1 245.00 138.00 Z" fill="#e2e8f0" stroke="#18181b" stroke-width="1.7"/>
+  <rect x="440" y="178" width="26" height="22" fill="#334155" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="195" font-size="16" font-weight="700" fill="#0f172a">水力  88%</text>
+  <rect x="440" y="224" width="26" height="22" fill="#94a3b8" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="241" font-size="16" font-weight="700" fill="#0f172a">風力・他再エネ  10%</text>
+  <rect x="440" y="270" width="26" height="22" fill="#e2e8f0" stroke="#18181b" stroke-width="1.5"/>
+  <text x="476" y="287" font-size="16" font-weight="700" fill="#0f172a">火力  2%</text>
+</svg>
