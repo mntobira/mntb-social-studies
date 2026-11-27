@@ -73,12 +73,12 @@ export interface SocialProblemInput {
   /** 大問リード文（史料・会話文・Markdown統計表などを含む） */
   text: string;
   subQuestions: SocialSubInput[];
-  /** 大問全体の総括解説（共通の背景・歴史的意義・出題の急所） */
-  explanation: string;
+  /** 大問全体の総括解説（共通の背景・歴史的意義・出題の急所。省略時は小問 oneLine から自動構成） */
+  explanation?: string;
   /** 周辺知識（解説下部の整理ボックス） */
-  surroundingKnowledge: string[];
+  surroundingKnowledge?: string[] | string;
   /** 共通テスト深掘りテーマ */
-  deepDiveTopics: string[];
+  deepDiveTopics?: string[];
   timeLimitSec?: number;
   /** 大問に付属する地図・グラフ・概念図（public/ 配下のパス） */
   imageUrl?: string;
@@ -227,9 +227,25 @@ export function makeSocialProblem(input: SocialProblemInput): Problem {
     };
   });
 
+  const sharedSummary =
+    input.explanation?.trim() ||
+    `【${input.category}】\n` +
+      input.subQuestions.map((sq, idx) => `・問${idx + 1}（${sq.skill}）：${sq.oneLine}`).join('\n');
+
+  const normalizedSurrounding = Array.isArray(input.surroundingKnowledge)
+    ? input.surroundingKnowledge
+    : input.surroundingKnowledge
+      ? [input.surroundingKnowledge]
+      : [];
+
+  const normalizedDeepDive =
+    input.deepDiveTopics && input.deepDiveTopics.length > 0
+      ? input.deepDiveTopics
+      : input.subQuestions.map((sq) => `${sq.skill}（${sq.solveType}）の正誤判断ポイント整理`);
+
   const structuredExplanation = [
     SQ_SHARED_MARK,
-    input.explanation.trim(),
+    sharedSummary,
     ...subSlices,
   ].join('\n\n');
 
@@ -239,8 +255,8 @@ export function makeSocialProblem(input: SocialProblemInput): Problem {
     text: input.text,
     subQuestions,
     explanation: structuredExplanation,
-    surroundingKnowledge: input.surroundingKnowledge,
-    deepDiveTopics: input.deepDiveTopics,
+    surroundingKnowledge: normalizedSurrounding,
+    deepDiveTopics: normalizedDeepDive,
     timeLimitSec: input.timeLimitSec ?? 240,
     imageUrl: input.imageUrl,
     imageCaption: input.imageCaption,
