@@ -155,6 +155,11 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
 
     const sheetIds = new Set<string>();
     const coveredChapters = new Set<string>();
+    let totalPages = 0;
+    let totalCoreTokens = 0;
+    let totalMinorTokens = 0;
+    let totalOxItems = 0;
+    let totalFigures = 0;
 
     for (const sheet of SUMMARY_PRINTS) {
       expect(sheetIds.has(sheet.id)).toBe(false);
@@ -162,7 +167,9 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
       expect(allIndexedIds.has(sheet.chapterId)).toBe(true);
       expect(coveredChapters.has(sheet.chapterId)).toBe(false);
       coveredChapters.add(sheet.chapterId);
-      expect(sheet.pages.length).toBeGreaterThanOrEqual(2);
+      // 全85単元すべてが基本ページ＋満点網羅サプリメントを含む3ページ以上で構成されていること
+      expect(sheet.pages.length).toBeGreaterThanOrEqual(3);
+      totalPages += sheet.pages.length;
 
       const allPageText = sheet.pages
         .flatMap((pg) => [
@@ -173,17 +180,30 @@ describe('社会科全5科目（日本史・世界史・地理・倫理・政経
         ])
         .join('\n');
 
-      const maskedTokens = allPageText.match(/\{\{[^}]+\}\}/g);
-      expect((maskedTokens ?? []).length).toBeGreaterThanOrEqual(4);
+      const maskedTokens = allPageText.match(/\{\{[^}]+\}\}/g) ?? [];
+      const minorTokens = allPageText.match(/\[\[[^\]]+\]\]/g) ?? [];
+      expect(maskedTokens.length).toBeGreaterThanOrEqual(8);
+      totalCoreTokens += maskedTokens.length;
+      totalMinorTokens += minorTokens.length;
+
+      const sheetOxCount = sheet.pages.reduce((acc, pg) => acc + (pg.oxChecks?.length ?? 0), 0);
+      expect(sheetOxCount).toBeGreaterThanOrEqual(2);
+      totalOxItems += sheetOxCount;
 
       for (const pg of sheet.pages) {
         for (const fig of pg.figures ?? []) {
           const figPath = resolve(PUBLIC_DIR, fig.src.replace(/^\//, ''));
           expect(existsSync(figPath)).toBe(true);
+          totalFigures += 1;
         }
       }
     }
 
     expect(coveredChapters.size).toBe(85);
+    expect(totalPages).toBeGreaterThanOrEqual(270);
+    expect(totalCoreTokens).toBeGreaterThanOrEqual(3000);
+    expect(totalMinorTokens).toBeGreaterThanOrEqual(600);
+    expect(totalOxItems).toBeGreaterThanOrEqual(320);
+    expect(totalFigures).toBeGreaterThanOrEqual(40);
   });
 });
