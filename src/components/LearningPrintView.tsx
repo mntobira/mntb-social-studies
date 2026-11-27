@@ -5,23 +5,25 @@
  * ===================================================================
  * 特徴:
  *  1. 全5科目・全85単元の体系的整理（編別目次モーダル＋単元クイックピルで自在ジャンプ）
- *  2. 1画面完結のページ送りUI（前へ / 次へ・キーボード矢印・スワイプ対応で縦スクロール疲れを解消）
- *  3. マナトビリスニング第6問B準拠の視覚資料デッキ（SocialMaterialDeck）:
+ *  2. 科目横断レベルの「語句・人物・条約・判例・統計 1秒インデックス検索」（該当ページへダイレクト移動）
+ *  3. 1画面完結のページ送りUI（前へ / 次へ・キーボード矢印・スワイプ対応で縦スクロール疲れを解消）
+ *  4. マナトビリスニング第6問B準拠の視覚資料デッキ（SocialMaterialDeck）:
  *     - FitFigure: 枠の縦横比に合わせて1面に収め、図の上をタップして ○／× 鉛筆メモを直接書き込み可能
  *     - FigureCarousel: 複数グラフ（①〜④）は1枚ずつ大きく表示し、‹ › ボタン・①〜④ピル・スワイプで切替
  *     - モバイルでは「要点ノート / 図表資料（○×メモ）」1画面切替タブ、大画面では左右2ペイン並列表示
- *  4. 比較テーブルの各行にも第6問B/4問B流のワンタップ ○／×／未記入 鉛筆チェック列を搭載
- *  5. 磯和プリント3段階ハイライト完全再現:
+ *  5. 比較テーブルの各行にも第6問B/4問B流のワンタップ ○／×／未記入 鉛筆チェック列を搭載
+ *  6. 磯和プリント3段階ハイライト完全再現:
  *     - {{重要語句}}         : 下線＋太字（8割必須モード・満点モードで赤シートマスク）
  *     - [[マイナー語句]]     : 細下線（満点モード時に紺シートマスク）
  *     - ~~波線(**導出太字**)~~ : 波線＋太字（思想内容・因果の急所。赤シート時も文脈ヒントとして表示）
- *  6. 「→・＝・⇔・※・Ｑ」で論理の流れが頭に入る板書レイアウト ＋ 即答○×チェック搭載
+ *  7. 要復習ページの「★ブックマーク保存（localStorage永続化）」＆即答○×正答率トラッカー搭載
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
   BarChart3,
+  Bookmark,
   BookOpen,
   CheckCircle2,
   ChevronLeft,
@@ -30,6 +32,8 @@ import {
   EyeOff,
   FileText,
   List,
+  RotateCcw,
+  Search,
   Sparkles,
   Star,
   X,
@@ -53,7 +57,45 @@ interface LearningPrintViewProps {
 type MaskMode = 'off' | 'core' | 'all';
 type SubPaneTab = 'notes' | 'materials';
 
+interface SearchIndexEntry {
+  sheetIdx: number;
+  pageIdx: number;
+  unitLabel: string;
+  unitTitle: string;
+  pageTitle: string;
+  plainText: string;
+}
+
 const NEXT_ROW_MARK: Record<string, string> = { '': '○', '○': '×', '×': '' };
+const BOOKMARK_STORAGE_KEY = 'mtb_print_bookmarks_v2';
+const READ_STORAGE_KEY = 'mtb_print_read_pages_v2';
+
+function stripPrintMarkup(raw: string): string {
+  return raw
+    .replace(/\{\{([^}]+)\}\}/g, '$1')
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')
+    .replace(/~~([^~]+)~~/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1');
+}
+
+function loadSavedSet(key: string): Set<string> {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return new Set();
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? new Set(parsed.filter((v): v is string => typeof v === 'string')) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
+function saveSet(key: string, set: ReadonlySet<string>): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(Array.from(set)));
+  } catch {
+    // ignore storage quota errors
+  }
+}
 
 /** **太字** と {{重要語句}} と [[マイナー語句]] を処理するインライン描画 */
 function renderInlineTokens(
@@ -323,11 +365,16 @@ export function LearningPrintView({
   const [revealedKeys, setRevealedKeys] = useState<Set<string>>(() => new Set());
   const [oxAnswers, setOxAnswers] = useState<Record<string, '○' | '×'>>({});
   const [tableRowMarks, setTableRowMarks] = useState<Record<string, string>>({});
-  const [completedPages, setCompletedPages] = useState<Set<string>>(() => new Set());
+  const [completedPages, setCompletedPages] = useState<Set<string>>(() => loadSavedSet(READ_STORAGE_KEY));
+  const [bookmarkedPages, setBookmarkedPages] = useState<Set<string>>(() => loadSavedSet(BOOKMARK_STORAGE_KEY));
   const [tocOpen, setTocOpen] = useState(false);
+  const [tocBookmarkOnly, setTocBookmarkOnly] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [subPaneTab, setSubPaneTab] = useState<SubPaneTab>('notes');
 
   const cardScrollRef = useRef<HTMLDivElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const unitPillRefs = useRef<Record<number, HTMLButtonElement | null>>({});
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const theme = subjectTheme(subject);
@@ -337,8 +384,17 @@ export function LearningPrintView({
     setPageIdx(0);
     setRevealedKeys(new Set());
     setTocOpen(false);
+    setTocBookmarkOnly(false);
+    setSearchOpen(false);
+    setSearchQuery('');
     setSubPaneTab('notes');
   }, [subject]);
+
+  useEffect(() => {
+    if (searchOpen) {
+      requestAnimationFrame(() => searchInputRef.current?.focus());
+    }
+  }, [searchOpen]);
 
   const activeSheet: SummaryPrintSheet | undefined = sheets[activeSheetIdx] ?? sheets[0];
   const pages: SummaryPrintPage[] = activeSheet?.pages ?? [];
@@ -346,6 +402,80 @@ export function LearningPrintView({
   const totalPages = pages.length;
   const pageFigures = currentPage?.figures ?? [];
   const hasFigures = pageFigures.length > 0;
+  const currentPageKey = activeSheet ? `${activeSheet.id}_p${pageIdx}` : '';
+  const isCurrentBookmarked = currentPageKey ? bookmarkedPages.has(currentPageKey) : false;
+
+  // 科目内全ページの高速検索インデックス
+  const searchIndex = useMemo<SearchIndexEntry[]>(() => {
+    const entries: SearchIndexEntry[] = [];
+    sheets.forEach((sheet, sIdx) => {
+      sheet.pages.forEach((pg, pIdx) => {
+        const raw = [
+          sheet.unitLabel,
+          sheet.title,
+          sheet.subtitle,
+          pg.pageTitle,
+          pg.lead ?? '',
+          ...(pg.blocks ?? []).flatMap((b) => [b.heading, ...b.lines]),
+          ...(pg.table ? [...pg.table.headers, ...pg.table.rows.flat()] : []),
+          pg.pointBox ? `${pg.pointBox.title} ${pg.pointBox.body}` : '',
+          ...(pg.oxChecks ?? []).flatMap((o) => [o.q, o.why]),
+        ].join(' ');
+        entries.push({
+          sheetIdx: sIdx,
+          pageIdx: pIdx,
+          unitLabel: sheet.unitLabel,
+          unitTitle: sheet.title,
+          pageTitle: pg.pageTitle,
+          plainText: stripPrintMarkup(raw),
+        });
+      });
+    });
+    return entries;
+  }, [sheets]);
+
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    const terms = q.split(/\s+/).filter(Boolean);
+    const matches: { entry: SearchIndexEntry; snippet: string }[] = [];
+    for (const entry of searchIndex) {
+      const lower = entry.plainText.toLowerCase();
+      if (terms.every((t) => lower.includes(t))) {
+        const firstIdx = lower.indexOf(terms[0]);
+        const start = Math.max(0, firstIdx - 28);
+        const end = Math.min(entry.plainText.length, firstIdx + 76);
+        const snippet =
+          (start > 0 ? '…' : '') +
+          entry.plainText.slice(start, end).replace(/\s+/g, ' ') +
+          (end < entry.plainText.length ? '…' : '');
+        matches.push({ entry, snippet });
+        if (matches.length >= 40) break;
+      }
+    }
+    return matches;
+  }, [searchIndex, searchQuery]);
+
+  // この科目のブックマーク済みページ一覧
+  const subjectBookmarks = useMemo(() => {
+    const list: { sheetIdx: number; pageIdx: number; key: string; unitLabel: string; unitTitle: string; pageTitle: string }[] = [];
+    sheets.forEach((sheet, sIdx) => {
+      sheet.pages.forEach((pg, pIdx) => {
+        const key = `${sheet.id}_p${pIdx}`;
+        if (bookmarkedPages.has(key)) {
+          list.push({
+            sheetIdx: sIdx,
+            pageIdx: pIdx,
+            key,
+            unitLabel: sheet.unitLabel,
+            unitTitle: sheet.title,
+            pageTitle: pg.pageTitle,
+          });
+        }
+      });
+    });
+    return list;
+  }, [sheets, bookmarkedPages]);
 
   useEffect(() => {
     cardScrollRef.current?.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
@@ -382,6 +512,20 @@ export function LearningPrintView({
     });
   }, []);
 
+  const toggleBookmarkCurrentPage = useCallback(() => {
+    if (!currentPageKey) return;
+    setBookmarkedPages((prev) => {
+      const next = new Set<string>(prev);
+      if (next.has(currentPageKey)) {
+        next.delete(currentPageKey);
+      } else {
+        next.add(currentPageKey);
+      }
+      saveSet(BOOKMARK_STORAGE_KEY, next);
+      return next;
+    });
+  }, [currentPageKey]);
+
   const cycleMaskMode = () => {
     setMaskMode((prev) => (prev === 'core' ? 'all' : prev === 'all' ? 'off' : 'core'));
     setRevealedKeys(new Set());
@@ -392,8 +536,9 @@ export function LearningPrintView({
     const key = `${activeSheet.id}_p${pageIdx}`;
     setCompletedPages((prev) => {
       if (prev.has(key)) return prev;
-      const next = new Set(prev);
+      const next = new Set<string>(prev);
       next.add(key);
+      saveSet(READ_STORAGE_KEY, next);
       void recordVocabActivity('vocab_quiz', 1, `print:${key}`);
       return next;
     });
@@ -419,10 +564,21 @@ export function LearningPrintView({
     }
   }, [pageIdx, totalPages, activeSheetIdx, sheets.length, markCurrentPageRead]);
 
-  // キーボード左右矢印でページ送り（拡大ダイアログや目次モーダル表示中は除外）
+  // キーボード左右矢印でページ送り・Ctrl/Cmd+Kで検索（モーダル表示中は除外）
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (tocOpen || document.querySelector('[data-material-zoom]')) return;
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+        return;
+      }
+      if (tocOpen || searchOpen || document.querySelector('[data-material-zoom]')) {
+        if (e.key === 'Escape') {
+          setTocOpen(false);
+          setSearchOpen(false);
+        }
+        return;
+      }
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         goNext();
@@ -433,15 +589,44 @@ export function LearningPrintView({
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [tocOpen, goNext, goPrev]);
+  }, [tocOpen, searchOpen, goNext, goPrev]);
 
-  const selectUnit = (idx: number) => {
+  const selectUnit = (idx: number, targetPage = 0) => {
     setActiveSheetIdx(idx);
-    setPageIdx(0);
+    setPageIdx(targetPage);
     setRevealedKeys(new Set());
     setTocOpen(false);
+    setSearchOpen(false);
   };
 
+  // 現在ページの○×正答スコア集計
+  const currentOxStats = useMemo(() => {
+    const checks = currentPage?.oxChecks ?? [];
+    if (!activeSheet || checks.length === 0) return { total: 0, answered: 0, correct: 0 };
+    let answered = 0;
+    let correct = 0;
+    checks.forEach((ox, oIdx) => {
+      const picked = oxAnswers[`${activeSheet.id}_p${pageIdx}_ox${oIdx}`];
+      if (picked) {
+        answered += 1;
+        if (picked === ox.a) correct += 1;
+      }
+    });
+    return { total: checks.length, answered, correct };
+  }, [activeSheet, currentPage, oxAnswers, pageIdx]);
+
+  const resetCurrentPageOx = () => {
+    if (!activeSheet || !currentPage?.oxChecks) return;
+    setOxAnswers((prev) => {
+      const next = { ...prev };
+      currentPage.oxChecks?.forEach((_, oIdx) => {
+        delete next[`${activeSheet.id}_p${pageIdx}_ox${oIdx}`];
+      });
+      return next;
+    });
+  };
+
+  const totalSubjectPages = searchIndex.length;
   const maskLabel =
     maskMode === 'core' ? '赤シート：必須語' : maskMode === 'all' ? '赤シート：満点＋細字' : '赤シートOFF';
 
@@ -460,7 +645,7 @@ export function LearningPrintView({
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[#DFD6C0] bg-white/95 px-3 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:text-sm"
+            className="inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[#DFD6C0] bg-white/95 px-2.5 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:px-3 sm:text-sm"
           >
             <ArrowLeft size={16} aria-hidden="true" />
             <span className="hidden sm:inline">{backLabel}</span>
@@ -470,10 +655,10 @@ export function LearningPrintView({
             type="button"
             onClick={() => setTocOpen(true)}
             data-open-print-toc
-            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[#D4C9B0] bg-[#FFFDF7] px-3 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:text-sm"
+            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[#D4C9B0] bg-[#FFFDF7] px-2.5 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-white sm:px-3 sm:text-sm"
           >
             <List size={15} style={{ color: theme.accent }} aria-hidden="true" />
-            <span>単元目次</span>
+            <span>目次</span>
             <span
               className="rounded-full px-1.5 py-0.5 text-[11px] font-black text-white"
               style={{ backgroundColor: theme.accent }}
@@ -481,10 +666,24 @@ export function LearningPrintView({
               {activeSheetIdx + 1}/{sheets.length}
             </span>
           </button>
+
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            data-open-print-search
+            aria-label="語句・人物・判例・統計を検索"
+            title="科目内の全ページから語句・人物・判例を1秒検索（Ctrl+K）"
+            className="inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[#D4C9B0] bg-white px-2.5 text-xs font-extrabold text-[#2C3E50] shadow-2xs hover:bg-slate-50 sm:px-3"
+          >
+            <Search size={15} style={{ color: theme.accent }} aria-hidden="true" />
+            <span className="hidden md:inline">語句検索</span>
+          </button>
         </div>
 
         <div className="min-w-0 flex-1 px-1 text-center">
-          <p className="truncate text-[10.5px] font-bold text-[#6C7A89] sm:text-xs">{theme.label}</p>
+          <p className="truncate text-[10.5px] font-bold text-[#6C7A89] sm:text-xs">
+            {theme.label}（全{sheets.length}単元・{totalSubjectPages}ページ完全網羅）
+          </p>
           <h1 className="truncate text-xs font-extrabold text-[#1F2D3D] sm:text-[15px]">
             {activeSheet?.unitLabel}　{activeSheet?.title}
           </h1>
@@ -495,7 +694,7 @@ export function LearningPrintView({
             <button
               type="button"
               onClick={onChangeSubject}
-              className="hidden min-h-[40px] rounded-full border border-[#DFD6C0] bg-white px-3 text-xs font-bold text-[#34495E] hover:bg-slate-50 md:inline-flex md:items-center"
+              className="hidden min-h-[40px] rounded-full border border-[#DFD6C0] bg-white px-3 text-xs font-bold text-[#34495E] hover:bg-slate-50 lg:inline-flex lg:items-center"
             >
               科目変更
             </button>
@@ -504,7 +703,7 @@ export function LearningPrintView({
             type="button"
             onClick={cycleMaskMode}
             data-mask-toggle={maskMode}
-            className={`inline-flex min-h-[40px] items-center gap-1 rounded-full px-3 text-xs font-extrabold shadow-2xs transition sm:px-3.5 ${
+            className={`inline-flex min-h-[40px] items-center gap-1 rounded-full px-2.5 text-xs font-extrabold shadow-2xs transition sm:px-3.5 ${
               maskMode === 'core'
                 ? 'bg-[#D64541] text-white hover:bg-[#C0392B]'
                 : maskMode === 'all'
@@ -539,6 +738,7 @@ export function LearningPrintView({
           const doneCount = sheet.pages.filter((_, p) => completedPages.has(`${sheet.id}_p${p}`)).length;
           const allDone = doneCount === sheet.pages.length && sheet.pages.length > 0;
           const sheetHasFigs = sheet.pages.some((p) => (p.figures?.length ?? 0) > 0);
+          const hasBookmark = sheet.pages.some((_, p) => bookmarkedPages.has(`${sheet.id}_p${p}`));
           return (
             <button
               key={sheet.id}
@@ -557,6 +757,14 @@ export function LearningPrintView({
               style={active ? { backgroundColor: theme.accent, borderColor: theme.accent } : undefined}
             >
               {allDone && <CheckCircle2 size={13} className={active ? 'text-white' : 'text-[#27AE60]'} />}
+              {hasBookmark && (
+                <Bookmark
+                  size={12}
+                  fill="currentColor"
+                  className={active ? 'text-amber-200' : 'text-amber-500'}
+                  aria-label="要復習ブックマークあり"
+                />
+              )}
               <span className="font-extrabold">{sheet.unitLabel}</span>
               <span className="max-w-[128px] truncate">{sheet.title}</span>
               {sheetHasFigs && (
@@ -576,7 +784,6 @@ export function LearningPrintView({
         <main
           ref={cardScrollRef}
           onTouchStart={(e) => {
-            // 図表カルーセル上のタッチはカルーセル側に任せる
             if ((e.target as HTMLElement | null)?.closest('[data-social-material-deck]')) {
               touchStartRef.current = null;
               return;
@@ -620,58 +827,82 @@ export function LearningPrintView({
               </h2>
             </div>
 
-            {/* 図表資料があるページではモバイル〜タブレット用に1画面モード切替タブを表示（PC lg以上は左右並列で両方同時表示！） */}
-            {hasFigures ? (
-              <div
-                className="flex shrink-0 items-center rounded-full border border-slate-300 bg-slate-100 p-0.5 lg:hidden"
-                role="tablist"
-                aria-label="ノートと図表資料の切替"
+            <div className="flex shrink-0 items-center gap-1.5">
+              {/* 要復習しおり（ブックマーク）ボタン */}
+              <button
+                type="button"
+                onClick={toggleBookmarkCurrentPage}
+                data-bookmark-page={isCurrentBookmarked ? 'on' : 'off'}
+                aria-pressed={isCurrentBookmarked}
+                title={isCurrentBookmarked ? '要復習ブックマークを解除' : 'このページを要復習ブックマークに追加'}
+                className={`inline-flex min-h-[34px] items-center gap-1 rounded-full border px-2.5 text-xs font-extrabold transition ${
+                  isCurrentBookmarked
+                    ? 'border-amber-400 bg-amber-50 text-amber-800'
+                    : 'border-[#E2D9C2] bg-white text-slate-600 hover:bg-slate-50'
+                }`}
               >
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={subPaneTab === 'notes'}
-                  onClick={() => setSubPaneTab('notes')}
-                  className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
-                    subPaneTab === 'notes'
-                      ? 'bg-white text-[#1F2D3D] shadow-2xs'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                <Bookmark
+                  size={13}
+                  fill={isCurrentBookmarked ? '#F59E0B' : 'none'}
+                  stroke={isCurrentBookmarked ? '#D97706' : 'currentColor'}
+                  aria-hidden="true"
+                />
+                <span className="hidden sm:inline">{isCurrentBookmarked ? '要復習中' : '要復習'}</span>
+              </button>
+
+              {/* 図表資料があるページではモバイル〜タブレット用に1画面モード切替タブを表示 */}
+              {hasFigures ? (
+                <div
+                  className="flex shrink-0 items-center rounded-full border border-slate-300 bg-slate-100 p-0.5 lg:hidden"
+                  role="tablist"
+                  aria-label="ノートと図表資料の切替"
                 >
-                  <FileText size={13} aria-hidden="true" />
-                  <span>要点ノート</span>
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  data-open-materials-tab
-                  aria-selected={subPaneTab === 'materials'}
-                  onClick={() => setSubPaneTab('materials')}
-                  className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
-                    subPaneTab === 'materials'
-                      ? 'text-white shadow-2xs'
-                      : 'text-slate-700 hover:text-slate-900'
-                  }`}
-                  style={subPaneTab === 'materials' ? { backgroundColor: theme.accent } : undefined}
-                >
-                  <BarChart3 size={13} aria-hidden="true" />
-                  <span>図表資料({pageFigures.length})</span>
-                </button>
-              </div>
-            ) : (
-              <div className="hidden items-center gap-2 text-[11px] text-[#5D6D7E] xl:flex">
-                <span className="rounded bg-[#FDE8E4] px-1.5 py-0.5 font-extrabold text-[#B83227] underline">
-                  必須8割語句
-                </span>
-                <span className="rounded bg-[#FFFBEB] px-1.5 py-0.5 font-bold text-[#9A4D00] underline decoration-[#D97706] decoration-wavy">
-                  波線＝思想・因果の急所
-                </span>
-                <span className="font-bold text-[#1F4E79] underline">細下線＝満点語句</span>
-              </div>
-            )}
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={subPaneTab === 'notes'}
+                    onClick={() => setSubPaneTab('notes')}
+                    className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
+                      subPaneTab === 'notes'
+                        ? 'bg-white text-[#1F2D3D] shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <FileText size={13} aria-hidden="true" />
+                    <span>要点ノート</span>
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    data-open-materials-tab
+                    aria-selected={subPaneTab === 'materials'}
+                    onClick={() => setSubPaneTab('materials')}
+                    className={`inline-flex min-h-[34px] items-center gap-1 rounded-full px-3 text-xs font-extrabold transition ${
+                      subPaneTab === 'materials'
+                        ? 'text-white shadow-2xs'
+                        : 'text-slate-700 hover:text-slate-900'
+                    }`}
+                    style={subPaneTab === 'materials' ? { backgroundColor: theme.accent } : undefined}
+                  >
+                    <BarChart3 size={13} aria-hidden="true" />
+                    <span>図表資料({pageFigures.length})</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="hidden items-center gap-2 text-[11px] text-[#5D6D7E] xl:flex">
+                  <span className="rounded bg-[#FDE8E4] px-1.5 py-0.5 font-extrabold text-[#B83227] underline">
+                    必須8割語句
+                  </span>
+                  <span className="rounded bg-[#FFFBEB] px-1.5 py-0.5 font-bold text-[#9A4D00] underline decoration-[#D97706] decoration-wavy">
+                    波線＝思想・因果の急所
+                  </span>
+                  <span className="font-bold text-[#1F4E79] underline">細下線＝満点語句</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* 2ペイン対応ボディ：図表があるページは lg以上で左56%ノート・右44%第6問B式資料デッキ！ */}
+          {/* 2ペイン対応ボディ：図表があるページは lg以上で左58%ノート・右42%第6問B式資料デッキ！ */}
           <div
             className={`min-h-0 flex-1 ${
               hasFigures ? 'flex flex-col lg:grid lg:grid-cols-12 lg:gap-4' : ''
@@ -753,7 +984,7 @@ export function LearningPrintView({
                 </section>
               ))}
 
-              {/* 比較・整理テーブル（第6問B/4問B流：左端または右端にワンタップ○×仕分けメモ列つき！） */}
+              {/* 比較・整理テーブル（第6問B/4問B流：右端にワンタップ○×仕分けメモ列つき！） */}
               {currentPage.table && (
                 <div className="overflow-x-auto rounded-xl border border-slate-300 bg-white shadow-2xs">
                   <table className="w-full min-w-[440px] border-collapse text-left text-xs sm:text-[13px]">
@@ -851,12 +1082,37 @@ export function LearningPrintView({
                 </div>
               )}
 
-              {/* 磯和式「×の理由を指摘できるか」即答○×チェック */}
+              {/* 磯和式「×の理由を指摘できるか」即答○×チェック（スコア＆解き直しボタン付き） */}
               {currentPage.oxChecks && currentPage.oxChecks.length > 0 && (
                 <section className="rounded-xl border border-[#DCE6F2] bg-[#F7FAFE] p-3">
-                  <p className="mb-2 text-xs font-extrabold text-[#1F4E79]">
-                    ✓ 1秒即答 ○×チェック（×はどこが違うか根拠まで言えれば完璧！）
-                  </p>
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-xs font-extrabold text-[#1F4E79]">
+                      ✓ 1秒即答 ○×チェック（×はどこが違うか根拠まで言えれば完璧！）
+                    </p>
+                    <div className="flex items-center gap-2 text-xs font-extrabold">
+                      {currentOxStats.answered > 0 && (
+                        <span
+                          className={`rounded-full px-2.5 py-0.5 ${
+                            currentOxStats.correct === currentOxStats.total
+                              ? 'bg-emerald-100 text-emerald-800'
+                              : 'bg-blue-100 text-blue-800'
+                          }`}
+                        >
+                          正答 {currentOxStats.correct}/{currentOxStats.total}
+                        </span>
+                      )}
+                      {currentOxStats.answered > 0 && (
+                        <button
+                          type="button"
+                          onClick={resetCurrentPageOx}
+                          className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-2.5 py-0.5 text-[11px] font-bold text-slate-600 hover:bg-slate-50"
+                        >
+                          <RotateCcw size={11} aria-hidden="true" />
+                          <span>解き直す</span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
                   <div className="space-y-2">
                     {currentPage.oxChecks.map((ox, oIdx) => {
                       const oxKey = `${activeSheet.id}_p${pageIdx}_ox${oIdx}`;
@@ -1023,7 +1279,83 @@ export function LearningPrintView({
         </footer>
       )}
 
-      {/* 単元目次モーダル（編ごとに整理された全単元一覧） */}
+      {/* 5. 1秒インデックス語句検索モーダル */}
+      {searchOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/45 p-3 pt-12 sm:p-6 sm:pt-16"
+          onClick={() => setSearchOpen(false)}
+        >
+          <div
+            className="flex max-h-[80dvh] w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-[#E2D9C2] bg-[#FFFDF8] shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2 border-b border-[#EFE8D5] px-3.5 py-2.5">
+              <Search size={18} style={{ color: theme.accent }} aria-hidden="true" />
+              <input
+                ref={searchInputRef}
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={`${theme.label}の全${totalSubjectPages}ページから人物・条約・判例・語句を検索…`}
+                className="min-w-0 flex-1 bg-transparent text-sm font-bold text-[#1F2D3D] placeholder:font-normal placeholder:text-slate-400 focus:outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setSearchOpen(false)}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#E5DEC9] bg-white text-[#34495E]"
+                aria-label="検索を閉じる"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-3">
+              {!searchQuery.trim() ? (
+                <div className="py-6 text-center text-xs text-slate-500">
+                  <p className="font-bold text-slate-700">
+                    調べたいキーワードを入力すると、該当する単元・Stepへ1タップでジャンプします
+                  </p>
+                  <p className="mt-1">複数語スペース区切り（AND検索）にも対応しています</p>
+                </div>
+              ) : searchResults.length === 0 ? (
+                <p className="py-6 text-center text-xs font-bold text-slate-500">
+                  「{searchQuery}」に一致するページは見つかりませんでした
+                </p>
+              ) : (
+                <div className="space-y-2">
+                  <p className="px-1 text-[11px] font-extrabold text-slate-500">
+                    {searchResults.length}件ヒット（タップで該当ページへ直行）
+                  </p>
+                  {searchResults.map(({ entry, snippet }) => (
+                    <button
+                      key={`${entry.sheetIdx}_${entry.pageIdx}`}
+                      type="button"
+                      onClick={() => selectUnit(entry.sheetIdx, entry.pageIdx)}
+                      className="flex w-full flex-col items-start rounded-xl border border-[#E5DEC9] bg-white p-2.5 text-left transition hover:border-slate-400 hover:bg-[#FCF9F2]"
+                    >
+                      <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-extrabold">
+                        <span
+                          className="rounded px-1.5 py-0.5 text-white"
+                          style={{ backgroundColor: theme.accent }}
+                        >
+                          {entry.unitLabel}・Step {entry.pageIdx + 1}
+                        </span>
+                        <span className="text-[#1F2D3D]">{entry.unitTitle}</span>
+                      </div>
+                      <p className="mt-1 text-xs font-extrabold text-[#2C3E50]">{entry.pageTitle}</p>
+                      <p className="mt-0.5 line-clamp-2 text-[11.5px] leading-relaxed text-slate-600">
+                        {snippet}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 6. 単元目次モーダル（全単元一覧 ⇔ 要復習ブックマーク切替対応） */}
       {tocOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-3 sm:p-6"
@@ -1033,77 +1365,118 @@ export function LearningPrintView({
             className="flex max-h-[85dvh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-[#E2D9C2] bg-[#FFFDF8] shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-[#EFE8D5] px-4 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#EFE8D5] px-4 py-3">
               <div>
                 <p className="text-xs font-bold text-[#6C7A89]">
-                  {theme.label}（全{sheets.length}単元・共通テスト全範囲網羅）
+                  {theme.label}（全{sheets.length}単元・全{totalSubjectPages}ページ完全網羅）
                 </p>
                 <h2 className="text-base font-extrabold text-[#1F2D3D]">単元別 まとめプリント目次</h2>
               </div>
-              <button
-                type="button"
-                onClick={() => setTocOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5DEC9] bg-white text-[#34495E]"
-                aria-label="目次を閉じる"
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setTocBookmarkOnly((v) => !v)}
+                  className={`inline-flex min-h-[36px] items-center gap-1 rounded-full border px-3 text-xs font-extrabold transition ${
+                    tocBookmarkOnly
+                      ? 'border-amber-400 bg-amber-50 text-amber-800'
+                      : 'border-[#E5DEC9] bg-white text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  <Bookmark size={13} fill={tocBookmarkOnly ? '#F59E0B' : 'none'} aria-hidden="true" />
+                  <span>要復習のみ({subjectBookmarks.length})</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTocOpen(false)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#E5DEC9] bg-white text-[#34495E]"
+                  aria-label="目次を閉じる"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
             <div className="flex-1 space-y-4 overflow-y-auto p-4">
-              {groupedByPart.map(([partTitle, entries]) => (
-                <div key={partTitle}>
-                  <h3
-                    className="mb-2 text-xs font-black tracking-wide uppercase"
-                    style={{ color: theme.accent }}
-                  >
-                    ■ {partTitle}
-                  </h3>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {entries.map(({ sheet, index }) => {
-                      const active = index === activeSheetIdx;
-                      const readPages = sheet.pages.filter((_, p) =>
-                        completedPages.has(`${sheet.id}_p${p}`),
-                      ).length;
-                      const figCount = sheet.pages.reduce(
-                        (acc, p) => acc + (p.figures?.length ?? 0),
-                        0,
-                      );
-                      return (
-                        <button
-                          key={sheet.id}
-                          type="button"
-                          onClick={() => selectUnit(index)}
-                          className={`flex flex-col items-start rounded-xl border p-3 text-left transition ${
-                            active
-                              ? 'border-2 bg-[#FAF6EC]'
-                              : 'border-[#E5DEC9] bg-white hover:bg-[#FCF9F2]'
-                          }`}
-                          style={active ? { borderColor: theme.accent } : undefined}
-                        >
-                          <div className="flex w-full items-center justify-between gap-2 text-[11px] font-extrabold">
-                            <span className="flex items-center gap-1" style={{ color: theme.accent }}>
-                              <span>{sheet.unitLabel}</span>
-                              {figCount > 0 && (
-                                <span className="rounded bg-slate-100 px-1.5 py-0.2 text-[10px] font-bold text-slate-600">
-                                  資料{figCount}
-                                </span>
-                              )}
-                            </span>
-                            <span className="text-[#6C7A89]">
-                              {readPages}/{sheet.pages.length} ページ読了
-                            </span>
-                          </div>
-                          <p className="mt-1 text-sm font-extrabold text-[#1F2D3D]">{sheet.title}</p>
-                          <p className="mt-0.5 line-clamp-1 text-[11.5px] text-[#5D6D7E]">
-                            {sheet.subtitle}
-                          </p>
-                        </button>
-                      );
-                    })}
+              {tocBookmarkOnly ? (
+                subjectBookmarks.length === 0 ? (
+                  <p className="py-8 text-center text-xs font-bold text-slate-500">
+                    まだ要復習ブックマークされたページがありません。各ページ右上の「要復習」ボタンで登録できます。
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {subjectBookmarks.map((bm) => (
+                      <button
+                        key={bm.key}
+                        type="button"
+                        onClick={() => selectUnit(bm.sheetIdx, bm.pageIdx)}
+                        className="flex w-full flex-col items-start rounded-xl border border-amber-300 bg-amber-50/40 p-3 text-left transition hover:bg-amber-50"
+                      >
+                        <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-amber-800">
+                          <Bookmark size={12} fill="#F59E0B" aria-hidden="true" />
+                          <span>
+                            {bm.unitLabel}・Step {bm.pageIdx + 1}｜{bm.unitTitle}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-sm font-extrabold text-[#1F2D3D]">{bm.pageTitle}</p>
+                      </button>
+                    ))}
                   </div>
-                </div>
-              ))}
+                )
+              ) : (
+                groupedByPart.map(([partTitle, entries]) => (
+                  <div key={partTitle}>
+                    <h3
+                      className="mb-2 text-xs font-black tracking-wide uppercase"
+                      style={{ color: theme.accent }}
+                    >
+                      ■ {partTitle}
+                    </h3>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {entries.map(({ sheet, index }) => {
+                        const active = index === activeSheetIdx;
+                        const readPages = sheet.pages.filter((_, p) =>
+                          completedPages.has(`${sheet.id}_p${p}`),
+                        ).length;
+                        const figCount = sheet.pages.reduce(
+                          (acc, p) => acc + (p.figures?.length ?? 0),
+                          0,
+                        );
+                        return (
+                          <button
+                            key={sheet.id}
+                            type="button"
+                            onClick={() => selectUnit(index)}
+                            className={`flex flex-col items-start rounded-xl border p-3 text-left transition ${
+                              active
+                                ? 'border-2 bg-[#FAF6EC]'
+                                : 'border-[#E5DEC9] bg-white hover:bg-[#FCF9F2]'
+                            }`}
+                            style={active ? { borderColor: theme.accent } : undefined}
+                          >
+                            <div className="flex w-full items-center justify-between gap-2 text-[11px] font-extrabold">
+                              <span className="flex items-center gap-1" style={{ color: theme.accent }}>
+                                <span>{sheet.unitLabel}</span>
+                                {figCount > 0 && (
+                                  <span className="rounded bg-slate-100 px-1.5 py-0.2 text-[10px] font-bold text-slate-600">
+                                    資料{figCount}
+                                  </span>
+                                )}
+                              </span>
+                              <span className="text-[#6C7A89]">
+                                {readPages}/{sheet.pages.length} ページ読了
+                              </span>
+                            </div>
+                            <p className="mt-1 text-sm font-extrabold text-[#1F2D3D]">{sheet.title}</p>
+                            <p className="mt-0.5 line-clamp-1 text-[11.5px] text-[#5D6D7E]">
+                              {sheet.subtitle}
+                            </p>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

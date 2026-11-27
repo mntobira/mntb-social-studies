@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 525" role="img" aria-label="② 頻出地図記号ペア＆沖積低地の災害リスク断面" style="font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#fafafa">
+  <rect x="10" y="10" width="680" height="505" fill="#fafafa" stroke="#18181b" stroke-width="2.2"/>
+  <text x="350" y="44" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">② 混同しやすい地図記号ペア ＆ 低地微地形の液状化・浸水リスク</text>
+  <text x="350" y="70" text-anchor="middle" font-size="13.5" font-weight="700" fill="#475569">（共通テスト第5問・地域調査で必ず狙われる新旧地形図・ハザードマップ比較）</text>
+  <!-- Map Symbols Grid -->
+  <rect x="34" y="90" width="632" height="196" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.7"/>
+  <!-- Symbol 1: Orchard vs Tea vs Mulberry -->
+  <circle cx="95" cy="140" r="14" fill="none" stroke="#0f172a" stroke-width="2.4"/>
+  <line x1="95" y1="126" x2="95" y2="115" stroke="#0f172a" stroke-width="2.4"/>
+  <text x="95" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">果樹園</text>
+  <text x="95" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">（扇状地・傾斜地）</text>
+
+  <circle cx="215" cy="130" r="4" fill="#0f172a"/>
+  <circle cx="205" cy="146" r="4" fill="#0f172a"/>
+  <circle cx="225" cy="146" r="4" fill="#0f172a"/>
+  <text x="215" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">茶畑（∴三点）</text>
+  <text x="215" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">（牧之原・シラス台地）</text>
+
+  <text x="340" y="149" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">Ｙ</text>
+  <line x1="326" y1="133" x2="354" y2="133" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="340" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">桑畑（旧版図！）</text>
+  <text x="340" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b91c1c">→現在は果樹園・宅地化</text>
+
+  <line x1="455" y1="124" x2="465" y2="144" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="475" y1="124" x2="465" y2="144" stroke="#0f172a" stroke-width="2.5"/>
+  <text x="465" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">畑（V字）</text>
+  <text x="465" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">⇔ 水田は「‖（二本線）」</text>
+
+  <circle cx="590" cy="138" r="15" fill="none" stroke="#0f172a" stroke-width="2.4"/>
+  <line x1="590" y1="123" x2="590" y2="153" stroke="#0f172a" stroke-width="2.2"/>
+  <line x1="575" y1="138" x2="605" y2="138" stroke="#0f172a" stroke-width="2.2"/>
+  <text x="590" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">保健所（⊕）</text>
+  <text x="590" y="194" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">病院は盾枠＋十字</text>
+
+  <text x="350" y="232" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1e293b">【2006年〜新記号】老人ホーム＝家屋根＋杖 ／ 風車＝Y字羽根 ／ 博物館＝神殿柱 ／ 図書館＝開いた本</text>
+  <text x="350" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">【官公署ペア】市役所＝二重丸◎ ／ 町村役場＝一重丸○ ／ 警察署＝⊗ ／ 消防署＝さすまた（丫） ／ 税務署＝そろばん玉</text>
+
+  <!-- Cross-section of Floodplain -->
+  <rect x="34" y="302" width="632" height="196" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.7"/>
+  <text x="350" y="330" text-anchor="middle" font-size="16" font-weight="800" fill="#0f172a">氾濫原（沖積低地）の微地形断面と災害リスクの絶対対応</text>
+  <path d="M 55 430 L 145 430 L 175 398 L 210 398 L 222 442 L 268 442 L 280 398 L 315 398 L 345 435 L 495 435 L 535 372 L 645 372" fill="none" stroke="#1e293b" stroke-width="3"/>
+  <rect x="223" y="418" width="44" height="23" fill="#bae6fd"/>
+  <text x="245" y="388" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0369a1">現河道（天井川注意）</text>
+  <text x="178" y="384" text-anchor="middle" font-size="12.5" font-weight="800" fill="#15803d">自然堤防（微高地）</text>
+  <text x="178" y="458" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">砂礫・水はけ良＝旧集落・畑</text>
+  <text x="420" y="422" text-anchor="middle" font-size="13" font-weight="800" fill="#b91c1c">後背湿地・旧河道</text>
+  <text x="420" y="458" text-anchor="middle" font-size="12" font-weight="800" fill="#b91c1c">粘土泥炭＝水田→新興住宅は浸水・液状化大！</text>
+  <text x="590" y="362" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">洪積台地（段丘）</text>
+  <text x="590" y="405" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">地盤強固・洪水に強い避難適地</text>
+</svg>

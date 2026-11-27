@@ -4,8 +4,12 @@
 import type { SummaryPrintSheet } from './types';
 import { geographyPrintsPart1 } from './geographyPrintsPart1';
 import { geographyPrintsPart2 } from './geographyPrintsPart2';
+import { geographySupplementPages } from './geographySupplement';
 
 export const geographyPrints: SummaryPrintSheet[] = [
   ...geographyPrintsPart1,
   ...geographyPrintsPart2,
-];
+].map((unit) => ({
+  ...unit,
+  pages: [...unit.pages, ...(geographySupplementPages[unit.chapterId] ?? [])],
+}));
