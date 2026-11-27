@@ -80,126 +80,126 @@ export const SUBJECT_INDEX: readonly SubjectIndexEntry[] = [
     "chapters": [
       {
         "id": "jh1_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "農耕社会の成立・中国史書の倭国像・古墳の変遷と氏姓制度",
         "abstractTitle": "農耕社会の成立・中国史書の倭国像・古墳の変遷と氏姓制度",
         "realTitle": "1章 旧石器・縄文・弥生〜古墳時代の東アジアと王権"
       },
       {
         "id": "jh1_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "推古朝外交・乙巳の変〜壬申の乱・大宝律令の二官八省と税制",
         "abstractTitle": "推古朝外交・乙巳の変〜壬申の乱・大宝律令の二官八省と税制",
         "realTitle": "2章 飛鳥時代の政変と律令国家の成立"
       },
       {
         "id": "jh1_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "長屋王・藤原四子・橘諸兄・仲麻呂・道鏡と三世一身法・墾田永年私財法",
         "abstractTitle": "長屋王・藤原四子・橘諸兄・仲麻呂・道鏡と三世一身法・墾田永年私財法",
         "realTitle": "3章 奈良時代の政変と土地政策（公地公民の動揺）"
       },
       {
         "id": "jh1_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "桓武・嵯峨朝・藤原北家の他氏排斥・延喜天暦の治と受領・寄進地系荘園",
         "abstractTitle": "桓武・嵯峨朝・藤原北家の他氏排斥・延喜天暦の治と受領・寄進地系荘園",
         "realTitle": "4章 平安初期の律令再建と摂関政治の確立"
       },
       {
         "id": "jh1_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "後三条天皇・白河院政・保元平治の乱と日宋貿易・源平の争乱",
         "abstractTitle": "後三条天皇・白河院政・保元平治の乱と日宋貿易・源平の争乱",
         "realTitle": "5章 院政の開始と武士の台頭・平氏政権"
       },
       {
         "id": "jh2_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "守護地頭・承久の乱と新補地頭・御成敗式目・文永弘安の役と永仁の徳政令",
         "abstractTitle": "守護地頭・承久の乱と新補地頭・御成敗式目・文永弘安の役と永仁の徳政令",
         "realTitle": "6章 鎌倉幕府の成立・執権政治と元寇・得宗専制"
       },
       {
         "id": "jh2_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "南北朝の動乱・半済令と守護大名・日明勘合貿易・惣村と土一揆・戦国大名",
         "abstractTitle": "南北朝の動乱・半済令と守護大名・日明勘合貿易・惣村と土一揆・戦国大名",
         "realTitle": "7章 建武の新政・室町幕府と東アジア交易・下剋上"
       },
       {
         "id": "jh2_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "信長・秀吉の太閤検地と刀狩・武家諸法度・参勤交代と海禁・四つの口",
         "abstractTitle": "信長・秀吉の太閤検地と刀狩・武家諸法度・参勤交代と海禁・四つの口",
         "realTitle": "8章 織豊政権と幕藩体制の確立・「四つの口」"
       },
       {
         "id": "jh2_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "商品作物・三都と天下の台所・西廻り東廻り航路・三貨制度と元禄〜正徳の貨幣政策",
         "abstractTitle": "商品作物・三都と天下の台所・西廻り東廻り航路・三貨制度と元禄〜正徳の貨幣政策",
         "realTitle": "9章 近世の産業・流通・都市と文治政治・貨幣改鋳"
       },
       {
         "id": "jh2_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "享保・田沼・寛政・天保の政策対比・百姓一揆の変質・雄藩改革（薩長肥）",
         "abstractTitle": "享保・田沼・寛政・天保の政策対比・百姓一揆の変質・雄藩改革（薩長肥）",
         "realTitle": "10章 江戸三大改革・田沼時代と幕末動乱への胎動"
       },
       {
         "id": "jh3_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "不平等条約と金流出・尊王攘夷から薩長同盟・廃藩置県・地租改正・殖産興業",
         "abstractTitle": "不平等条約と金流出・尊王攘夷から薩長同盟・廃藩置県・地租改正・殖産興業",
         "realTitle": "11章 幕末開国と経済混乱・倒幕から明治維新諸改革"
       },
       {
         "id": "jh3_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "明治十四年の政変・松方財政・帝国憲法と初期議会・条約改正・日清日露と軽重工業化",
         "abstractTitle": "明治十四年の政変・松方財政・帝国憲法と初期議会・条約改正・日清日露と軽重工業化",
         "realTitle": "12章 自由民権運動・大日本帝国憲法と日清・日露戦争・産業革命"
       },
       {
         "id": "jh3_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "大戦景気・護憲運動・原敬と加藤高明内閣・井上財政（金解禁）vs 高橋財政",
         "abstractTitle": "大戦景気・護憲運動・原敬と加藤高明内閣・井上財政（金解禁）vs 高橋財政",
         "realTitle": "13章 第一次世界大戦・大正デモクラシーと政党内閣・昭和恐慌"
       },
       {
         "id": "jh3_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "満洲事変と国際連盟脱退・二・二六事件・日中全面戦争・国家総動員法・大政翼賛会と敗戦",
         "abstractTitle": "満洲事変と国際連盟脱退・二・二六事件・日中全面戦争・国家総動員法・大政翼賛会と敗戦",
         "realTitle": "14章 十五年戦争（日中戦争・太平洋戦争）と戦時総動員体制"
       },
       {
         "id": "jh3_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "GHQ五大改革指令・占領方針転換（ドッジライン）・講和独立・戦後4大外交と高度成長〜平成",
         "abstractTitle": "GHQ五大改革指令・占領方針転換（ドッジライン）・講和独立・戦後4大外交と高度成長〜平成",
         "realTitle": "15章 占領改革・独立回復と55年体制・高度経済成長から現代"
       },
       {
         "id": "jh4_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "飛鳥・白鳳・天平・弘仁貞観・国風・院政・鎌倉新仏教・北山と東山文化の完全対比",
         "abstractTitle": "飛鳥・白鳳・天平・弘仁貞観・国風・院政・鎌倉新仏教・北山と東山文化の完全対比",
         "realTitle": "16章 古代・中世文化史の転換点（飛鳥〜東山文化・仏教史）"
       },
       {
         "id": "jh4_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "桃山・寛永・元禄・宝暦天明・化政文化と儒学・国学・蘭学・近代文学美術と教育改革",
         "abstractTitle": "桃山・寛永・元禄・宝暦天明・化政文化と儒学・国学・蘭学・近代文学美術と教育改革",
         "realTitle": "17章 近世・近現代の文化・思想・学問・教育史総覧"
       },
       {
         "id": "jh4_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "駅制から五街道と鉄道・律令〜近代法典編纂・アイヌと蝦夷地・琉球王国から沖縄返還まで",
         "abstractTitle": "駅制から五街道と鉄道・律令〜近代法典編纂・アイヌと蝦夷地・琉球王国から沖縄返還まで",
         "realTitle": "18章 テーマ史総括（交通通信史・法制史・北海道〔蝦夷地〕史・沖縄〔琉球〕史）"
@@ -212,126 +212,126 @@ export const SUBJECT_INDEX: readonly SubjectIndexEntry[] = [
     "chapters": [
       {
         "id": "wh1_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "メソポタミア〜イラン諸帝国・ポリス民主政・ヘレニズム・ローマ法とキリスト教",
         "abstractTitle": "メソポタミア〜イラン諸帝国・ポリス民主政・ヘレニズム・ローマ法とキリスト教",
         "realTitle": "1章 古代オリエントとギリシア・ローマ地中海世界"
       },
       {
         "id": "wh1_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "インダス〜グプタ・デリー＝スルタン朝と東南アジア港市国家・大陸部諸王朝",
         "abstractTitle": "インダス〜グプタ・デリー＝スルタン朝と東南アジア港市国家・大陸部諸王朝",
         "realTitle": "2章 南アジア・東南アジア世界の形成と海域ネットワーク"
       },
       {
         "id": "wh1_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "秦漢の郡県・郡国制・魏晋南北朝〜隋唐律令と宋代の士大夫社会",
         "abstractTitle": "秦漢の郡県・郡国制・魏晋南北朝〜隋唐律令と宋代の士大夫社会",
         "realTitle": "3章 中国古代帝国から唐宋変革・東アジア世界"
       },
       {
         "id": "wh1_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "正統カリフ〜ウマイヤ・アッバース朝・トルコ化と西アフリカ黄金交易",
         "abstractTitle": "正統カリフ〜ウマイヤ・アッバース朝・トルコ化と西アフリカ黄金交易",
         "realTitle": "4章 イスラーム世界の形成・拡大とアフロ＝ユーラシア交易網"
       },
       {
         "id": "wh1_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "パクス＝モンゴリカ・明の海禁と朝貢・清の藩部支配・オスマン・サファヴィー・ムガル",
         "abstractTitle": "パクス＝モンゴリカ・明の海禁と朝貢・清の藩部支配・オスマン・サファヴィー・ムガル",
         "realTitle": "5章 モンゴル帝国と明・清および近世イスラーム三大帝国"
       },
       {
         "id": "wh2_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "教皇権の盛衰・十字軍と都市復興・ルターとカルヴァン・ウェストファリア条約",
         "abstractTitle": "教皇権の盛衰・十字軍と都市復興・ルターとカルヴァン・ウェストファリア条約",
         "realTitle": "6章 中世西欧封建社会からルネサンス・宗教改革・主権国家体制へ"
       },
       {
         "id": "wh2_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "大西洋三角貿易・世界銀フロー・価格革命・英仏蘭覇権争いと啓蒙専制主義",
         "abstractTitle": "大西洋三角貿易・世界銀フロー・価格革命・英仏蘭覇権争いと啓蒙専制主義",
         "realTitle": "7章 大航海時代・世界の一体化とヨーロッパ絶対王政"
       },
       {
         "id": "wh2_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "綿工業と蒸気機関・イギリス立憲政・アメリカ合衆国憲法・フランス革命とナポレオン",
         "abstractTitle": "綿工業と蒸気機関・イギリス立憲政・アメリカ合衆国憲法・フランス革命とナポレオン",
         "realTitle": "8章 産業革命と大西洋革命（英・米・仏・ラテンアメリカ）"
       },
       {
         "id": "wh2_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "1830・1848年革命・イタリアとドイツの統一・東方問題とロシア改革・南北戦争",
         "abstractTitle": "1830・1848年革命・イタリアとドイツの統一・東方問題とロシア改革・南北戦争",
         "realTitle": "9章 ウィーン体制の動揺と19世紀欧米の国民国家形成"
       },
       {
         "id": "wh2_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "第2次産業革命・アフリカ分割・インド/東南アジア植民地化・清末〜辛亥革命と西アジア立憲運動",
         "abstractTitle": "第2次産業革命・アフリカ分割・インド/東南アジア植民地化・清末〜辛亥革命と西アジア立憲運動",
         "realTitle": "10章 帝国主義の世界分割とアジア・アフリカの変容（歴史総合連携）"
       },
       {
         "id": "wh3_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "総力戦と中東秘密外交・十月革命とネップ・国際連盟とワイマール/ロカルノ体制",
         "abstractTitle": "総力戦と中東秘密外交・十月革命とネップ・国際連盟とワイマール/ロカルノ体制",
         "realTitle": "11章 第一次世界大戦・ロシア革命とヴェルサイユ・ワシントン体制"
       },
       {
         "id": "wh3_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "五・四運動と国共合作・ガンディー・トルコ革命・ニューディール vs ブロック経済 vs 枢軸国",
         "abstractTitle": "五・四運動と国共合作・ガンディー・トルコ革命・ニューディール vs ブロック経済 vs 枢軸国",
         "realTitle": "12章 戦間期アジア・中東の民族運動と世界恐慌・ファシズム"
       },
       {
         "id": "wh3_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "宥和政策の破綻・独ソ不可侵条約〜大西洋憲章・ヤルタ/ポツダムとブレトン＝ウッズ体制",
         "abstractTitle": "宥和政策の破綻・独ソ不可侵条約〜大西洋憲章・ヤルタ/ポツダムとブレトン＝ウッズ体制",
         "realTitle": "13章 第二次世界大戦と戦後国際経済・国連体制の形成"
       },
       {
         "id": "wh3_4",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "封じ込め政策と東西軍事ブロック・中国建国と朝鮮戦争・第三世界・キューバ危機・ベトナム戦争",
         "abstractTitle": "封じ込め政策と東西軍事ブロック・中国建国と朝鮮戦争・第三世界・キューバ危機・ベトナム戦争",
         "realTitle": "14章 東西冷戦の展開とアジア・アフリカ独立・中東戦争"
       },
       {
         "id": "wh3_5",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "イラン革命と新冷戦・鄧小平の改革開放・ペレストロイカと東欧革命・EU統合と現代紛争",
         "abstractTitle": "イラン革命と新冷戦・鄧小平の改革開放・ペレストロイカと東欧革命・EU統合と現代紛争",
         "realTitle": "15章 冷戦終結・ソ連解体と現代グローバル世界の課題"
       },
       {
         "id": "wh4_1",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "ギリシア・ローマ古典〜12世紀ルネサンス〜科学革命・近代美術文芸と中国儒学・史書・技術伝播",
         "abstractTitle": "ギリシア・ローマ古典〜12世紀ルネサンス〜科学革命・近代美術文芸と中国儒学・史書・技術伝播",
         "realTitle": "16章 西洋・イスラーム・中国文化史の通史横断マスター"
       },
       {
         "id": "wh4_2",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "アテネの疫病・黒死病・コロンブス交換の天然痘・コレラ・スペイン風邪とヒポクラテス〜フレミングの医学史",
         "abstractTitle": "アテネの疫病・黒死病・コロンブス交換の天然痘・コレラ・スペイン風邪とヒポクラテス〜フレミングの医学史",
         "realTitle": "17章 テーマ史①：感染症と医学・公衆衛生の世界史"
       },
       {
         "id": "wh4_3",
-        "problemCount": 3,
+        "problemCount": 4,
         "title": "世界商品とプランテーション・古代奴隷〜マムルーク〜奴隷貿易廃止・バッハ〜国民楽派・グロティウス〜核軍縮",
         "abstractTitle": "世界商品とプランテーション・古代奴隷〜マムルーク〜奴隷貿易廃止・バッハ〜国民楽派・グロティウス〜核軍縮",
         "realTitle": "18章 テーマ史②：嗜好品（砂糖・茶・コーヒー）・奴隷制・西洋音楽・平和運動史"
@@ -344,112 +344,112 @@ export const SUBJECT_INDEX: readonly SubjectIndexEntry[] = [
     "chapters": [
       {
         "id": "ge1_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "正角・正積・正距方位図法の使い分けとGIS空間分析・時差計算",
         "abstractTitle": "正角・正積・正距方位図法の使い分けとGIS空間分析・時差計算",
         "realTitle": "1章 地図投影法・時差計算とGIS・防災（地理総合）"
       },
       {
         "id": "ge1_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "安定陸塊・古期造山帯・新期造山帯の分布とプレート境界3類型",
         "abstractTitle": "安定陸塊・古期造山帯・新期造山帯の分布とプレート境界3類型",
         "realTitle": "2章 プレートテクトニクスと世界の大地形"
       },
       {
         "id": "ge1_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "沖積平野の微地形・リアス海岸vsエスチュアリーvsフィヨルド・周氷河とサンゴ礁",
         "abstractTitle": "沖積平野の微地形・リアス海岸vsエスチュアリーvsフィヨルド・周氷河とサンゴ礁",
         "realTitle": "3章 河川・海岸・氷河・カルスト・乾燥地形（外的営力）"
       },
       {
         "id": "ge1_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "気圧帯の季節移動・A〜E気候のハイサーグラフ判読・植生と土壌の完全対応",
         "abstractTitle": "気圧帯の季節移動・A〜E気候のハイサーグラフ判読・植生と土壌の完全対応",
         "realTitle": "4章 大気大循環・ケッペン気候区分・ハイサーグラフと成帯土壌"
       },
       {
         "id": "ge2_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "土地生産性×労働生産性マトリクス・企業的農業vs集約的農業・作物統計",
         "abstractTitle": "土地生産性×労働生産性マトリクス・企業的農業vs集約的農業・作物統計",
         "realTitle": "5章 ホイットルセー農業区分・食料問題と主要農畜産物統計"
       },
       {
         "id": "ge2_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "軟材vs硬材・養殖漁業の急増・鉄炭油銅アルミと主要国の電源構成判読",
         "abstractTitle": "軟材vs硬材・養殖漁業の急増・鉄炭油銅アルミと主要国の電源構成判読",
         "realTitle": "6章 林業・水産業とエネルギー・鉱産資源・発電構成"
       },
       {
         "id": "ge2_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "原料・市場・労働力・電力・集積指向とアジアNIES・ASEAN・先端知識産業",
         "abstractTitle": "原料・市場・労働力・電力・集積指向とアジアNIES・ASEAN・先端知識産業",
         "realTitle": "7章 工業立地論（ウェーバー）と世界の工業・ICTサービス業の変容"
       },
       {
         "id": "ge2_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "人口ピラミッド判読・人口ボーナス・プライメイトシティ・ジェントリフィケーションと交通モード",
         "abstractTitle": "人口ピラミッド判読・人口ボーナス・プライメイトシティ・ジェントリフィケーションと交通モード",
         "realTitle": "8章 人口転換・都市システム・居住問題と世界の貿易・交通"
       },
       {
         "id": "ge3_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "秦嶺・淮河線と中国経済格差・ASEANの多様性・インドのモンスーンとIT産業",
         "abstractTitle": "秦嶺・淮河線と中国経済格差・ASEANの多様性・インドのモンスーンとIT産業",
         "realTitle": "9章 東アジア・東南アジア・南アジア地誌"
       },
       {
         "id": "ge3_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "地下水路カナート・アラル海縮小・アフリカの植民地国境とモノカルチャー脱却",
         "abstractTitle": "地下水路カナート・アラル海縮小・アフリカの植民地国境とモノカルチャー脱却",
         "realTitle": "10章 西アジア・中央アジア・アフリカ地誌"
       },
       {
         "id": "ge3_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ゲルマン・ラテン・スラブ3大言語宗教対応・EU統合と農業工業・ロシアの資源",
         "abstractTitle": "ゲルマン・ラテン・スラブ3大言語宗教対応・EU統合と農業工業・ロシアの資源",
         "realTitle": "11章 ヨーロッパ・ロシアおよび周辺諸国地誌"
       },
       {
         "id": "ge3_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "西経100度線と適地適作・ヒスパニック・アンデス高度別農業・豪州の白豪主義転換とアジア結合",
         "abstractTitle": "西経100度線と適地適作・ヒスパニック・アンデス高度別農業・豪州の白豪主義転換とアジア結合",
         "realTitle": "12章 アングロアメリカ・ラテンアメリカ・オセアニア地誌"
       },
       {
         "id": "ge4_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "フォッサマグナと中央構造線・日本の6気候区分の雨温図一発判別・自然災害",
         "abstractTitle": "フォッサマグナと中央構造線・日本の6気候区分の雨温図一発判別・自然災害",
         "realTitle": "13章 日本列島の自然環境（4プレート・構造線・6気候区分）"
       },
       {
         "id": "ge4_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "近郊農業・促成栽培・抑制栽培と太平洋ベルト・三大都市圏一極集中・限界集落",
         "abstractTitle": "近郊農業・促成栽培・抑制栽培と太平洋ベルト・三大都市圏一極集中・限界集落",
         "realTitle": "14章 日本の農林水産業・製造業の変容と人口・過疎問題"
       },
       {
         "id": "ge4_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "北海道の酪農畑作区分・扇状地果樹・瀬戸内3本連絡橋ストロー現象・九州シラス台地",
         "abstractTitle": "北海道の酪農畑作区分・扇状地果樹・瀬戸内3本連絡橋ストロー現象・九州シラス台地",
         "realTitle": "15章 日本の地域別地誌（北海道・東北〜関東・中部〜近畿・中四国・九州沖縄）"
       },
       {
         "id": "ge4_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "縮尺と実距離面積計算・等高線尾根谷判読・地図記号・新旧地形図と防災まちづくり探究",
         "abstractTitle": "縮尺と実距離面積計算・等高線尾根谷判読・地図記号・新旧地形図と防災まちづくり探究",
         "realTitle": "16章 地形図読図（2万5千分の1・旧版比較）と地域調査（第5問対策）"
@@ -462,112 +462,112 @@ export const SUBJECT_INDEX: readonly SubjectIndexEntry[] = [
     "chapters": [
       {
         "id": "pe1_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "法の支配vs形式的法治主義・人権宣言の歴史・英米中などの政治制度比較",
         "abstractTitle": "法の支配vs形式的法治主義・人権宣言の歴史・英米中などの政治制度比較",
         "realTitle": "1章 法の支配と立憲主義・世界の政治体制比較"
       },
       {
         "id": "pe1_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "大日本帝国憲法との対比・憲法9条と自衛隊判例・日米安保・PKO・2015平和安全法制",
         "abstractTitle": "大日本帝国憲法との対比・憲法9条と自衛隊判例・日米安保・PKO・2015平和安全法制",
         "realTitle": "2章 日本国憲法の制定・平和主義と安全保障法制"
       },
       {
         "id": "pe1_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "平等権・政教分離・表現と経済の自由・人身の自由・社会権・参政権・新しい人権と法令違憲判例",
         "abstractTitle": "平等権・政教分離・表現と経済の自由・人身の自由・社会権・参政権・新しい人権と法令違憲判例",
         "realTitle": "3章 基本的人権の体系と最高裁判所の全重要判例"
       },
       {
         "id": "pe1_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "衆議院の優越・国会の種類・議院内閣制と69条／7条解散・行政改革・裁判員制度と少年法",
         "abstractTitle": "衆議院の優越・国会の種類・議院内閣制と69条／7条解散・行政改革・裁判員制度と少年法",
         "realTitle": "4章 国会・内閣・裁判所と行政・司法制度改革"
       },
       {
         "id": "pe1_5",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "住民自治と団体自治・二元代表制・直接請求権（1/50と1/3）・地方財政とドント式／アダムズ方式計算",
         "abstractTitle": "住民自治と団体自治・二元代表制・直接請求権（1/50と1/3）・地方財政とドント式／アダムズ方式計算",
         "realTitle": "5章 地方自治・選挙制度と議席配分計算（ドント式・アダムズ方式）"
       },
       {
         "id": "pe2_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "重商主義から古典派・マルクス・ケインズ・新自由主義・行動経済学と4つの景気波",
         "abstractTitle": "重商主義から古典派・マルクス・ケインズ・新自由主義・行動経済学と4つの景気波",
         "realTitle": "6章 資本主義経済の変遷・経済学説と景気循環の4波"
       },
       {
         "id": "pe2_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "需要供給曲線のシフト・価格弾力性・寡占市場（管理価格・カルテル）と独占禁止法・市場の失敗",
         "abstractTitle": "需要供給曲線のシフト・価格弾力性・寡占市場（管理価格・カルテル）と独占禁止法・市場の失敗",
         "realTitle": "7章 市場機構（需要・供給シフトと価格弾力性）・寡占と市場の失敗"
       },
       {
         "id": "pe2_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "株式会社とコーポレート・ガバナンス・三面等価の原則・GDP/GNI/NI変換公式と実質経済成長率計算",
         "abstractTitle": "株式会社とコーポレート・ガバナンス・三面等価の原則・GDP/GNI/NI変換公式と実質経済成長率計算",
         "realTitle": "8章 現代の企業経営と国民所得計算（GDP・GNI・NI・経済成長率）"
       },
       {
         "id": "pe2_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "金本位制から管理通貨制度・日銀の3機能・公開市場操作（買いオペ・売りオペ）と信用創造計算",
         "abstractTitle": "金本位制から管理通貨制度・日銀の3機能・公開市場操作（買いオペ・売りオペ）と信用創造計算",
         "realTitle": "9章 通貨制度・日本銀行の金融政策と信用創造の計算"
       },
       {
         "id": "pe2_5",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "財政の3機能（マスグレイブ）・直間比率と税の累進性/逆進性・財政法4条5条・プライマリーバランスとジニ係数",
         "abstractTitle": "財政の3機能（マスグレイブ）・直間比率と税の累進性/逆進性・財政法4条5条・プライマリーバランスとジニ係数",
         "realTitle": "10章 財政・租税制度・公債規律と所得再分配（ローレンツ曲線・ジニ係数）"
       },
       {
         "id": "pe3_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "傾斜生産方式・ドッジライン・55年体制・神武岩戸いざなぎ景気・列島改造と狂乱物価・プラザ合意とバブル崩壊・構造改革・アベノミクス",
         "abstractTitle": "傾斜生産方式・ドッジライン・55年体制・神武岩戸いざなぎ景気・列島改造と狂乱物価・プラザ合意とバブル崩壊・構造改革・アベノミクス",
         "realTitle": "11章 戦後日本の政治・経済史完全攻略（復興・高度成長・石油危機・バブルから現代へ）"
       },
       {
         "id": "pe3_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "労働三権と労働三法の対応・日本的雇用慣行の変容・社会保障4分野と社会保険5種・少子高齢化とマクロ経済スライド",
         "abstractTitle": "労働三権と労働三法の対応・日本的雇用慣行の変容・社会保障4分野と社会保険5種・少子高齢化とマクロ経済スライド",
         "realTitle": "12章 労働問題（労働三法・働き方改革）と社会保障制度（4つの柱・5つの社会保険）"
       },
       {
         "id": "pe3_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "PL法（無過失責任）・消費者契約法・クーリングオフ・農地法改正と食料自給率・四大公害病と環境基本法",
         "abstractTitle": "PL法（無過失責任）・消費者契約法・クーリングオフ・農地法改正と食料自給率・四大公害病と環境基本法",
         "realTitle": "13章 消費者問題・日本農業と食料安全保障・公害と環境政策"
       },
       {
         "id": "pe4_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ウェストファリア条約とグロティウス・国連総会と安保理拒否権・ICJとICCの決定的な違い・冷戦史とPTBT/NPT/CTBT/TPNW",
         "abstractTitle": "ウェストファリア条約とグロティウス・国連総会と安保理拒否権・ICJとICCの決定的な違い・冷戦史とPTBT/NPT/CTBT/TPNW",
         "realTitle": "14章 主権国家体制・国際法・国際連合（ICJ vs ICC）と冷戦・核軍縮条約史"
       },
       {
         "id": "pe4_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "パレスチナ問題と中東戦争・旧ユーゴ・ルワンダ・クルド・カシミール・ロシアのウクライナ侵攻と日本の周辺領土問題",
         "abstractTitle": "パレスチナ問題と中東戦争・旧ユーゴ・ルワンダ・クルド・カシミール・ロシアのウクライナ侵攻と日本の周辺領土問題",
         "realTitle": "15章 現代の地域・民族・宗教紛争と日本の領土・外交課題"
       },
       {
         "id": "pe4_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ブレトンウッズから変動相場制・円高円安と購買力平価計算・リカード比較生産費説・国際収支・WTOとCPTPP/RCEP・パリ協定とSDGs",
         "abstractTitle": "ブレトンウッズから変動相場制・円高円安と購買力平価計算・リカード比較生産費説・国際収支・WTOとCPTPP/RCEP・パリ協定とSDGs",
         "realTitle": "16章 国際通貨体制史・為替と購買力平価＆比較優位計算・WTO/EPAと地球環境条約"
@@ -580,119 +580,119 @@ export const SUBJECT_INDEX: readonly SubjectIndexEntry[] = [
     "chapters": [
       {
         "id": "et1_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "エリクソン・フロイト防衛機制・マズロー欲求階層と性格理論",
         "abstractTitle": "エリクソン・フロイト防衛機制・マズロー欲求階層と性格理論",
         "realTitle": "1章 青年期の自己形成と欲求・防衛機制"
       },
       {
         "id": "et1_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "自然哲学・ソフィスト・ソクラテス・プラトン・アリストテレス・ストア派とエピクロス派",
         "abstractTitle": "自然哲学・ソフィスト・ソクラテス・プラトン・アリストテレス・ストア派とエピクロス派",
         "realTitle": "2章 古代ギリシア哲学とヘレニズムの思想"
       },
       {
         "id": "et1_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "律法と預言者・イエスのアガペー・教父とスコラ学・クルアーンと六信五行",
         "abstractTitle": "律法と預言者・イエスのアガペー・教父とスコラ学・クルアーンと六信五行",
         "realTitle": "3章 一神教の世界（ユダヤ教・キリスト教・イスラーム）と中世スコラ学"
       },
       {
         "id": "et1_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ウパニシャッド哲学（梵我一如）・原始仏教（縁起・四諦八正道）と上座部・大乗仏教",
         "abstractTitle": "ウパニシャッド哲学（梵我一如）・原始仏教（縁起・四諦八正道）と上座部・大乗仏教",
         "realTitle": "4章 古代インド思想と仏教の展開"
       },
       {
         "id": "et1_5",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "孔子・孟子・荀子・老荘思想・墨子・韓非子と宋明理学（性即理vs心即理）",
         "abstractTitle": "孔子・孟子・荀子・老荘思想・墨子・韓非子と宋明理学（性即理vs心即理）",
         "realTitle": "5章 中国思想の展開（儒家・道家・墨家・法家と朱子学・陽明学）"
       },
       {
         "id": "et2_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "古神道（清明心）・聖徳太子・最澄と空海・法然・親鸞・道元・日蓮・一遍",
         "abstractTitle": "古神道（清明心）・聖徳太子・最澄と空海・法然・親鸞・道元・日蓮・一遍",
         "realTitle": "6章 古代日本の信仰と奈良・平安・鎌倉仏教の展開"
       },
       {
         "id": "et2_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "朱子学・陽明学・古学三派・国学四大人・石田梅岩・安藤昌益・富永仲基・山片蟠桃",
         "abstractTitle": "朱子学・陽明学・古学三派・国学四大人・石田梅岩・安藤昌益・富永仲基・山片蟠桃",
         "realTitle": "7章 江戸時代の儒学・国学・町人農民思想と洋学"
       },
       {
         "id": "et2_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "明六社（福沢諭吉・中村正直）・中江兆民・内村鑑三・幸徳秋水・河上肇・夏目漱石",
         "abstractTitle": "明六社（福沢諭吉・中村正直）・中江兆民・内村鑑三・幸徳秋水・河上肇・夏目漱石",
         "realTitle": "8章 近代日本の啓蒙・キリスト教・社会主義と文学"
       },
       {
         "id": "et2_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "西田幾多郎・和辻哲郎・三木清・柳田國男・折口信夫・宮沢賢治・丸山眞男・神谷美恵子",
         "abstractTitle": "西田幾多郎・和辻哲郎・三木清・柳田國男・折口信夫・宮沢賢治・丸山眞男・神谷美恵子",
         "realTitle": "9章 大正・昭和の日本哲学と民俗学・戦後思想"
       },
       {
         "id": "et3_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ピコ・マキャヴェリ・ルター・カルヴァン・ウェーバー・モンテーニュ・パスカル",
         "abstractTitle": "ピコ・マキャヴェリ・ルター・カルヴァン・ウェーバー・モンテーニュ・パスカル",
         "realTitle": "10章 ルネサンス・宗教改革とモラリスト・科学革命"
       },
       {
         "id": "et3_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ベーコン・ロック・ヒューム vs デカルト・スピノザ・ライプニッツとホッブズ・ロック・ルソー",
         "abstractTitle": "ベーコン・ロック・ヒューム vs デカルト・スピノザ・ライプニッツとホッブズ・ロック・ルソー",
         "realTitle": "11章 イギリス経験論・大陸合理論と社会契約説"
       },
       {
         "id": "et3_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "カント三批判書・コペルニクス的転回・定言命法・永久平和論とヘーゲル人倫（家族・市民社会・国家）",
         "abstractTitle": "カント三批判書・コペルニクス的転回・定言命法・永久平和論とヘーゲル人倫（家族・市民社会・国家）",
         "realTitle": "12章 ドイツ観念論（カントの批判哲学・義務論とヘーゲル弁証法）"
       },
       {
         "id": "et3_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ベンサムvsJ.S.ミル・パース・ジェームズ・デューイ・コント実証主義とマルクス唯物史観",
         "abstractTitle": "ベンサムvsJ.S.ミル・パース・ジェームズ・デューイ・コント実証主義とマルクス唯物史観",
         "realTitle": "13章 功利主義・プラグマティズム・進化論と社会主義（マルクス）"
       },
       {
         "id": "et4_1",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "キルケゴール・ニーチェ・ヤスパース・ハイデガー・サルトル・カミュ・フッサール・メルロ＝ポンティ",
         "abstractTitle": "キルケゴール・ニーチェ・ヤスパース・ハイデガー・サルトル・カミュ・フッサール・メルロ＝ポンティ",
         "realTitle": "14章 実存主義と現象学・身体論の展開"
       },
       {
         "id": "et4_2",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ハーバーマス・アーレント・レヴィナス・レヴィ＝ストロース・フーコー・デリダ・サイード・ポパー・クーン",
         "abstractTitle": "ハーバーマス・アーレント・レヴィナス・レヴィ＝ストロース・フーコー・デリダ・サイード・ポパー・クーン",
         "realTitle": "15章 フランクフルト学派・他者論・構造主義・ポストモダン・科学哲学"
       },
       {
         "id": "et4_3",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "ロールズvsノージックvsサンデル・マッキンタイア・アマルティア＝センとギリガン『ケアの倫理』",
         "abstractTitle": "ロールズvsノージックvsサンデル・マッキンタイア・アマルティア＝センとギリガン『ケアの倫理』",
         "realTitle": "16章 現代の正義論・リバタリアニズム・共同体主義とケアの倫理"
       },
       {
         "id": "et4_4",
-        "problemCount": 1,
+        "problemCount": 3,
         "title": "脳死と臓器移植・尊厳死とQOL・ヨナス世代間倫理・コモンズの悲劇・AI情報倫理",
         "abstractTitle": "脳死と臓器移植・尊厳死とQOL・ヨナス世代間倫理・コモンズの悲劇・AI情報倫理",
         "realTitle": "17章 現代の応用倫理（生命倫理・環境倫理・情報倫理・国際倫理）"
@@ -759,36 +759,36 @@ export const SUBJECT_STATS: Readonly<Record<string, SubjectStatsEntry>> = {
   "jp_history": {
     "chapters": 18,
     "units": 18,
-    "questions": 54,
-    "marks": 162,
+    "questions": 72,
+    "marks": 216,
     "points": 100
   },
   "world_history": {
     "chapters": 18,
     "units": 18,
-    "questions": 54,
-    "marks": 162,
+    "questions": 72,
+    "marks": 216,
     "points": 100
   },
   "geography": {
     "chapters": 16,
     "units": 16,
-    "questions": 16,
-    "marks": 48,
+    "questions": 48,
+    "marks": 144,
     "points": 100
   },
   "politics_econ": {
     "chapters": 16,
     "units": 16,
-    "questions": 16,
-    "marks": 48,
+    "questions": 48,
+    "marks": 144,
     "points": 100
   },
   "ethics": {
     "chapters": 17,
     "units": 17,
-    "questions": 17,
-    "marks": 51,
+    "questions": 51,
+    "marks": 153,
     "points": 100
   }
 };

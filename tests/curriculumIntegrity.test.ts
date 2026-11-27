@@ -2,6 +2,7 @@
  * ===================================================================
  * カリキュラム・問題・赤シートプリント・図解SVG 整合性テスト
  * ===================================================================
+ * 全5科目・85章・291大問・873小問（100%共通テスト4択マーク形式・記述ゼロ）
  */
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -23,15 +24,25 @@ function verifySubjectCurriculum(params: {
   parts: Part[];
   expectedParts: number;
   expectedChapters: number;
+  expectedProblemsPerChapter: number;
   expectedMarks: number;
   actualMarks: number;
 }) {
-  const { subject, parts, expectedParts, expectedChapters, expectedMarks, actualMarks } = params;
+  const {
+    subject,
+    parts,
+    expectedParts,
+    expectedChapters,
+    expectedProblemsPerChapter,
+    expectedMarks,
+    actualMarks,
+  } = params;
   expect(parts.length).toBe(expectedParts);
   const chapters = parts.flatMap((p) => p.chapters);
   expect(chapters.length).toBe(expectedChapters);
 
   const chapterIds = new Set<string>();
+  const probIds = new Set<string>();
   const subIds = new Set<string>();
   const idPattern = subjectDefinitionOf(subject)!.chapterIdPattern;
 
@@ -39,12 +50,11 @@ function verifySubjectCurriculum(params: {
     expect(idPattern.test(ch.id)).toBe(true);
     expect(chapterIds.has(ch.id)).toBe(false);
     chapterIds.add(ch.id);
-    expect(ch.practiceProblems.length).toBeGreaterThanOrEqual(1);
-    if (subject === 'jp_history' || subject === 'world_history') {
-      expect(ch.practiceProblems.length).toBe(3);
-    }
+    expect(ch.practiceProblems.length).toBe(expectedProblemsPerChapter);
 
     for (const prob of ch.practiceProblems) {
+      expect(probIds.has(prob.id)).toBe(false);
+      probIds.add(prob.id);
       if (prob.imageUrl) {
         const figPath = resolve(PUBLIC_DIR, prob.imageUrl.replace(/^\//, ''));
         expect(existsSync(figPath)).toBe(true);
@@ -66,58 +76,63 @@ function verifySubjectCurriculum(params: {
   expect(actualMarks).toBe(expectedMarks);
 }
 
-describe('社会科全5科目（日本史・世界史・地理・倫理・政経）の完全網羅・データ整合性', () => {
-  it('日本史探究（jp_history）は全4編・18章・54大問・162小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
+describe('社会科全5科目（日本史・世界史・地理・倫理・政経）の完全網羅・データ整合性（計873小問）', () => {
+  it('日本史探究（jp_history）は全4編・18章・72大問・216小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'jp_history',
       parts: jpHistoryData.parts,
       expectedParts: 4,
       expectedChapters: 18,
-      expectedMarks: 162,
+      expectedProblemsPerChapter: 4,
+      expectedMarks: 216,
       actualMarks: getJpHistoryStats().marks,
     });
   });
 
-  it('世界史探究（world_history）は全4編・18章・54大問・162小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
+  it('世界史探究（world_history）は全4編・18章・72大問・216小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'world_history',
       parts: worldHistoryData.parts,
       expectedParts: 4,
       expectedChapters: 18,
-      expectedMarks: 162,
+      expectedProblemsPerChapter: 4,
+      expectedMarks: 216,
       actualMarks: getWorldHistoryStats().marks,
     });
   });
 
-  it('倫理（ethics）は全4編・17章・51小問すべてが一意なID・妥当な4択・解説をもつ', () => {
+  it('倫理（ethics）は全4編・17章・51大問・153小問すべてが4択マーク形式・一意なID・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'ethics',
       parts: ethicsData.parts,
       expectedParts: 4,
       expectedChapters: 17,
-      expectedMarks: 51,
+      expectedProblemsPerChapter: 3,
+      expectedMarks: 153,
       actualMarks: getEthicsStats().marks,
     });
   });
 
-  it('政治・経済（politics_econ）は全4編・16章・48小問すべてが一意なID・妥当な4択・解説をもつ', () => {
+  it('政治・経済（politics_econ）は全4編・16章・48大問・144小問すべてが4択マーク形式・一意なID・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'politics_econ',
       parts: politicsEconData.parts,
       expectedParts: 4,
       expectedChapters: 16,
-      expectedMarks: 48,
+      expectedProblemsPerChapter: 3,
+      expectedMarks: 144,
       actualMarks: getPoliticsEconStats().marks,
     });
   });
 
-  it('地理探究（geography）は全4編・16章・48小問すべてが一意なID・妥当な4択・図版・解説をもつ', () => {
+  it('地理探究（geography）は全4編・16章・48大問・144小問すべてが4択マーク形式・一意なID・図版・解説をもつ', () => {
     verifySubjectCurriculum({
       subject: 'geography',
       parts: geographyData.parts,
       expectedParts: 4,
       expectedChapters: 16,
-      expectedMarks: 48,
+      expectedProblemsPerChapter: 3,
+      expectedMarks: 144,
       actualMarks: getGeographyStats().marks,
     });
   });

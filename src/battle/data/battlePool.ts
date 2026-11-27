@@ -28,11 +28,11 @@ import type { BattleAnswerFormat, BattleQuestion } from '../core/types';
 
 /** 教科ごとの収録数（UIで「この教科は◯問あります」と出すために使う） */
 export const POOL_COUNTS: Readonly<Record<string, number>> = {
-  jp_history: 162,
-  world_history: 162,
-  geography: 48,
-  politics_econ: 48,
-  ethics: 51,
+  jp_history: 216,
+  world_history: 216,
+  geography: 144,
+  politics_econ: 144,
+  ethics: 153,
 };
 
 /**
@@ -57,11 +57,11 @@ export const POOL_COUNTS: Readonly<Record<string, number>> = {
 export const POOL_FORMAT_COUNTS: Readonly<
   Record<string, Readonly<Partial<Record<BattleAnswerFormat, number>>>>
 > = {
-  jp_history: { choice4: 162 },
-  world_history: { choice4: 162 },
-  geography: { choice4: 48 },
-  politics_econ: { choice4: 48 },
-  ethics: { choice4: 51 },
+  jp_history: { choice4: 216 },
+  world_history: { choice4: 216 },
+  geography: { choice4: 144 },
+  politics_econ: { choice4: 144 },
+  ethics: { choice4: 153 },
 };
 
 /**
@@ -206,11 +206,11 @@ export function loadedPool(subject: string): readonly BattleQuestion[] {
  * データ本体を読まずに判断するために置いてある。
  */
 export const ANSWER_COUNTS: Readonly<Record<string, number>> = {
-  jp_history: 162,
-  world_history: 162,
-  geography: 48,
-  politics_econ: 48,
-  ethics: 51,
+  jp_history: 216,
+  world_history: 216,
+  geography: 144,
+  politics_econ: 144,
+  ethics: 153,
 };
 
 async function loadAnswerRaw(subject: string): Promise<readonly (readonly [string, string])[]> {
